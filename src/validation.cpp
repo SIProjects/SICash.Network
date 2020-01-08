@@ -2278,33 +2278,42 @@ bool CheckSenderScript(const CCoinsViewCache& view, const CTransaction& tx){
 }
 
 std::vector<ResultExecute> CallContract(const dev::Address& addrContract, std::vector<unsigned char> opcode, const dev::Address& sender, uint64_t gasLimit){
+    CBlockIndex* pblockindex = mapBlockIndex[chainActive.Tip()->GetBlockHash()];
+    return CallContract(addrContract, opcode, pblockindex, sender, gasLimit);
+}
+
+std::vector<ResultExecute> CallContract(const dev::Address& addrContract, std::vector<unsigned char> opcode, int blockHeight, const dev::Address& sender, uint64_t gasLimit){
+    CBlockIndex* pblockindex = mapBlockIndex[chainActive[blockHeight]->GetBlockHash()];
+    return CallContract(addrContract, opcode, pblockindex, sender, gasLimit);
+}
+
+std::vector<ResultExecute> CallContract(const dev::Address& addrContract, std::vector<unsigned char> opcode, CBlockIndex* pblockindex, const dev::Address& sender, uint64_t gasLimit) {
     CBlock block;
     CMutableTransaction tx;
 
-    CBlockIndex* pblockindex = mapBlockIndex[chainActive.Tip()->GetBlockHash()];
     ReadBlockFromDisk(block, pblockindex, Params().GetConsensus());
     block.nTime = GetAdjustedTime();
 
-    if(block.IsProofOfStake())
-    	block.vtx.erase(block.vtx.begin()+2,block.vtx.end());
+    if (block.IsProofOfStake())
+        block.vtx.erase(block.vtx.begin() + 2, block.vtx.end());
     else
-    	block.vtx.erase(block.vtx.begin()+1,block.vtx.end());
+        block.vtx.erase(block.vtx.begin() + 1, block.vtx.end());
 
     QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
-    uint64_t blockGasLimit = qtumDGP.getBlockGasLimit(chainActive.Tip()->nHeight + 1);
+    uint64_t blockGasLimit = qtumDGP.getBlockGasLimit(pblockindex->nHeight + 1);
 
-    if(gasLimit == 0){
+    if (gasLimit == 0) {
         gasLimit = blockGasLimit - 1;
     }
     dev::Address senderAddress = sender == dev::Address() ? dev::Address("ffffffffffffffffffffffffffffffffffffffff") : sender;
     tx.vout.push_back(CTxOut(0, CScript() << OP_DUP << OP_HASH160 << senderAddress.asBytes() << OP_EQUALVERIFY << OP_CHECKSIG));
     block.vtx.push_back(MakeTransactionRef(CTransaction(tx)));
- 
+
     QtumTransaction callTransaction(0, 1, dev::u256(gasLimit), addrContract, opcode, dev::u256(0));
     callTransaction.forceSender(senderAddress);
     callTransaction.setVersion(VersionVM::GetEVMDefault());
 
-    
+
     ByteCodeExec exec(block, std::vector<QtumTransaction>(1, callTransaction), blockGasLimit, pblockindex);
     exec.performByteCode(dev::eth::Permanence::Reverted);
     return exec.getResult();

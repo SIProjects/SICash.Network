@@ -972,10 +972,19 @@ static UniValue getcontractcode(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 1)
         throw std::runtime_error(
-            "getcontractcode \"address\"\n"
-            "\nArgument:\n"
-            "1. \"address\"          (string, required) The contract address\n"
-        );
+            RPCHelpMan{
+                "getcontractcode",
+                "\nGet contract code.\n",
+                {
+                    {"address", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The contract address"},
+                    {"blockNum", RPCArg::Type::NUM, /* default */ "latest", "Number of block to get state from."},
+                },
+                RPCResult{
+                    "(string)  code of the contract\n"},
+                RPCExamples{
+                    HelpExampleCli("getcontractcode", "eb23c0b3e6042821da281a2e2364feb22dd543e3") + HelpExampleRpc("getcontractcode", "eb23c0b3e6042821da281a2e2364feb22dd543e3")},
+            }
+                .ToString());
 
     LOCK(cs_main);
 
@@ -983,8 +992,20 @@ static UniValue getcontractcode(const JSONRPCRequest& request)
     if(strAddr.size() != 40 || !CheckHex(strAddr))
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Incorrect address");
 
+    TemporaryState ts(globalState);
+    if (request.params.size() > 1) {
+        if (request.params[1].isNum()) {
+            auto blockNum = request.params[1].get_int();
+            if (blockNum < 0 || blockNum > chainActive.Height())
+                throw JSONRPCError(RPC_INVALID_PARAMS, "Incorrect block number");
+            ts.SetRoot(uintToh256(chainActive[blockNum]->hashStateRoot), uintToh256(chainActive[blockNum]->hashUTXORoot));
+        } else {
+            throw JSONRPCError(RPC_INVALID_PARAMS, "Incorrect block number");
+        }
+    }
+
     dev::Address addrAccount(strAddr);
-    if(!globalState->addressInUse(addrAccount))
+    if (!globalState->addressInUse(addrAccount))
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Address does not exist");
 
     std::vector<uint8_t> code(globalState->code(addrAccount));
@@ -1250,52 +1271,52 @@ static UniValue getblock(const JSONRPCRequest& request)
 ////////////////////////////////////////////////////////////////////// // qtum
 UniValue callcontract(const JSONRPCRequest& request)
 {
-    if (request.fHelp || request.params.size() < 2 || request.params.size() > 4)
+    if (request.fHelp || request.params.size() < 2 || request.params.size() > 5)
         throw std::runtime_error(
-            RPCHelpMan{"callcontract",
+            RPCHelpMan{
+                "callcontract",
                 "\nCall contract methods offline.\n",
                 {
                     {"address", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The contract address"},
                     {"data", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The data hex string"},
                     {"senderAddress", RPCArg::Type::STR, RPCArg::Optional::OMITTED_NAMED_ARG, "The sender address string"},
                     {"gasLimit", RPCArg::Type::NUM, RPCArg::Optional::OMITTED_NAMED_ARG, "The gas limit for executing the contract."},
+                    {"blockNum", RPCArg::Type::NUM, /* default */ "latest", "Number of block to get state from."},
                 },
                 RPCResult{
-            "{\n"
-            "  \"address\": \"contract address\",             (string)  address of the contract\n"
-            "  \"executionResult\": {                       (object)  method execution result\n"
-            "    \"gasUsed\": n,                            (numeric) gas used\n"
-            "    \"excepted\": \"exception\",                 (string)  thrown exception\n"
-            "    \"newAddress\": \"contract address\",        (string)  new address of the contract\n"
-            "    \"output\": \"data\",                        (string)  returned data from the method\n"
-            "    \"codeDeposit\": n,                        (numeric) code deposit\n"
-            "    \"gasRefunded\": n,                        (numeric) gas refunded\n"
-            "    \"depositSize\": n,                        (numeric) deposit size\n"
-            "    \"gasForDeposit\": n                       (numeric) gas for deposit\n"
-            "  },\n"
-            "  \"transactionReceipt\": {                    (object)  transaction receipt\n"
-            "    \"stateRoot\": \"hash\",                     (string)  state root hash\n"
-            "    \"gasUsed\": n,                            (numeric) gas used\n"
-            "    \"bloom\": \"bloom\",                        (string)  bloom\n"
-            "    \"log\": [                                 (array)  logs from the receipt\n"
-            "      {\n"
-            "        \"address\": \"address\",                (string)  contract address\n"
-            "        \"topics\":                            (array)  topics\n"
-            "        [\n"
-            "          \"topic\",                           (string)  topic\n"
-            "        ],\n"
-            "        \"data\": \"data\"                       (string)  logged data\n"
-            "      }\n"
-            "    ]\n"
-            "  }\n"
-            "}\n"
-                },
+                    "{\n"
+                    "  \"address\": \"contract address\",             (string)  address of the contract\n"
+                    "  \"executionResult\": {                       (object)  method execution result\n"
+                    "    \"gasUsed\": n,                            (numeric) gas used\n"
+                    "    \"excepted\": \"exception\",                 (string)  thrown exception\n"
+                    "    \"newAddress\": \"contract address\",        (string)  new address of the contract\n"
+                    "    \"output\": \"data\",                        (string)  returned data from the method\n"
+                    "    \"codeDeposit\": n,                        (numeric) code deposit\n"
+                    "    \"gasRefunded\": n,                        (numeric) gas refunded\n"
+                    "    \"depositSize\": n,                        (numeric) deposit size\n"
+                    "    \"gasForDeposit\": n                       (numeric) gas for deposit\n"
+                    "  },\n"
+                    "  \"transactionReceipt\": {                    (object)  transaction receipt\n"
+                    "    \"stateRoot\": \"hash\",                     (string)  state root hash\n"
+                    "    \"gasUsed\": n,                            (numeric) gas used\n"
+                    "    \"bloom\": \"bloom\",                        (string)  bloom\n"
+                    "    \"log\": [                                 (array)  logs from the receipt\n"
+                    "      {\n"
+                    "        \"address\": \"address\",                (string)  contract address\n"
+                    "        \"topics\":                            (array)  topics\n"
+                    "        [\n"
+                    "          \"topic\",                           (string)  topic\n"
+                    "        ],\n"
+                    "        \"data\": \"data\"                       (string)  logged data\n"
+                    "      }\n"
+                    "    ]\n"
+                    "  }\n"
+                    "}\n"},
                 RPCExamples{
-                    HelpExampleCli("callcontract", "eb23c0b3e6042821da281a2e2364feb22dd543e3 06fdde03")
-            + HelpExampleRpc("callcontract", "eb23c0b3e6042821da281a2e2364feb22dd543e3 06fdde03")
-                },
-            }.ToString());
- 
+                    HelpExampleCli("callcontract", "eb23c0b3e6042821da281a2e2364feb22dd543e3 06fdde03") + HelpExampleRpc("callcontract", "eb23c0b3e6042821da281a2e2364feb22dd543e3 06fdde03")},
+            }
+                .ToString());
+
     LOCK(cs_main);
     
     std::string strAddr = request.params[0].get_str();
@@ -1306,10 +1327,6 @@ UniValue callcontract(const JSONRPCRequest& request)
 
     if(strAddr.size() != 40 || !CheckHex(strAddr))
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Incorrect address");
- 
-    dev::Address addrAccount(strAddr);
-    if(!globalState->addressInUse(addrAccount))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Address does not exist");
     
     dev::Address senderAddress;
     if(request.params.size() >= 3){
@@ -1327,8 +1344,26 @@ UniValue callcontract(const JSONRPCRequest& request)
         gasLimit = request.params[3].get_int64();
     }
 
+    TemporaryState ts(globalState);
+    int blockNum;
+    if (request.params.size() >= 5) {
+        if (request.params[4].isNum()) {
+            blockNum = request.params[4].get_int();
+            if (blockNum < 0 || blockNum > chainActive.Height())
+                throw JSONRPCError(RPC_INVALID_PARAMS, "Incorrect block number");
+            ts.SetRoot(uintToh256(chainActive[blockNum]->hashStateRoot), uintToh256(chainActive[blockNum]->hashUTXORoot));
+        } else {
+            throw JSONRPCError(RPC_INVALID_PARAMS, "Incorrect block number");
+        }
+    } else {
+        blockNum = latestblock.height;
+    }
 
-    std::vector<ResultExecute> execResults = CallContract(addrAccount, ParseHex(data), senderAddress, gasLimit);
+    dev::Address addrAccount(strAddr);
+    if (!globalState->addressInUse(addrAccount))
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Address does not exist");
+
+    std::vector<ResultExecute> execResults = CallContract(addrAccount, ParseHex(data), blockNum, senderAddress, gasLimit);
 
     if(fRecordLogOpcodes){
         writeVMlog(execResults);
@@ -1987,6 +2022,42 @@ UniValue listcontracts(const JSONRPCRequest& request)
 	}
 
 	return result;
+}
+
+UniValue listallcontracts(const JSONRPCRequest& request)
+{
+    if (request.fHelp)
+        throw std::runtime_error(
+            RPCHelpMan{
+                "listallcontracts",
+                "\nGet the contracts list.\n",
+                {{"blockNum", RPCArg::Type::NUM, /* default */ "latest", "Number of block to get contracts from."}},
+                RPCResult{
+                    "{\n"
+                    "  \"account\": n,                            (numeric) balance for the account\n"
+                    "  ...\n"
+                    "}\n"},
+                RPCExamples{
+                    HelpExampleCli("listallcontracts", "") + HelpExampleRpc("listallcontracts", "")},
+            }
+                .ToString());
+
+    LOCK(cs_main);
+
+    TemporaryState ts(globalState);
+    if (request.params.size() > 0) {
+        int blockNum = request.params[0].get_int();
+        if (blockNum < 0 || blockNum > chainActive.Height())
+            throw JSONRPCError(RPC_INVALID_PARAMS, "Incorrect block number");
+        ts.SetRoot(uintToh256(chainActive[blockNum]->hashStateRoot), uintToh256(chainActive[blockNum]->hashUTXORoot));
+    }
+
+    UniValue result(UniValue::VARR);
+    auto map = globalState->addresses();
+    for (const auto& item: map) {
+        result.push_back(item.first.hex());
+    }
+    return result;
 }
 
 struct CCoinsStats
@@ -3409,7 +3480,7 @@ static const CRPCCommand commands[] =
     { "blockchain",         "savemempool",            &savemempool,            {} },
     { "blockchain",         "verifychain",            &verifychain,            {"checklevel","nblocks"} },
     { "blockchain",         "getaccountinfo",         &getaccountinfo,         {"contract_address"} },
-    { "blockchain",         "getcontractcode",        &getcontractcode,        {"contract_address"} },
+    { "blockchain",         "getcontractcode",        &getcontractcode,        {"address", "blockNum"} },
     { "blockchain",         "getstorage",             &getstorage,             {"address, index, blockNum"} },
     { "blockchain",         "preciousblock",          &preciousblock,          {"blockhash"} },
     { "blockchain",         "scantxoutset",           &scantxoutset,           {"action", "scanobjects"} },
@@ -3423,6 +3494,7 @@ static const CRPCCommand commands[] =
     { "hidden",             "waitforblockheight",     &waitforblockheight,     {"height","timeout"} },
     { "hidden",             "syncwithvalidationinterfacequeue", &syncwithvalidationinterfacequeue, {} },
     { "blockchain",         "listcontracts",          &listcontracts,          {"start", "maxDisplay"} },
+    { "blockchain",         "listallcontracts",       &listallcontracts,       {"height"} },
     { "blockchain",         "gettransactionreceipt",  &gettransactionreceipt,  {"hash"} },
     { "blockchain",         "searchlogs",             &searchlogs,             {"fromBlock", "toBlock", "address", "topics"} },
 
