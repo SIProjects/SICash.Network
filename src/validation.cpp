@@ -3220,6 +3220,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                         uint32_t(pindex->nHeight),
                         tx.GetHash(),
                         uint32_t(i),
+                        resultConvertQtumTX.first[k].getNVout(),
                         resultConvertQtumTX.first[k].from(),
                         resultConvertQtumTX.first[k].to(),
                         countCumulativeGasUsed,
@@ -3228,7 +3229,8 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                         resultExec[k].txRec.log(),
                         resultExec[k].execRes.excepted,
                         exceptedMessage(resultExec[k].execRes.excepted, resultExec[k].execRes.output),
-                        resultConvertQtumTX.first[k].getNVout()
+                        resultExec[k].txRec.stateRoot(),
+                        resultExec[k].txRec.utxoRoot()
                     });
                 }
 
