@@ -288,6 +288,19 @@ UniValue transactionReceiptToJSON(const QtumTransactionReceipt& txRec)
     result.pushKV("utxoRoot", txRec.utxoRoot().hex());
     result.pushKV("gasUsed", CAmount(txRec.cumulativeGasUsed()));
     result.pushKV("bloom", txRec.bloom().hex());
+    UniValue createdContracts(UniValue::VARR);
+    for (const auto& item: txRec.createdContracts()) {
+        UniValue contractItem(UniValue::VOBJ);
+        contractItem.pushKV("address", item.first.hex());
+        contractItem.pushKV("code", HexStr(item.second));
+        createdContracts.push_back(contractItem);
+    }
+    result.pushKV("createdContracts", createdContracts);
+    UniValue destructedContracts(UniValue::VARR);
+    for (const dev::Address& contract: txRec.destructedContracts()) {
+        destructedContracts.push_back(contract.hex());
+    }
+    result.pushKV("destructedContracts", destructedContracts);
     UniValue logEntries(UniValue::VARR);
     dev::eth::LogEntries logs = txRec.log();
     for(dev::eth::LogEntry log : logs){
@@ -1395,6 +1408,19 @@ void assignJSON(UniValue& entry, const TransactionReceiptInfo& resExec) {
     entry.pushKV("exceptedMessage", resExec.exceptedMessage);
     entry.pushKV("stateRoot", resExec.stateRoot.hex());
     entry.pushKV("utxoRoot", resExec.utxoRoot.hex());
+    UniValue createdContracts(UniValue::VARR);
+    for (const auto& item: resExec.createdContracts) {
+        UniValue contractItem(UniValue::VOBJ);
+        contractItem.pushKV("address", item.first.hex());
+        contractItem.pushKV("code", HexStr(item.second));
+        createdContracts.push_back(contractItem);
+    }
+    entry.pushKV("createdContracts", createdContracts);
+    UniValue destructedContracts(UniValue::VARR);
+    for (const dev::Address& contract : resExec.destructedContracts) {
+        destructedContracts.push_back(contract.hex());
+    }
+    entry.pushKV("destructedContracts", destructedContracts);
 }
 
 void assignJSON(UniValue& logEntry, const dev::eth::LogEntry& log,
@@ -1965,6 +1991,79 @@ UniValue gettransactionreceipt(const JSONRPCRequest& request)
         transactionReceiptInfoToJSON(t, tri);
         result.push_back(tri);
     }
+    return result;
+}
+
+UniValue getblocktransactionreceipts(const JSONRPCRequest& request)
+{
+    if (request.fHelp || request.params.size() < 1)
+        throw std::runtime_error(
+            RPCHelpMan{
+                "getblocktransactionreceipts",
+                "\nGet the transaction receipt.\n",
+                {
+                    {"hash", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The block hash"},
+                },
+                RPCResult{
+                    "[\n"
+                    "  {\n"
+                    "    \"blockHash\": \"hash\",             (string)  block hash\n"
+                    "    \"blockNumber\": n,                (numeric)  block number\n"
+                    "    \"transactionHash\": \"hash\",       (string)  transaction hash\n"
+                    "    \"transactionIndex\": n,           (numeric)  transaction index\n"
+                    "    \"from\": \"address\",               (string)  from address\n"
+                    "    \"to\": \"address\",                 (string)  to address\n"
+                    "    \"cumulativeGasUsed\": n,          (numeric)  cumulative gas used\n"
+                    "    \"gasUsed\": n,                    (numeric)  gas used\n"
+                    "    \"contractAddress\": \"address\",    (string)  contract address\n"
+                    "    \"excepted\": \"exception\",         (string)  thrown exception\n"
+                    "    \"log\": [                         (array)  logs from the receipt\n"
+                    "      {\n"
+                    "        \"address\": \"address\",        (string)  contract address\n"
+                    "        \"topics\":                    (array)  topics\n"
+                    "        [\n"
+                    "          \"topic\",                   (string)  topic\n"
+                    "        ],\n"
+                    "        \"data\": \"data\"               (string)  logged data\n"
+                    "      }\n"
+                    "    ]\n"
+                    "  }\n"
+                    "]\n"},
+                RPCExamples{
+                    HelpExampleCli("getblocktransactionreceipts", "3b04bc73afbbcf02cfef2ca1127b60fb0baf5f8946a42df67f1659671a2ec53c") + HelpExampleRpc("getblocktransactionreceipts", "3b04bc73afbbcf02cfef2ca1127b60fb0baf5f8946a42df67f1659671a2ec53c")},
+            }
+                .ToString());
+
+    if (!fLogEvents)
+        throw JSONRPCError(RPC_INTERNAL_ERROR, "Events indexing disabled");
+
+    LOCK(cs_main);
+
+    std::string hashTemp = request.params[0].get_str();
+    if (hashTemp.size() != 64) {
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Incorrect hash");
+    }
+
+    uint256 hash(uint256S(hashTemp));
+
+    const CBlockIndex* pblockindex = LookupBlockIndex(hash);
+    if (!pblockindex) {
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Block not found");
+    }
+    const CBlock block = GetBlockChecked(pblockindex);
+
+    UniValue result(UniValue::VARR);
+    for (const auto& tx: block.vtx) {
+        if (tx->HasCreateOrCall()) {
+            const std::vector<TransactionReceiptInfo> transactionReceiptInfo = pstorageresult->getResult(uintToh256(tx->GetHash()));
+            for (const TransactionReceiptInfo& t : transactionReceiptInfo) {
+                UniValue tri(UniValue::VOBJ);
+                transactionReceiptInfoToJSON(t, tri);
+                result.push_back(tri);
+            }
+        }
+    }
+
     return result;
 }
 //////////////////////////////////////////////////////////////////////
@@ -3499,6 +3598,7 @@ static const CRPCCommand commands[] =
     { "blockchain",         "listcontracts",          &listcontracts,          {"start", "maxDisplay"} },
     { "blockchain",         "listallcontracts",       &listallcontracts,       {"height"} },
     { "blockchain",         "gettransactionreceipt",  &gettransactionreceipt,  {"hash"} },
+    { "blockchain",         "getblocktransactionreceipts",  &getblocktransactionreceipts,  {"hash"} },
     { "blockchain",         "searchlogs",             &searchlogs,             {"fromBlock", "toBlock", "address", "topics"} },
 
     { "blockchain",         "waitforlogs",            &waitforlogs,            {"fromBlock", "nblocks", "address", "topics"} },

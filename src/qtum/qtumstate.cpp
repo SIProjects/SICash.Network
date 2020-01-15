@@ -31,8 +31,10 @@ ResultExecute QtumState::execute(EnvInfo const& _envInfo, SealEngineFace const& 
     h256 oldStateRoot = rootHash();
     h256 oldUTXORoot = rootHashUTXO();
     bool voutLimit = false;
+    m_createdContracts.clear();
+    m_destructedContracts.clear();
 
-	auto onOp = _onOp;
+    auto onOp = _onOp;
 #if ETH_VMTRACE
 	if (isChannelVisible<VMTraceChannel>())
 		onOp = Executive::simpleTrace(); // override tracer
@@ -122,9 +124,31 @@ ResultExecute QtumState::execute(EnvInfo const& _envInfo, SealEngineFace const& 
             refund.vout.push_back(CTxOut(CAmount(_t.value().convert_to<uint64_t>()), script));
         }
         //make sure to use empty transaction if no vouts made
-        return ResultExecute{ex, QtumTransactionReceipt(oldStateRoot, oldUTXORoot, gas, e.logs()), refund.vout.empty() ? CTransaction() : CTransaction(refund)};
+        return ResultExecute{
+            ex,
+            QtumTransactionReceipt(oldStateRoot, oldUTXORoot, gas, e.logs(), {}, {}),
+            refund.vout.empty() ? CTransaction() : CTransaction(refund)
+        };
     }else{
-        return ResultExecute{res, QtumTransactionReceipt(rootHash(), rootHashUTXO(), startGasUsed + e.gasUsed(), e.logs()), tx ? *tx : CTransaction()};
+        if (res.excepted == dev::eth::TransactionException::None) {
+            return ResultExecute{
+                res,
+                QtumTransactionReceipt(
+                    rootHash(), rootHashUTXO(),
+                    startGasUsed + e.gasUsed(),
+                    e.logs(),
+                    std::move(m_createdContracts),
+                    std::move(m_destructedContracts)
+                ),
+                tx ? *tx : CTransaction()
+            };
+        } else {
+            return ResultExecute{
+                res,
+                QtumTransactionReceipt(rootHash(), rootHashUTXO(), startGasUsed + e.gasUsed(), e.logs(), {}, {}),
+                tx ? *tx : CTransaction()
+            };
+        }
     }
 }
 

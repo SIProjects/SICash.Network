@@ -93,12 +93,14 @@ void StorageResults::commitResults(){
                     tris.exceptedMessage.push_back(receipt_info.exceptedMessage);
                     tris.stateRoots.push_back(receipt_info.stateRoot);
                     tris.utxoRoots.push_back(receipt_info.utxoRoot);
+                    tris.createdContracts.push_back(receipt_info.createdContracts);
+                    tris.destructedContracts.push_back(receipt_info.destructedContracts);
                 }
 
-                dev::RLPStream streamRLP(15);
+                dev::RLPStream streamRLP(17);
                 streamRLP << tris.blockHashes << tris.blockNumbers << tris.transactionHashes << tris.transactionIndexes << tris.outputIndexes;
                 streamRLP << tris.senders << tris.receivers << tris.cumulativeGasUsed << tris.gasUsed << tris.contractAddresses << tris.logs << tris.excepted << tris.exceptedMessage;
-                streamRLP << tris.stateRoots << tris.utxoRoots;
+                streamRLP << tris.stateRoots << tris.utxoRoots << tris.createdContracts << tris.destructedContracts;
 
                 dev::bytes data = streamRLP.out();
                 std::string stringData(data.begin(), data.end());
@@ -138,6 +140,8 @@ bool StorageResults::readResult(dev::h256 const& _key, std::vector<TransactionRe
         tris.exceptedMessage = state[12].toVector<std::string>();
         tris.stateRoots = state[13].toVector<dev::h256>();
         tris.utxoRoots = state[14].toVector<dev::h256>();
+        tris.createdContracts = state[15].toVector<std::vector<std::pair<dev::Address, dev::bytes>>>();
+        tris.destructedContracts = state[16].toVector<std::vector<dev::h160>>();
 
         for(size_t j = 0; j < tris.blockHashes.size(); j++){
             TransactionReceiptInfo tri{
@@ -155,7 +159,9 @@ bool StorageResults::readResult(dev::h256 const& _key, std::vector<TransactionRe
                 static_cast<dev::eth::TransactionException>(tris.excepted[j]),
                 tris.exceptedMessage[j],
                 tris.stateRoots[j],
-                tris.utxoRoots[j]
+                tris.utxoRoots[j],
+                tris.createdContracts[j],
+                tris.destructedContracts[j]
             };
             _result.push_back(tri);
         }
