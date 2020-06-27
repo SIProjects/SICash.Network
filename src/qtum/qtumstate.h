@@ -124,6 +124,8 @@ public:
         return dev::Address(hashTxIdAndVout);
     }
 
+    void deployDelegationsContract();
+
     virtual ~QtumState(){}
 
     friend CondensingTX;
