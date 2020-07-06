@@ -137,11 +137,11 @@ public:
         vSeeds.emplace_back("sicash6.dynu.net"); // SICash mainnet
         vSeeds.emplace_back("sicash7.dynu.net"); // SICash mainnet
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,58);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,50);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
-        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
-        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,63);    // Starts with uppercase (S)
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,125);   // Starts with lowercase (s)
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);   // Starts with lowercase (t)
+        base58Prefixes[EXT_PUBLIC_KEY] = {0x03, 0x68, 0xB3, 0x2E};
+        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x81, 0xAD, 0xE5};
 
         bech32_hrp = "qc";
 
@@ -251,11 +251,11 @@ public:
         // nodes with support for servicebits filtering should be at the top
         vSeeds.emplace_back("sicash4.dynu.net"); // SICash testnet
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,120);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,110);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,65);     // Starts with uppercase (T)
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,127);    //Starts with lowercase (t)
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,130);    //Starts with lowercase (u)
+        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x36, 0x77, 0xAF};
+        base58Prefixes[EXT_SECRET_KEY] = {0x03, 0x15, 0x53, 0x24};
 
         bech32_hrp = "tq";
 
@@ -389,11 +389,11 @@ public:
         consensus.nCheckpointSpan = COINBASE_MATURITY;
         consensus.delegationsAddress = uint160(ParseHex("0000000000000000000000000000000000000086")); // Delegations contract for offline staking
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,120);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,110);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,60);     // Starts with uppercase (R)
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,110);    // Starts with lowercase (m)
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,140);    // Starts with lowercase (y)
+        base58Prefixes[EXT_PUBLIC_KEY] = {0xA4, 0x34, 0x27, 0xBF};
+        base58Prefixes[EXT_SECRET_KEY] = {0x02, 0x15, 0x81, 0x96};
 
         bech32_hrp = "qcrt";
     }
