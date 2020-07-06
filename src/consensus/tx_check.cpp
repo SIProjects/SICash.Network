@@ -34,7 +34,7 @@ bool CheckTransaction(const CTransaction& tx, CValidationState &state, bool fChe
         if (!MoneyRange(nValueOut))
             return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-txns-txouttotal-toolarge");
 
-        /////////////////////////////////////////////////////////// // qtum
+        /////////////////////////////////////////////////////////// // sicash
         if (txout.scriptPubKey.HasOpCall() || txout.scriptPubKey.HasOpCreate() || txout.scriptPubKey.HasOpSender()) {
             std::vector<valtype> vSolutions;
             txnouttype whichType = Solver(txout.scriptPubKey, vSolutions, true);

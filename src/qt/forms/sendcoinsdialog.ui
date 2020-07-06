@@ -665,7 +665,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QtumPushButton" name="addButton">
+         <widget class="SICashPushButton" name="addButton">
           <property name="toolTip">
            <string>Send to multiple recipients at once</string>
           </property>
@@ -1209,9 +1209,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>QtumPushButton</class>
+   <class>SICashPushButton</class>
    <extends>QPushButton</extends>
-   <header>qt/qtumpushbutton.h</header>
+   <header>qt/sicashpushbutton.h</header>
   </customwidget>
  </customwidgets>
  <resources>

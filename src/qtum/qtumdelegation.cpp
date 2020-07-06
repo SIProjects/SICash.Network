@@ -1,4 +1,4 @@
-#include <qtum/qtumdelegation.h>
+#include <sicash/sicashdelegation.h>
 #include <chainparams.h>
 #include <util/contractabi.h>
 #include <util/convert.h>
@@ -22,10 +22,10 @@ bool AbiOutEvent(FunctionABI* func, const std::vector<std::string>& topics, cons
     return func->abiOut(topics, data, values, errors);
 }
 
-class QtumDelegationPriv
+class SICashDelegationPriv
 {
 public:
-    QtumDelegationPriv():
+    SICashDelegationPriv():
         m_pfDelegations(0),
         m_pfAddDelegationEvent(0),
         m_pfRemoveDelegationEvent(0)
@@ -55,7 +55,7 @@ public:
         assert(m_pfRemoveDelegationEvent);
     }
 
-    virtual ~QtumDelegationPriv()
+    virtual ~SICashDelegationPriv()
     {
         if(m_pfDelegations)
             delete m_pfDelegations;
@@ -154,20 +154,20 @@ public:
     dev::Address delegationsAddress;
 };
 
-QtumDelegation::QtumDelegation():
+SICashDelegation::SICashDelegation():
     priv(0)
 {
-    priv = new QtumDelegationPriv();
+    priv = new SICashDelegationPriv();
 }
 
-QtumDelegation::~QtumDelegation()
+SICashDelegation::~SICashDelegation()
 {
     if(priv)
         delete priv;
     priv = 0;
 }
 
-bool QtumDelegation::GetDelegation(const uint160 &address, Delegation &delegation) const
+bool SICashDelegation::GetDelegation(const uint160 &address, Delegation &delegation) const
 {
     // Contract exist check
     if(!ExistDelegationContract())
@@ -243,7 +243,7 @@ bool QtumDelegation::GetDelegation(const uint160 &address, Delegation &delegatio
     return true;
 }
 
-bool QtumDelegation::VerifyDelegation(const uint160 &address, const Delegation &delegation)
+bool SICashDelegation::VerifyDelegation(const uint160 &address, const Delegation &delegation)
 {
     if(address == uint160() || delegation.IsNull() || delegation.fee > 100)
         return false;
@@ -251,7 +251,7 @@ bool QtumDelegation::VerifyDelegation(const uint160 &address, const Delegation &
     return SignStr::VerifyMessage(CKeyID(address), delegation.staker.GetReverseHex(), delegation.PoD);
 }
 
-bool QtumDelegation::FilterDelegationEvents(std::vector<DelegationEvent> &events, const IDelegationFilter &filter, int fromBlock, int toBlock, int minconf) const
+bool SICashDelegation::FilterDelegationEvents(std::vector<DelegationEvent> &events, const IDelegationFilter &filter, int fromBlock, int toBlock, int minconf) const
 {
     // Check if log events are enabled
     if(!fLogEvents)
@@ -312,14 +312,14 @@ bool QtumDelegation::FilterDelegationEvents(std::vector<DelegationEvent> &events
     return true;
 }
 
-std::map<uint160, Delegation> QtumDelegation::DelegationsFromEvents(const std::vector<DelegationEvent> &events)
+std::map<uint160, Delegation> SICashDelegation::DelegationsFromEvents(const std::vector<DelegationEvent> &events)
 {
     std::map<uint160, Delegation> delegations;
     UpdateDelegationsFromEvents(events, delegations);
     return delegations;
 }
 
-void QtumDelegation::UpdateDelegationsFromEvents(const std::vector<DelegationEvent> &events, std::map<uint160, Delegation> &delegations)
+void SICashDelegation::UpdateDelegationsFromEvents(const std::vector<DelegationEvent> &events, std::map<uint160, Delegation> &delegations)
 {
     for(const DelegationEvent& event : events)
     {
@@ -342,18 +342,18 @@ void QtumDelegation::UpdateDelegationsFromEvents(const std::vector<DelegationEve
     }
 }
 
-bool QtumDelegation::ExistDelegationContract() const
+bool SICashDelegation::ExistDelegationContract() const
 {
     // Delegation contract exist check
     return globalState && globalState->addressInUse(priv->delegationsAddress);
 }
 
-std::string QtumDelegation::BytecodeRemove()
+std::string SICashDelegation::BytecodeRemove()
 {
     return DelegationABI()["removeDelegation"].selector();
 }
 
-bool QtumDelegation::BytecodeAdd(const std::string &hexStaker, const int &fee, const std::vector<unsigned char> &PoD, std::string &datahex, std::string &errorMessage)
+bool SICashDelegation::BytecodeAdd(const std::string &hexStaker, const int &fee, const std::vector<unsigned char> &PoD, std::string &datahex, std::string &errorMessage)
 {
     FunctionABI func = DelegationABI()["addDelegation"];
     std::vector<std::vector<std::string>> values;

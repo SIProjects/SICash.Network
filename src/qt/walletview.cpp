@@ -40,7 +40,7 @@
 #include <QProgressDialog>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include <qt/qtumpushbutton.h>
+#include <qt/sicashpushbutton.h>
 
 WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     QStackedWidget(parent),
@@ -57,7 +57,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     QHBoxLayout *hbox_buttons = new QHBoxLayout();
     transactionView = new TransactionView(platformStyle, this);
     vbox->addWidget(transactionView);
-    QPushButton *exportButton = new QtumPushButton(tr("&Export"), this);
+    QPushButton *exportButton = new SICashPushButton(tr("&Export"), this);
     exportButton->setToolTip(tr("Export the data in the current tab to a file"));
     if (platformStyle->getImagesOnButtons()) {
         exportButton->setIcon(platformStyle->MultiStatesIcon(":/icons/export", PlatformStyle::PushButton));
@@ -77,7 +77,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     sendToContractPage = new SendToContract(platformStyle);
     callContractPage = new CallContract(platformStyle);
 
-    QRCTokenPage = new QRCToken(platformStyle);
+    SRCTokenPage = new SRCToken(platformStyle);
 
     stakePage = new StakePage(platformStyle);
     delegationPage = new DelegationPage(platformStyle);
@@ -88,7 +88,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(createContractPage);
     addWidget(sendToContractPage);
     addWidget(callContractPage);
-    addWidget(QRCTokenPage);
+    addWidget(SRCTokenPage);
     addWidget(stakePage);
     addWidget(delegationPage);
     addWidget(superStakerPage);
@@ -157,7 +157,7 @@ void WalletView::setClientModel(ClientModel *_clientModel)
     createContractPage->setClientModel(_clientModel);
     sendToContractPage->setClientModel(_clientModel);
     callContractPage->setClientModel(_clientModel);
-    QRCTokenPage->setClientModel(_clientModel);
+    SRCTokenPage->setClientModel(_clientModel);
     stakePage->setClientModel(_clientModel);
     delegationPage->setClientModel(_clientModel);
     superStakerPage->setClientModel(_clientModel);
@@ -175,7 +175,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     createContractPage->setModel(_walletModel);
     sendToContractPage->setModel(_walletModel);
     callContractPage->setModel(_walletModel);
-    QRCTokenPage->setModel(_walletModel);
+    SRCTokenPage->setModel(_walletModel);
     stakePage->setWalletModel(_walletModel);
     delegationPage->setModel(_walletModel);
     superStakerPage->setModel(_walletModel);
@@ -310,7 +310,7 @@ void WalletView::gotoCallContractPage()
 
 void WalletView::gotoTokenPage()
 {
-    setCurrentWidget(QRCTokenPage);
+    setCurrentWidget(SRCTokenPage);
 }
 
 void WalletView::gotoStakePage()

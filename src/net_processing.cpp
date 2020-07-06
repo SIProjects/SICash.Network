@@ -37,7 +37,7 @@
 #include <typeinfo>
 
 #if defined(NDEBUG)
-# error "Qtum cannot be compiled without assertions."
+# error "SICash cannot be compiled without assertions."
 #endif
 
 /** Expiration time for orphan transactions in seconds */

@@ -34,20 +34,20 @@
 
 #include <consensus/consensus.h>
 
-/////////////////////////////////////////// qtum
+/////////////////////////////////////////// sicash
 class CWalletTx;
 
-#include <qtum/qtumstate.h>
-#include <qtum/qtumDGP.h>
+#include <sicash/sicashstate.h>
+#include <sicash/sicashDGP.h>
 #include <libethereum/ChainParams.h>
 #include <libethereum/LastBlockHashesFace.h>
 #include <libethashseal/Ethash.h>
 #include <libethashseal/GenesisInfo.h>
 #include <script/standard.h>
-#include <qtum/storageresults.h>
+#include <sicash/storageresults.h>
 
 
-extern std::unique_ptr<QtumState> globalState;
+extern std::unique_ptr<SICashState> globalState;
 extern std::shared_ptr<dev::eth::SealEngineFace> globalSealEngine;
 extern bool fRecordLogOpcodes;
 extern bool fIsVMlogFile;
@@ -55,7 +55,7 @@ extern bool fGettingValuesDGP;
 
 struct EthTransactionParams;
 using valtype = std::vector<unsigned char>;
-using ExtractQtumTX = std::pair<std::vector<QtumTransaction>, std::vector<EthTransactionParams>>;
+using ExtractSICashTX = std::pair<std::vector<SICashTransaction>, std::vector<EthTransactionParams>>;
 ///////////////////////////////////////////
 
 class CChainState;
@@ -172,7 +172,7 @@ static const uint64_t DEFAULT_GAS_LIMIT_OP_SEND=250000;
 static const CAmount DEFAULT_GAS_PRICE=0.00000040*COIN;
 static const CAmount MAX_RPC_GAS_PRICE=0.00000100*COIN;
 
-static const size_t MAX_CONTRACT_VOUTS = 1000; // qtum
+static const size_t MAX_CONTRACT_VOUTS = 1000; // sicash
 
 //! -stakingminutxovalue default
 static const CAmount DEFAULT_STAKING_MIN_UTXO_VALUE = 100 * COIN;
@@ -419,7 +419,7 @@ public:
 /** Initializes the script-execution cache */
 void InitScriptExecutionCache();
 
-///////////////////////////////////////////////////////////////// // qtum
+///////////////////////////////////////////////////////////////// // sicash
 bool GetAddressIndex(uint256 addressHash, int type,
                      std::vector<std::pair<CAddressIndexKey, CAmount> > &addressIndex,
                      int start = 0, int end = 0);
@@ -488,7 +488,7 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
 
 bool RemoveStateBlockIndex(CBlockIndex *pindex);
 
-//////////////////////////////////////////////////////// qtum
+//////////////////////////////////////////////////////// sicash
 bool GetSpentCoinFromBlock(const CBlockIndex* pindex, COutPoint prevout, Coin* coin);
 
 bool GetSpentCoinFromMainChain(const CBlockIndex* pforkPrev, COutPoint prevoutStake, Coin* coin);
@@ -530,13 +530,13 @@ struct ByteCodeExecResult{
     std::vector<CTransaction> valueTransfers;
 };
 
-class QtumTxConverter{
+class SICashTxConverter{
 
 public:
 
-    QtumTxConverter(CTransaction tx, CCoinsViewCache* v = NULL, const std::vector<CTransactionRef>* blockTxs = NULL, unsigned int flags = SCRIPT_EXEC_BYTE_CODE) : txBit(tx), view(v), blockTransactions(blockTxs), sender(false), nFlags(flags){}
+    SICashTxConverter(CTransaction tx, CCoinsViewCache* v = NULL, const std::vector<CTransactionRef>* blockTxs = NULL, unsigned int flags = SCRIPT_EXEC_BYTE_CODE) : txBit(tx), view(v), blockTransactions(blockTxs), sender(false), nFlags(flags){}
 
-    bool extractionQtumTransactions(ExtractQtumTX& qtumTx);
+    bool extractionSICashTransactions(ExtractSICashTX& sicashTx);
 
 private:
 
@@ -544,7 +544,7 @@ private:
 
     bool parseEthTXParams(EthTransactionParams& params);
 
-    QtumTransaction createEthTX(const EthTransactionParams& etp, const uint32_t nOut);
+    SICashTransaction createEthTX(const EthTransactionParams& etp, const uint32_t nOut);
 
     size_t correctedStackSize(size_t size);
 
@@ -577,7 +577,7 @@ class ByteCodeExec {
 
 public:
 
-    ByteCodeExec(const CBlock& _block, std::vector<QtumTransaction> _txs, const uint64_t _blockGasLimit, CBlockIndex* _pindex) : txs(_txs), block(_block), blockGasLimit(_blockGasLimit), pindex(_pindex) {}
+    ByteCodeExec(const CBlock& _block, std::vector<SICashTransaction> _txs, const uint64_t _blockGasLimit, CBlockIndex* _pindex) : txs(_txs), block(_block), blockGasLimit(_blockGasLimit), pindex(_pindex) {}
 
     bool performByteCode(dev::eth::Permanence type = dev::eth::Permanence::Committed);
 
@@ -591,7 +591,7 @@ private:
 
     dev::Address EthAddrFromScript(const CScript& scriptIn);
 
-    std::vector<QtumTransaction> txs;
+    std::vector<SICashTransaction> txs;
 
     std::vector<ResultExecute> result;
 

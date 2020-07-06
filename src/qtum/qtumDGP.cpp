@@ -1,4 +1,4 @@
-#include <qtum/qtumDGP.h>
+#include <sicash/sicashDGP.h>
 #include <chainparams.h>
 
 std::vector<uint32_t> createDataSchedule(const dev::eth::EVMSchedule& schedule)
@@ -25,11 +25,11 @@ std::vector<uint32_t> scheduleDataForBlockNumber(unsigned int blockHeight)
     return createDataSchedule(schedule);
 }
 
-void QtumDGP::initDataSchedule(){
+void SICashDGP::initDataSchedule(){
     dataSchedule = scheduleDataForBlockNumber(0);
 }
 
-bool QtumDGP::checkLimitSchedule(const std::vector<uint32_t>& defaultData, const std::vector<uint32_t>& checkData, int blockHeight){
+bool SICashDGP::checkLimitSchedule(const std::vector<uint32_t>& defaultData, const std::vector<uint32_t>& checkData, int blockHeight){
     const Consensus::Params& consensusParams = Params().GetConsensus();
 
     if(defaultData.size() == 39 && (checkData.size() == 39 || (checkData.size() == 40 && blockHeight >= consensusParams.QIP7Height))) {
@@ -45,7 +45,7 @@ bool QtumDGP::checkLimitSchedule(const std::vector<uint32_t>& defaultData, const
     return false;
 }
 
-dev::eth::EVMSchedule QtumDGP::getGasSchedule(int blockHeight){
+dev::eth::EVMSchedule SICashDGP::getGasSchedule(int blockHeight){
     clear();
     dataSchedule = scheduleDataForBlockNumber(blockHeight);
     dev::eth::EVMSchedule schedule = globalSealEngine->chainParams().scheduleForBlockNumber(blockHeight);
@@ -55,7 +55,7 @@ dev::eth::EVMSchedule QtumDGP::getGasSchedule(int blockHeight){
     return schedule;
 }
 
-uint64_t QtumDGP::getUint64FromDGP(unsigned int blockHeight, const dev::Address& contract, std::vector<unsigned char> data){
+uint64_t SICashDGP::getUint64FromDGP(unsigned int blockHeight, const dev::Address& contract, std::vector<unsigned char> data){
     uint64_t value = 0;
     if(initStorages(contract, blockHeight, data)){
         if(!dgpevm){
@@ -67,7 +67,7 @@ uint64_t QtumDGP::getUint64FromDGP(unsigned int blockHeight, const dev::Address&
     return value;
 }
 
-uint32_t QtumDGP::getBlockSize(unsigned int blockHeight){
+uint32_t SICashDGP::getBlockSize(unsigned int blockHeight){
     clear();
     uint32_t result = DEFAULT_BLOCK_SIZE_DGP;
     uint32_t blockSize = getUint64FromDGP(blockHeight, BlockSizeDGP, ParseHex("92ac3c62"));
@@ -77,7 +77,7 @@ uint32_t QtumDGP::getBlockSize(unsigned int blockHeight){
     return result;
 }
 
-uint64_t QtumDGP::getMinGasPrice(unsigned int blockHeight){
+uint64_t SICashDGP::getMinGasPrice(unsigned int blockHeight){
     clear();
     uint64_t result = DEFAULT_MIN_GAS_PRICE_DGP;
     uint64_t minGasPrice = getUint64FromDGP(blockHeight, GasPriceDGP, ParseHex("3fb58819"));
@@ -87,7 +87,7 @@ uint64_t QtumDGP::getMinGasPrice(unsigned int blockHeight){
     return result;
 }
 
-uint64_t QtumDGP::getBlockGasLimit(unsigned int blockHeight){
+uint64_t SICashDGP::getBlockGasLimit(unsigned int blockHeight){
     clear();
     uint64_t result = DEFAULT_BLOCK_GAS_LIMIT_DGP;
     uint64_t blockGasLimit = getUint64FromDGP(blockHeight, BlockGasLimitDGP, ParseHex("2cc8377d"));
@@ -97,7 +97,7 @@ uint64_t QtumDGP::getBlockGasLimit(unsigned int blockHeight){
     return result;
 }
 
-bool QtumDGP::initStorages(const dev::Address& addr, unsigned int blockHeight, std::vector<unsigned char> data){
+bool SICashDGP::initStorages(const dev::Address& addr, unsigned int blockHeight, std::vector<unsigned char> data){
     initStorageDGP(addr);
     createParamsInstance();
     dev::Address address = getAddressForBlock(blockHeight);
@@ -112,19 +112,19 @@ bool QtumDGP::initStorages(const dev::Address& addr, unsigned int blockHeight, s
     return false;
 }
 
-void QtumDGP::initStorageDGP(const dev::Address& addr){
+void SICashDGP::initStorageDGP(const dev::Address& addr){
     storageDGP = state->storage(addr);
 }
 
-void QtumDGP::initStorageTemplate(const dev::Address& addr){
+void SICashDGP::initStorageTemplate(const dev::Address& addr){
     storageTemplate = state->storage(addr);
 }
 
-void QtumDGP::initDataTemplate(const dev::Address& addr, std::vector<unsigned char>& data){
+void SICashDGP::initDataTemplate(const dev::Address& addr, std::vector<unsigned char>& data){
     dataTemplate = CallContract(addr, data)[0].execRes.output;
 }
 
-void QtumDGP::createParamsInstance(){
+void SICashDGP::createParamsInstance(){
     dev::h256 paramsInstanceHash = sha3(dev::h256("0000000000000000000000000000000000000000000000000000000000000000"));
     if(storageDGP.count(paramsInstanceHash)){
         dev::u256 paramsInstanceSize = storageDGP.find(paramsInstanceHash)->second.second;
@@ -139,7 +139,7 @@ void QtumDGP::createParamsInstance(){
     }
 }
 
-dev::Address QtumDGP::getAddressForBlock(unsigned int blockHeight){
+dev::Address SICashDGP::getAddressForBlock(unsigned int blockHeight){
     for(auto i = paramsInstance.rbegin(); i != paramsInstance.rend(); i++){
         if(i->first <= blockHeight)
             return i->second;
@@ -151,7 +151,7 @@ static inline bool sortPairs(const std::pair<dev::u256, dev::u256>& a, const std
     return a.first < b.first;
 }
 
-void QtumDGP::parseStorageScheduleContract(std::vector<uint32_t>& uint32Values){
+void SICashDGP::parseStorageScheduleContract(std::vector<uint32_t>& uint32Values){
     std::vector<std::pair<dev::u256, dev::u256>> data;
     for(size_t i = 0; i < 5; i++){
         dev::h256 gasScheduleHash = sha3(dev::h256(dev::u256(i)));
@@ -177,7 +177,7 @@ void QtumDGP::parseStorageScheduleContract(std::vector<uint32_t>& uint32Values){
     }
 }
 
-void QtumDGP::parseDataScheduleContract(std::vector<uint32_t>& uint32Values){
+void SICashDGP::parseDataScheduleContract(std::vector<uint32_t>& uint32Values){
     size_t size = dataTemplate.size() / 32;
     for(size_t i = 0; i < size; i++){
         std::vector<unsigned char> value = std::vector<unsigned char>(dataTemplate.begin() + (i * 32), dataTemplate.begin() + ((i+1) * 32));
@@ -186,20 +186,20 @@ void QtumDGP::parseDataScheduleContract(std::vector<uint32_t>& uint32Values){
     }
 }
 
-void QtumDGP::parseStorageOneUint64(uint64_t& value){
+void SICashDGP::parseStorageOneUint64(uint64_t& value){
     dev::h256 blockSizeHash = sha3(dev::h256(dev::u256(0)));
     if(storageTemplate.count(blockSizeHash)){
         value = dev::toUint64(storageTemplate.find(blockSizeHash)->second.second);
     }
 }
 
-void QtumDGP::parseDataOneUint64(uint64_t& value){
+void SICashDGP::parseDataOneUint64(uint64_t& value){
     if(dataTemplate.size() == 32){
         value = dev::toUint64(dev::u256(dev::h256(dataTemplate)));
     }
 }
 
-dev::eth::EVMSchedule QtumDGP::createEVMSchedule(const dev::eth::EVMSchedule &_schedule, int blockHeight){
+dev::eth::EVMSchedule SICashDGP::createEVMSchedule(const dev::eth::EVMSchedule &_schedule, int blockHeight){
     dev::eth::EVMSchedule schedule = _schedule;
     std::vector<uint32_t> uint32Values;
 
@@ -250,7 +250,7 @@ dev::eth::EVMSchedule QtumDGP::createEVMSchedule(const dev::eth::EVMSchedule &_s
     return schedule;
 }
 
-void QtumDGP::clear(){
+void SICashDGP::clear(){
     templateContract = dev::Address();
     storageDGP.clear();
     storageTemplate.clear();

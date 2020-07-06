@@ -66,19 +66,19 @@
 #include <boost/thread.hpp>
 
 #if defined(NDEBUG)
-# error "Qtum cannot be compiled without assertions."
+# error "SICash cannot be compiled without assertions."
 #endif
 
 #define MICRO 0.000001
 #define MILLI 0.001
 
- ////////////////////////////// qtum
+ ////////////////////////////// sicash
 #include <iostream>
 #include <bitset>
 #include "pubkey.h"
 #include <univalue.h>
 
-std::unique_ptr<QtumState> globalState;
+std::unique_ptr<SICashState> globalState;
 std::shared_ptr<dev::eth::SealEngineFace> globalSealEngine;
 bool fRecordLogOpcodes = false;
 bool fIsVMlogFile = false;
@@ -138,7 +138,7 @@ uint256 g_best_block;
 int nScriptCheckThreads = 0;
 std::atomic_bool fImporting(false);
 std::atomic_bool fReindex(false);
-bool fAddressIndex = false; // qtum
+bool fAddressIndex = false; // sicash
 bool fLogEvents = false;
 bool fHavePruned = false;
 bool fPruneMode = false;
@@ -737,7 +737,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
 
     dev::u256 txMinGasPrice = 0;
 
-    //////////////////////////////////////////////////////////// // qtum
+    //////////////////////////////////////////////////////////// // sicash
     if(!CheckOpSender(tx, chainparams, GetSpendHeight(m_view))){
         return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-txns-invalid-sender");
     }
@@ -747,25 +747,25 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
             return state.Invalid(ValidationInvalidReason::TX_INVALID_SENDER_SCRIPT, false, REJECT_INVALID, "bad-txns-invalid-sender-script");
         }
 
-        QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
-        uint64_t minGasPrice = qtumDGP.getMinGasPrice(::ChainActive().Tip()->nHeight + 1);
-        uint64_t blockGasLimit = qtumDGP.getBlockGasLimit(::ChainActive().Tip()->nHeight + 1);
+        SICashDGP sicashDGP(globalState.get(), fGettingValuesDGP);
+        uint64_t minGasPrice = sicashDGP.getMinGasPrice(::ChainActive().Tip()->nHeight + 1);
+        uint64_t blockGasLimit = sicashDGP.getBlockGasLimit(::ChainActive().Tip()->nHeight + 1);
         size_t count = 0;
         for(const CTxOut& o : tx.vout)
             count += o.scriptPubKey.HasOpCreate() || o.scriptPubKey.HasOpCall() ? 1 : 0;
         unsigned int contractflags = GetContractScriptFlags(GetSpendHeight(m_view), chainparams.GetConsensus());
-        QtumTxConverter converter(tx, NULL, NULL, contractflags);
-        ExtractQtumTX resultConverter;
-        if(!converter.extractionQtumTransactions(resultConverter)){
+        SICashTxConverter converter(tx, NULL, NULL, contractflags);
+        ExtractSICashTX resultConverter;
+        if(!converter.extractionSICashTransactions(resultConverter)){
             return state.Invalid(ValidationInvalidReason::CONSENSUS, error("AcceptToMempool(): Contract transaction of the wrong format"), REJECT_INVALID, "bad-tx-bad-contract-format");
         }
-        std::vector<QtumTransaction> qtumTransactions = resultConverter.first;
-        std::vector<EthTransactionParams> qtumETP = resultConverter.second;
+        std::vector<SICashTransaction> sicashTransactions = resultConverter.first;
+        std::vector<EthTransactionParams> sicashETP = resultConverter.second;
 
         dev::u256 sumGas = dev::u256(0);
         dev::u256 gasAllTxs = dev::u256(0);
-        for(QtumTransaction qtumTransaction : qtumTransactions){
-            sumGas += qtumTransaction.gas() * qtumTransaction.gasPrice();
+        for(SICashTransaction sicashTransaction : sicashTransactions){
+            sumGas += sicashTransaction.gas() * sicashTransaction.gasPrice();
 
             if(sumGas > dev::u256(INT64_MAX)) {
                 return state.Invalid(ValidationInvalidReason::CONSENSUS, error("AcceptToMempool(): Transaction's gas stipend overflows"), REJECT_INVALID, "bad-tx-gas-stipend-overflow");
@@ -776,11 +776,11 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
             }
 
             if(txMinGasPrice != 0) {
-                txMinGasPrice = std::min(txMinGasPrice, qtumTransaction.gasPrice());
+                txMinGasPrice = std::min(txMinGasPrice, sicashTransaction.gasPrice());
             } else {
-                txMinGasPrice = qtumTransaction.gasPrice();
+                txMinGasPrice = sicashTransaction.gasPrice();
             }
-            VersionVM v = qtumTransaction.getVersion();
+            VersionVM v = sicashTransaction.getVersion();
             if(v.format!=0)
                 return state.Invalid(ValidationInvalidReason::CONSENSUS, error("AcceptToMempool(): Contract execution uses unknown version format"), REJECT_INVALID, "bad-tx-version-format");
             if(v.rootVM != 1)
@@ -791,29 +791,29 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
                 return state.Invalid(ValidationInvalidReason::CONSENSUS, error("AcceptToMempool(): Contract execution uses unknown flag options"), REJECT_INVALID, "bad-tx-version-flags");
 
             //check gas limit is not less than minimum mempool gas limit
-            if(qtumTransaction.gas() < gArgs.GetArg("-minmempoolgaslimit", MEMPOOL_MIN_GAS_LIMIT))
+            if(sicashTransaction.gas() < gArgs.GetArg("-minmempoolgaslimit", MEMPOOL_MIN_GAS_LIMIT))
                 return state.Invalid(ValidationInvalidReason::CONSENSUS, error("AcceptToMempool(): Contract execution has lower gas limit than allowed to accept into mempool"), REJECT_INVALID, "bad-tx-too-little-mempool-gas");
 
             //check gas limit is not less than minimum gas limit (unless it is a no-exec tx)
-            if(qtumTransaction.gas() < MINIMUM_GAS_LIMIT && v.rootVM != 0)
+            if(sicashTransaction.gas() < MINIMUM_GAS_LIMIT && v.rootVM != 0)
                 return state.Invalid(ValidationInvalidReason::CONSENSUS, error("AcceptToMempool(): Contract execution has lower gas limit than allowed"), REJECT_INVALID, "bad-tx-too-little-gas");
 
-            if(qtumTransaction.gas() > UINT32_MAX)
+            if(sicashTransaction.gas() > UINT32_MAX)
                 return state.Invalid(ValidationInvalidReason::CONSENSUS, error("AcceptToMempool(): Contract execution can not specify greater gas limit than can fit in 32-bits"), REJECT_INVALID, "bad-tx-too-much-gas");
 
-            gasAllTxs += qtumTransaction.gas();
+            gasAllTxs += sicashTransaction.gas();
             if(gasAllTxs > dev::u256(blockGasLimit))
                 return state.Invalid(ValidationInvalidReason::TX_GAS_EXCEEDS_LIMIT, false, REJECT_INVALID, "bad-txns-gas-exceeds-blockgaslimit");
 
             //don't allow less than DGP set minimum gas price to prevent MPoS greedy mining/spammers
-            if(v.rootVM!=0 && (uint64_t)qtumTransaction.gasPrice() < minGasPrice)
+            if(v.rootVM!=0 && (uint64_t)sicashTransaction.gasPrice() < minGasPrice)
                 return state.Invalid(ValidationInvalidReason::CONSENSUS, error("AcceptToMempool(): Contract execution has lower gas price than allowed"), REJECT_INVALID, "bad-tx-low-gas-price");
         }
 
-        if(!CheckMinGasPrice(qtumETP, minGasPrice))
+        if(!CheckMinGasPrice(sicashETP, minGasPrice))
             return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-txns-small-gasprice");
 
-        if(count > qtumTransactions.size())
+        if(count > sicashTransactions.size())
             return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-txns-incorrect-format");
 
         if (rawTx && nAbsurdFee && dev::u256(nFees) > dev::u256(nAbsurdFee) + sumGas)
@@ -1143,7 +1143,7 @@ bool MemPoolAccept::Finalize(ATMPArgs& args, Workspace& ws)
     // - the transaction is not dependent on any other transactions in the mempool
     bool validForFeeEstimation = !fReplacementTransaction && !bypass_limits && IsCurrentForFeeEstimation() && m_pool.HasNoInputsOf(tx);
 
-    //////////////////////////////////////////////////////////////// // qtum
+    //////////////////////////////////////////////////////////////// // sicash
     // Add memory address index
     if (fAddressIndex)
     {
@@ -1947,7 +1947,7 @@ DisconnectResult CChainState::DisconnectBlock(const CBlock& block, const CBlockI
         return DISCONNECT_FAILED;
     }
 
-    /////////////////////////////////////////////////////////// // qtum
+    /////////////////////////////////////////////////////////// // sicash
     std::vector<std::pair<CAddressIndexKey, CAmount> > addressIndex;
     std::vector<std::pair<CAddressUnspentKey, CAddressUnspentValue> > addressUnspentIndex;
     ///////////////////////////////////////////////////////////
@@ -1972,7 +1972,7 @@ DisconnectResult CChainState::DisconnectBlock(const CBlock& block, const CBlockI
             }
         }
 
-        /////////////////////////////////////////////////////////// // qtum
+        /////////////////////////////////////////////////////////// // sicash
         if (pfClean == NULL && fAddressIndex) {
 
             for (unsigned int k = tx.vout.size(); k-- > 0;) {
@@ -2036,8 +2036,8 @@ DisconnectResult CChainState::DisconnectBlock(const CBlock& block, const CBlockI
     // move best block pointer to prevout block
     view.SetBestBlock(pindex->pprev->GetBlockHash());
 
-    globalState->setRoot(uintToh256(pindex->pprev->hashStateRoot)); // qtum
-    globalState->setRootUTXO(uintToh256(pindex->pprev->hashUTXORoot)); // qtum
+    globalState->setRoot(uintToh256(pindex->pprev->hashStateRoot)); // sicash
+    globalState->setRootUTXO(uintToh256(pindex->pprev->hashUTXORoot)); // sicash
 
     if(pfClean == NULL && fLogEvents){
         pstorageresult->deleteResults(block.vtx);
@@ -2053,7 +2053,7 @@ DisconnectResult CChainState::DisconnectBlock(const CBlock& block, const CBlockI
             pblocktree->EraseDelegateIndex(pindex->nHeight);
     }
 
-    //////////////////////////////////////////////////// // qtum
+    //////////////////////////////////////////////////// // sicash
     if (pfClean == NULL && fAddressIndex) {
         if (!pblocktree->EraseAddressIndex(addressIndex)) {
             error("Failed to delete address index");
@@ -2237,7 +2237,7 @@ static int64_t nTimeCallbacks = 0;
 static int64_t nTimeTotal = 0;
 static int64_t nBlocksTotal = 0;
 
-/////////////////////////////////////////////////////////////////////// qtum
+/////////////////////////////////////////////////////////////////////// sicash
 bool GetSpentCoinFromBlock(const CBlockIndex* pindex, COutPoint prevout, Coin* coin) {
     std::shared_ptr<CBlock> pblock = std::make_shared<CBlock>();
     CBlock& block = *pblock;
@@ -2395,8 +2395,8 @@ std::vector<ResultExecute> CallContract(const dev::Address& addrContract, std::v
     else
     	block.vtx.erase(block.vtx.begin()+1,block.vtx.end());
 
-    QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
-    uint64_t blockGasLimit = qtumDGP.getBlockGasLimit(::ChainActive().Tip()->nHeight + 1);
+    SICashDGP sicashDGP(globalState.get(), fGettingValuesDGP);
+    uint64_t blockGasLimit = sicashDGP.getBlockGasLimit(::ChainActive().Tip()->nHeight + 1);
 
     if(gasLimit == 0){
         gasLimit = blockGasLimit - 1;
@@ -2405,20 +2405,20 @@ std::vector<ResultExecute> CallContract(const dev::Address& addrContract, std::v
     tx.vout.push_back(CTxOut(0, CScript() << OP_DUP << OP_HASH160 << senderAddress.asBytes() << OP_EQUALVERIFY << OP_CHECKSIG));
     block.vtx.push_back(MakeTransactionRef(CTransaction(tx)));
  
-    QtumTransaction callTransaction;
+    SICashTransaction callTransaction;
     if(addrContract == dev::Address())
     {
-        callTransaction = QtumTransaction(0, 1, dev::u256(gasLimit), opcode, dev::u256(0));
+        callTransaction = SICashTransaction(0, 1, dev::u256(gasLimit), opcode, dev::u256(0));
     }
     else
     {
-        callTransaction = QtumTransaction(0, 1, dev::u256(gasLimit), addrContract, opcode, dev::u256(0));
+        callTransaction = SICashTransaction(0, 1, dev::u256(gasLimit), addrContract, opcode, dev::u256(0));
     }
     callTransaction.forceSender(senderAddress);
     callTransaction.setVersion(VersionVM::GetEVMDefault());
 
     
-    ByteCodeExec exec(block, std::vector<QtumTransaction>(1, callTransaction), blockGasLimit, pblockindex);
+    ByteCodeExec exec(block, std::vector<SICashTransaction>(1, callTransaction), blockGasLimit, pblockindex);
     exec.performByteCode(dev::eth::Permanence::Reverted);
     return exec.getResult();
 }
@@ -2599,12 +2599,12 @@ UniValue vmLogToJSON(const ResultExecute& execRes, const CTransaction& tx, const
 }
 
 void writeVMlog(const std::vector<ResultExecute>& res, const CTransaction& tx, const CBlock& block){
-    boost::filesystem::path qtumDir = GetDataDir() / "vmExecLogs.json";
+    boost::filesystem::path sicashDir = GetDataDir() / "vmExecLogs.json";
     std::stringstream ss;
     if(fIsVMlogFile){
         ss << ",";
     } else {
-        std::ofstream file(qtumDir.string(), std::ios::out | std::ios::app);
+        std::ofstream file(sicashDir.string(), std::ios::out | std::ios::app);
         file << "{\"logs\":[]}";
         file.close();
     }
@@ -2618,7 +2618,7 @@ void writeVMlog(const std::vector<ResultExecute>& res, const CTransaction& tx, c
         }
     }
     
-    std::ofstream file(qtumDir.string(), std::ios::in | std::ios::out);
+    std::ofstream file(sicashDir.string(), std::ios::in | std::ios::out);
     file.seekp(-2, std::ios::end);
     file << ss.str();
     file.close();
@@ -2652,7 +2652,7 @@ void LastHashes::clear()
 }
 
 bool ByteCodeExec::performByteCode(dev::eth::Permanence type){
-    for(QtumTransaction& tx : txs){
+    for(SICashTransaction& tx : txs){
         //validate VM version
         if(tx.getVersion().toRaw() != VersionVM::GetEVMDefault().toRaw()){
             return false;
@@ -2661,7 +2661,7 @@ bool ByteCodeExec::performByteCode(dev::eth::Permanence type){
         if(!tx.isCreation() && !globalState->addressInUse(tx.receiveAddress())){
             dev::eth::ExecutionResult execRes;
             execRes.excepted = dev::eth::TransactionException::Unknown;
-            result.push_back(ResultExecute{execRes, QtumTransactionReceipt(dev::h256(), dev::h256(), dev::u256(), dev::eth::LogEntries()), CTransaction()});
+            result.push_back(ResultExecute{execRes, SICashTransactionReceipt(dev::h256(), dev::h256(), dev::u256(), dev::eth::LogEntries()), CTransaction()});
             continue;
         }
         result.push_back(globalState->execute(envInfo, *globalSealEngine.get(), tx, type, OnOpFunc()));
@@ -2755,12 +2755,12 @@ dev::Address ByteCodeExec::EthAddrFromScript(const CScript& script){
     return dev::Address();
 }
 
-bool QtumTxConverter::extractionQtumTransactions(ExtractQtumTX& qtumtx){
+bool SICashTxConverter::extractionSICashTransactions(ExtractSICashTX& sicashtx){
     // Get the address of the sender that pay the coins for the contract transactions
     refundSender = dev::Address(GetSenderAddress(txBit, view, blockTransactions));
 
     // Extract contract transactions
-    std::vector<QtumTransaction> resultTX;
+    std::vector<SICashTransaction> resultTX;
     std::vector<EthTransactionParams> resultETP;
     for(size_t i = 0; i < txBit.vout.size(); i++){
         if(txBit.vout[i].scriptPubKey.HasOpCreate() || txBit.vout[i].scriptPubKey.HasOpCall()){
@@ -2777,11 +2777,11 @@ bool QtumTxConverter::extractionQtumTransactions(ExtractQtumTX& qtumtx){
             }
         }
     }
-    qtumtx = std::make_pair(resultTX, resultETP);
+    sicashtx = std::make_pair(resultTX, resultETP);
     return true;
 }
 
-bool QtumTxConverter::receiveStack(const CScript& scriptPubKey){
+bool SICashTxConverter::receiveStack(const CScript& scriptPubKey){
     sender = false;
     EvalScript(stack, scriptPubKey, nFlags, BaseSignatureChecker(), SigVersion::BASE, nullptr);
     if (stack.empty())
@@ -2801,7 +2801,7 @@ bool QtumTxConverter::receiveStack(const CScript& scriptPubKey){
     return true;
 }
 
-bool QtumTxConverter::parseEthTXParams(EthTransactionParams& params){
+bool SICashTxConverter::parseEthTXParams(EthTransactionParams& params){
     try{
         dev::Address receiveAddress;
         valtype vecAddr;
@@ -2849,13 +2849,13 @@ bool QtumTxConverter::parseEthTXParams(EthTransactionParams& params){
     }
 }
 
-QtumTransaction QtumTxConverter::createEthTX(const EthTransactionParams& etp, uint32_t nOut){
-    QtumTransaction txEth;
+SICashTransaction SICashTxConverter::createEthTX(const EthTransactionParams& etp, uint32_t nOut){
+    SICashTransaction txEth;
     if (etp.receiveAddress == dev::Address() && opcode != OP_CALL){
-        txEth = QtumTransaction(txBit.vout[nOut].nValue, etp.gasPrice, etp.gasLimit, etp.code, dev::u256(0));
+        txEth = SICashTransaction(txBit.vout[nOut].nValue, etp.gasPrice, etp.gasLimit, etp.code, dev::u256(0));
     }
     else{
-        txEth = QtumTransaction(txBit.vout[nOut].nValue, etp.gasPrice, etp.gasLimit, etp.receiveAddress, etp.code, dev::u256(0));
+        txEth = SICashTransaction(txBit.vout[nOut].nValue, etp.gasPrice, etp.gasLimit, etp.receiveAddress, etp.code, dev::u256(0));
     }
     dev::Address sender(GetSenderAddress(txBit, view, blockTransactions, (int)nOut));
     txEth.forceSender(sender);
@@ -2867,7 +2867,7 @@ QtumTransaction QtumTxConverter::createEthTX(const EthTransactionParams& etp, ui
     return txEth;
 }
 
-size_t QtumTxConverter::correctedStackSize(size_t size){
+size_t SICashTxConverter::correctedStackSize(size_t size){
     // OP_SENDER add 3 more parameters in stack besides those for OP_CREATE or OP_CALL
     return sender ? size + 3 : size;
 }
@@ -2914,12 +2914,12 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     assert(*pindex->phashBlock == block.GetHash());
     int64_t nTimeStart = GetTimeMicros();
 
-    ///////////////////////////////////////////////// // qtum
-    QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
-    globalSealEngine->setQtumSchedule(qtumDGP.getGasSchedule(pindex->nHeight + (pindex->nHeight+1 >= chainparams.GetConsensus().QIP7Height ? 0 : 1) ));
-    uint32_t sizeBlockDGP = qtumDGP.getBlockSize(pindex->nHeight + (pindex->nHeight+1 >= chainparams.GetConsensus().QIP7Height ? 0 : 1));
-    uint64_t minGasPrice = qtumDGP.getMinGasPrice(pindex->nHeight + (pindex->nHeight+1 >= chainparams.GetConsensus().QIP7Height ? 0 : 1));
-    uint64_t blockGasLimit = qtumDGP.getBlockGasLimit(pindex->nHeight + (pindex->nHeight+1 >= chainparams.GetConsensus().QIP7Height ? 0 : 1));
+    ///////////////////////////////////////////////// // sicash
+    SICashDGP sicashDGP(globalState.get(), fGettingValuesDGP);
+    globalSealEngine->setSICashSchedule(sicashDGP.getGasSchedule(pindex->nHeight + (pindex->nHeight+1 >= chainparams.GetConsensus().QIP7Height ? 0 : 1) ));
+    uint32_t sizeBlockDGP = sicashDGP.getBlockSize(pindex->nHeight + (pindex->nHeight+1 >= chainparams.GetConsensus().QIP7Height ? 0 : 1));
+    uint64_t minGasPrice = sicashDGP.getMinGasPrice(pindex->nHeight + (pindex->nHeight+1 >= chainparams.GetConsensus().QIP7Height ? 0 : 1));
+    uint64_t blockGasLimit = sicashDGP.getBlockGasLimit(pindex->nHeight + (pindex->nHeight+1 >= chainparams.GetConsensus().QIP7Height ? 0 : 1));
     dgpMaxBlockSize = sizeBlockDGP ? sizeBlockDGP : dgpMaxBlockSize;
     updateBlockSizeParams(dgpMaxBlockSize);
     CBlock checkBlock(block.GetBlockHeader());
@@ -2933,7 +2933,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
 
 
     // Move this check from CheckBlock to ConnectBlock as it depends on DGP values
-    if (block.vtx.empty() || block.vtx.size() > dgpMaxBlockSize || ::GetSerializeSize(block, PROTOCOL_VERSION | SERIALIZE_TRANSACTION_NO_WITNESS) > dgpMaxBlockSize) // qtum
+    if (block.vtx.empty() || block.vtx.size() > dgpMaxBlockSize || ::GetSerializeSize(block, PROTOCOL_VERSION | SERIALIZE_TRANSACTION_NO_WITNESS) > dgpMaxBlockSize) // sicash
         return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-blk-length", "size limits failed");
 
     // Move this check from ContextualCheckBlock to ConnectBlock as it depends on DGP values
@@ -3139,7 +3139,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     int64_t nSigOpsCost = 0;
     blockundo.vtxundo.reserve(block.vtx.size() - 1);
 
-    ///////////////////////////////////////////////////////// // qtum
+    ///////////////////////////////////////////////////////// // sicash
     std::vector<std::pair<CAddressIndexKey, CAmount> > addressIndex;
     std::vector<std::pair<CAddressUnspentKey, CAddressUnspentValue> > addressUnspentIndex;
     std::vector<std::pair<CSpentIndexKey, CSpentIndexValue> > spentIndex;
@@ -3202,7 +3202,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                                  REJECT_INVALID, "bad-txns-nonfinal");
             }
 
-            ////////////////////////////////////////////////////////////////// // qtum
+            ////////////////////////////////////////////////////////////////// // sicash
             if (fAddressIndex)
             {
                 for (size_t j = 0; j < tx.vin.size(); j++) {
@@ -3285,7 +3285,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
             nValueOut += nTxValueOut;
         }
 
-///////////////////////////////////////////////////////////////////////////////////////// qtum
+///////////////////////////////////////////////////////////////////////////////////////// sicash
         if(!CheckOpSender(tx, chainparams, pindex->nHeight)){
             return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-txns-invalid-sender");
         }
@@ -3298,25 +3298,25 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                 return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "bad-txns-invalid-sender-script");
             }
 
-            QtumTxConverter convert(tx, &view, &block.vtx, contractflags);
+            SICashTxConverter convert(tx, &view, &block.vtx, contractflags);
 
-            ExtractQtumTX resultConvertQtumTX;
-            if(!convert.extractionQtumTransactions(resultConvertQtumTX)){
+            ExtractSICashTX resultConvertSICashTX;
+            if(!convert.extractionSICashTransactions(resultConvertSICashTX)){
                 return state.Invalid(ValidationInvalidReason::CONSENSUS, error("ConnectBlock(): Contract transaction of the wrong format"), REJECT_INVALID, "bad-tx-bad-contract-format");
             }
-            if(!CheckMinGasPrice(resultConvertQtumTX.second, minGasPrice))
+            if(!CheckMinGasPrice(resultConvertSICashTX.second, minGasPrice))
                 return state.Invalid(ValidationInvalidReason::CONSENSUS, error("ConnectBlock(): Contract execution has lower gas price than allowed"), REJECT_INVALID, "bad-tx-low-gas-price");
 
 
             dev::u256 gasAllTxs = dev::u256(0);
-            ByteCodeExec exec(block, resultConvertQtumTX.first, blockGasLimit, pindex->pprev);
+            ByteCodeExec exec(block, resultConvertSICashTX.first, blockGasLimit, pindex->pprev);
             //validate VM version and other ETH params before execution
             //Reject anything unknown (could be changed later by DGP)
             //TODO evaluate if this should be relaxed for soft-fork purposes
             bool nonZeroVersion=false;
             dev::u256 sumGas = dev::u256(0);
             CAmount nTxFee = view.GetValueIn(tx)-tx.GetValueOut();
-            for(QtumTransaction& qtx : resultConvertQtumTX.first){
+            for(SICashTransaction& qtx : resultConvertSICashTX.first){
                 sumGas += qtx.gas() * qtx.gasPrice();
 
                 if(sumGas > dev::u256(INT64_MAX)) {
@@ -3382,7 +3382,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
             if (fLogEvents && !fJustCheck)
             {
                 uint64_t countCumulativeGasUsed = blockGasUsed;
-                for(size_t k = 0; k < resultConvertQtumTX.first.size(); k ++){
+                for(size_t k = 0; k < resultConvertSICashTX.first.size(); k ++){
                     for(auto& log : resultExec[k].txRec.log()) {
                         if(!heightIndexes.count(log.address)){
                             heightIndexes[log.address].first = CHeightTxIndexKey(pindex->nHeight, log.address);
@@ -3396,15 +3396,15 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                         uint32_t(pindex->nHeight),
                         tx.GetHash(),
                         uint32_t(i),
-                        resultConvertQtumTX.first[k].from(),
-                        resultConvertQtumTX.first[k].to(),
+                        resultConvertSICashTX.first[k].from(),
+                        resultConvertSICashTX.first[k].to(),
                         countCumulativeGasUsed,
                         gasUsed,
                         resultExec[k].execRes.newAddress,
                         resultExec[k].txRec.log(),
                         resultExec[k].execRes.excepted,
                         exceptedMessage(resultExec[k].execRes.excepted, resultExec[k].execRes.output),
-                        resultConvertQtumTX.first[k].getNVout()
+                        resultConvertSICashTX.first[k].getNVout()
                     });
                 }
 
@@ -3433,7 +3433,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
         }
 /////////////////////////////////////////////////////////////////////////////////////////
 
-        /////////////////////////////////////////////////////////////////////////////////// // qtum
+        /////////////////////////////////////////////////////////////////////////////////// // sicash
         if (fAddressIndex) {
 
             for (unsigned int k = 0; k < tx.vout.size(); k++) {
@@ -3476,7 +3476,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     int64_t nTime4 = GetTimeMicros(); nTimeVerify += nTime4 - nTime2;
     LogPrint(BCLog::BENCH, "    - Verify %u txins: %.2fms (%.3fms/txin) [%.2fs (%.2fms/blk)]\n", nInputs - 1, MILLI * (nTime4 - nTime2), nInputs <= 1 ? 0 : MILLI * (nTime4 - nTime2) / (nInputs-1), nTimeVerify * MICRO, nTimeVerify * MILLI / nBlocksTotal);
 
-////////////////////////////////////////////////////////////////// // qtum
+////////////////////////////////////////////////////////////////// // sicash
     if(pindex->nHeight == chainparams.GetConsensus().nOfflineStakeHeight){
         globalState->deployDelegationsContract();
     }
@@ -3605,7 +3605,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     }
 
     assert(pindex->phashBlock);
-    ///////////////////////////////////////////////////////////// // qtum
+    ///////////////////////////////////////////////////////////// // sicash
     if (fAddressIndex) {
         if (!pblocktree->WriteAddressIndex(addressIndex)) {
             return AbortNode(state, "Failed to write address index");
@@ -4002,8 +4002,8 @@ bool CChainState::ConnectTip(CValidationState& state, const CChainParams& chainp
     {
         CCoinsViewCache view(&CoinsTip());
 
-        dev::h256 oldHashStateRoot(globalState->rootHash()); // qtum
-        dev::h256 oldHashUTXORoot(globalState->rootHashUTXO()); // qtum
+        dev::h256 oldHashStateRoot(globalState->rootHash()); // sicash
+        dev::h256 oldHashUTXORoot(globalState->rootHashUTXO()); // sicash
 
         bool rv = ConnectBlock(blockConnecting, state, pindexNew, view, chainparams);
         GetMainSignals().BlockChecked(blockConnecting, state);
@@ -4011,8 +4011,8 @@ bool CChainState::ConnectTip(CValidationState& state, const CChainParams& chainp
             if (state.IsInvalid())
                 InvalidBlockFound(pindexNew, state);
 
-            globalState->setRoot(oldHashStateRoot); // qtum
-            globalState->setRootUTXO(oldHashUTXORoot); // qtum
+            globalState->setRoot(oldHashStateRoot); // sicash
+            globalState->setRootUTXO(oldHashUTXORoot); // sicash
             pstorageresult->clearCacheResult();
             return error("%s: ConnectBlock %s failed, %s", __func__, pindexNew->GetBlockHash().ToString(), FormatStateMessage(state));
         }
@@ -5714,13 +5714,13 @@ bool TestBlockValidity(CValidationState& state, const CChainParams& chainparams,
     if (!ContextualCheckBlock(block, state, chainparams.GetConsensus(), pindexPrev))
         return error("%s: Consensus::ContextualCheckBlock: %s", __func__, FormatStateMessage(state));
 
-    dev::h256 oldHashStateRoot(globalState->rootHash()); // qtum
-    dev::h256 oldHashUTXORoot(globalState->rootHashUTXO()); // qtum
+    dev::h256 oldHashStateRoot(globalState->rootHash()); // sicash
+    dev::h256 oldHashUTXORoot(globalState->rootHashUTXO()); // sicash
     
     if (!::ChainstateActive().ConnectBlock(block, state, &indexDummy, viewNew, chainparams, true)){
         
-        globalState->setRoot(oldHashStateRoot); // qtum
-        globalState->setRootUTXO(oldHashUTXORoot); // qtum
+        globalState->setRoot(oldHashStateRoot); // sicash
+        globalState->setRootUTXO(oldHashUTXORoot); // sicash
         pstorageresult->clearCacheResult();
         return false;
     }
@@ -6055,7 +6055,7 @@ bool static LoadBlockIndexDB(const CChainParams& chainparams) EXCLUSIVE_LOCKS_RE
     pblocktree->ReadReindexing(fReindexing);
     if(fReindexing) fReindex = true;
 
-    ///////////////////////////////////////////////////////////// // qtum
+    ///////////////////////////////////////////////////////////// // sicash
     pblocktree->ReadFlag("addrindex", fAddressIndex);
     LogPrintf("LoadBlockIndexDB(): address index %s\n", fAddressIndex ? "enabled" : "disabled");
     /////////////////////////////////////////////////////////////
@@ -6122,10 +6122,10 @@ bool CVerifyDB::VerifyDB(const CChainParams& chainparams, CCoinsView *coinsview,
     CValidationState state;
     int reportDone = 0;
 
-////////////////////////////////////////////////////////////////////////// // qtum
+////////////////////////////////////////////////////////////////////////// // sicash
     dev::h256 oldHashStateRoot(globalState->rootHash());
     dev::h256 oldHashUTXORoot(globalState->rootHashUTXO());
-    QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
+    SICashDGP sicashDGP(globalState.get(), fGettingValuesDGP);
 //////////////////////////////////////////////////////////////////////////
 
     LogPrintf("[0%%]..."); /* Continued */
@@ -6146,8 +6146,8 @@ bool CVerifyDB::VerifyDB(const CChainParams& chainparams, CCoinsView *coinsview,
             break;
         }
 
-        ///////////////////////////////////////////////////////////////////// // qtum
-        uint32_t sizeBlockDGP = qtumDGP.getBlockSize(pindex->nHeight);
+        ///////////////////////////////////////////////////////////////////// // sicash
+        uint32_t sizeBlockDGP = sicashDGP.getBlockSize(pindex->nHeight);
         dgpMaxBlockSize = sizeBlockDGP ? sizeBlockDGP : dgpMaxBlockSize;
         updateBlockSizeParams(dgpMaxBlockSize);
         /////////////////////////////////////////////////////////////////////
@@ -6209,20 +6209,20 @@ bool CVerifyDB::VerifyDB(const CChainParams& chainparams, CCoinsView *coinsview,
             if (!ReadBlockFromDisk(block, pindex, chainparams.GetConsensus()))
                 return error("VerifyDB(): *** ReadBlockFromDisk failed at %d, hash=%s", pindex->nHeight, pindex->GetBlockHash().ToString());
 
-            dev::h256 oldHashStateRoot(globalState->rootHash()); // qtum
-            dev::h256 oldHashUTXORoot(globalState->rootHashUTXO()); // qtum
+            dev::h256 oldHashStateRoot(globalState->rootHash()); // sicash
+            dev::h256 oldHashUTXORoot(globalState->rootHashUTXO()); // sicash
 
             if (!ChainstateActive().ConnectBlock(block, state, pindex, coins, chainparams)){
 
-                globalState->setRoot(oldHashStateRoot); // qtum
-                globalState->setRootUTXO(oldHashUTXORoot); // qtum
+                globalState->setRoot(oldHashStateRoot); // sicash
+                globalState->setRootUTXO(oldHashUTXORoot); // sicash
                 pstorageresult->clearCacheResult();
                 return error("VerifyDB(): *** found unconnectable block at %d, hash=%s (%s)", pindex->nHeight, pindex->GetBlockHash().ToString(), FormatStateMessage(state));
             }
         }
     } else {
-        globalState->setRoot(oldHashStateRoot); // qtum
-        globalState->setRootUTXO(oldHashUTXORoot); // qtum
+        globalState->setRoot(oldHashStateRoot); // sicash
+        globalState->setRootUTXO(oldHashUTXORoot); // sicash
     }
 
     LogPrintf("[DONE].\n");
@@ -6519,7 +6519,7 @@ bool LoadBlockIndex(const CChainParams& chainparams)
         // Use the provided setting for -logevents in the new database
         fLogEvents = gArgs.GetBoolArg("-logevents", DEFAULT_LOGEVENTS);
         pblocktree->WriteFlag("logevents", fLogEvents);
-        /////////////////////////////////////////////////////////////// // qtum
+        /////////////////////////////////////////////////////////////// // sicash
         fAddressIndex = gArgs.GetBoolArg("-addrindex", DEFAULT_ADDRINDEX);
         pblocktree->WriteFlag("addrindex", fAddressIndex);
         ///////////////////////////////////////////////////////////////
@@ -6632,7 +6632,7 @@ bool LoadExternalBlockFile(const CChainParams& chainparams, FILE* fileIn, FlatFi
                 }
 
                 // In Bitcoin this only needed to be done for genesis and at the end of block indexing
-                // But for Qtum PoS we need to sync this after every block to ensure txdb is populated for
+                // But for SICash PoS we need to sync this after every block to ensure txdb is populated for
                 // validating PoS proofs
                 {
                     CValidationState state;
@@ -7134,7 +7134,7 @@ public:
 };
 static CMainCleanup instance_of_cmaincleanup;
 
-////////////////////////////////////////////////////////////////////////////////// // qtum
+////////////////////////////////////////////////////////////////////////////////// // sicash
 bool GetAddressIndex(uint256 addressHash, int type, std::vector<std::pair<CAddressIndexKey, CAmount> > &addressIndex, int start, int end)
 {
     if (!fAddressIndex)

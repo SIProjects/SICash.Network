@@ -64,7 +64,7 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>QtumGUI</name>
+    <name>SICashGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>&amp;Зурвас хавсаргах...</translation>
@@ -223,7 +223,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Qtum</source>
+        <source>SICash</source>
         <translation>Биткойн</translation>
     </message>
     <message>
@@ -592,7 +592,7 @@
     </message>
     </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     <message>
         <source>Insufficient funds</source>
         <translation>Таны дансны үлдэгдэл хүрэлцэхгүй байна</translation>

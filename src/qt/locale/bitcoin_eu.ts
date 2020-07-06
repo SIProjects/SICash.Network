@@ -66,12 +66,12 @@
         <translation>Helbideak jasotzen</translation>
     </message>
     <message>
-        <source>These are your Qtum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Hauek dira zuk dirua jaso dezaketen Qtum helbideak. Egiaztatu beti diru-kopurua eta dirua jasoko duen helbidea zuzen egon daitezen, txanponak bidali baino lehen.</translation>
+        <source>These are your SICash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Hauek dira zuk dirua jaso dezaketen SICash helbideak. Egiaztatu beti diru-kopurua eta dirua jasoko duen helbidea zuzen egon daitezen, txanponak bidali baino lehen.</translation>
     </message>
     <message>
-        <source>These are your Qtum addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>Hauek dira ordainketak jasotzeko zure Qtum helbideak. Jaso taulako 'Jasotzeko helbide berri bat sortu' botoia erabili helbide berri bat sortzeko.</translation>
+        <source>These are your SICash addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
+        <translation>Hauek dira ordainketak jasotzeko zure SICash helbideak. Jaso taulako 'Jasotzeko helbide berri bat sortu' botoia erabili helbide berri bat sortzeko.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -188,8 +188,8 @@
         <translation>Diruzorroaren pasahitz zahar zein berria sartu.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your qtums from being stolen by malware infecting your computer.</source>
-        <translation>Gogoan izan diruzorroaren enkripzioak ezin dituela zure qtumak zure ordenagailuan izan dezakezun malware batengandik lapurtuak izatetik guztiz babestu .</translation>
+        <source>Remember that encrypting your wallet cannot fully protect your sicashs from being stolen by malware infecting your computer.</source>
+        <translation>Gogoan izan diruzorroaren enkripzioak ezin dituela zure sicashak zure ordenagailuan izan dezakezun malware batengandik lapurtuak izatetik guztiz babestu .</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -252,7 +252,7 @@
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>SICashGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>&amp;Mezua zinatu</translation>
@@ -653,8 +653,8 @@
         <translation>Ongietorri %1-ra</translation>
     </message>
     <message>
-        <source>Qtum</source>
-        <translation>Qtum</translation>
+        <source>SICash</source>
+        <translation>SICash</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1218,7 +1218,7 @@
     </message>
     </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     <message>
         <source>Loading wallet...</source>
         <translation>Diru-zorroa kargatzen</translation>

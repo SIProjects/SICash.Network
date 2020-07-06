@@ -40,7 +40,7 @@
 #include <pos.h>
 #include <txdb.h>
 #include <util/convert.h>
-#include <qtum/qtumdelegation.h>
+#include <sicash/sicashdelegation.h>
 
 #include <assert.h>
 #include <stdint.h>
@@ -202,12 +202,12 @@ UniValue blockheaderToJSON(const CBlockIndex* tip, const CBlockIndex* blockindex
     result.pushKV("difficulty", GetDifficulty(blockindex));
     result.pushKV("chainwork", blockindex->nChainWork.GetHex());
     result.pushKV("nTx", (uint64_t)blockindex->nTx);
-    result.pushKV("hashStateRoot", blockindex->hashStateRoot.GetHex()); // qtum
-    result.pushKV("hashUTXORoot", blockindex->hashUTXORoot.GetHex()); // qtum
+    result.pushKV("hashStateRoot", blockindex->hashStateRoot.GetHex()); // sicash
+    result.pushKV("hashUTXORoot", blockindex->hashUTXORoot.GetHex()); // sicash
 
     if(blockindex->IsProofOfStake()){
-        result.pushKV("prevoutStakeHash", blockindex->prevoutStake.hash.GetHex()); // qtum
-        result.pushKV("prevoutStakeVoutN", (int64_t)blockindex->prevoutStake.n); // qtum
+        result.pushKV("prevoutStakeHash", blockindex->prevoutStake.hash.GetHex()); // sicash
+        result.pushKV("prevoutStakeVoutN", (int64_t)blockindex->prevoutStake.n); // sicash
     }
 
     if (blockindex->pprev)
@@ -239,12 +239,12 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* tip, const CBlockIn
     result.pushKV("version", block.nVersion);
     result.pushKV("versionHex", strprintf("%08x", block.nVersion));
     result.pushKV("merkleroot", block.hashMerkleRoot.GetHex());
-    result.pushKV("hashStateRoot", block.hashStateRoot.GetHex()); // qtum
-    result.pushKV("hashUTXORoot", block.hashUTXORoot.GetHex()); // qtum
+    result.pushKV("hashStateRoot", block.hashStateRoot.GetHex()); // sicash
+    result.pushKV("hashUTXORoot", block.hashUTXORoot.GetHex()); // sicash
 
     if(blockindex->IsProofOfStake()){
-        result.pushKV("prevoutStakeHash", blockindex->prevoutStake.hash.GetHex()); // qtum
-        result.pushKV("prevoutStakeVoutN", (int64_t)blockindex->prevoutStake.n); // qtum
+        result.pushKV("prevoutStakeHash", blockindex->prevoutStake.hash.GetHex()); // sicash
+        result.pushKV("prevoutStakeVoutN", (int64_t)blockindex->prevoutStake.n); // sicash
     }
 
     UniValue txs(UniValue::VARR);
@@ -291,7 +291,7 @@ UniValue blockToJSON(const CBlock& block, const CBlockIndex* tip, const CBlockIn
     return result;
 }
 
-//////////////////////////////////////////////////////////////////////////// // qtum
+//////////////////////////////////////////////////////////////////////////// // sicash
 UniValue executionResultToJSON(const dev::eth::ExecutionResult& exRes)
 {
     UniValue result(UniValue::VOBJ);
@@ -309,7 +309,7 @@ UniValue executionResultToJSON(const dev::eth::ExecutionResult& exRes)
     return result;
 }
 
-UniValue transactionReceiptToJSON(const QtumTransactionReceipt& txRec)
+UniValue transactionReceiptToJSON(const SICashTransactionReceipt& txRec)
 {
     UniValue result(UniValue::VOBJ);
     result.pushKV("stateRoot", txRec.stateRoot().hex());
@@ -1242,7 +1242,7 @@ static UniValue getblock(const JSONRPCRequest& request)
     return blockToJSON(block, tip, pblockindex, verbosity >= 2);
 }
 
-////////////////////////////////////////////////////////////////////// // qtum
+////////////////////////////////////////////////////////////////////// // sicash
 UniValue callcontract(const JSONRPCRequest& request)
 {
             RPCHelpMan{"callcontract",
@@ -1312,9 +1312,9 @@ UniValue callcontract(const JSONRPCRequest& request)
     
     dev::Address senderAddress;
     if(request.params.size() >= 3){
-        CTxDestination qtumSenderAddress = DecodeDestination(request.params[2].get_str());
-        if (IsValidDestination(qtumSenderAddress)) {
-            const PKHash *keyid = boost::get<PKHash>(&qtumSenderAddress);
+        CTxDestination sicashSenderAddress = DecodeDestination(request.params[2].get_str());
+        if (IsValidDestination(sicashSenderAddress)) {
+            const PKHash *keyid = boost::get<PKHash>(&sicashSenderAddress);
             senderAddress = dev::Address(HexStr(valtype(keyid->begin(),keyid->end())));
         }else{
             senderAddress = dev::Address(request.params[2].get_str());
@@ -1927,7 +1927,7 @@ UniValue getdelegationinfoforaddress(const JSONRPCRequest& request)
             RPCHelpMan{"getdelegationinfoforaddress",
                 "\nGet delegation information for an address.\n",
                 {
-                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The qtum address string"},
+                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The sicash address string"},
                 },
                 RPCResult{
             "{\n"
@@ -1960,13 +1960,13 @@ UniValue getdelegationinfoforaddress(const JSONRPCRequest& request)
     }
 
     // Get delegation for an address
-    QtumDelegation qtumDelegation;
+    SICashDelegation sicashDelegation;
     Delegation delegation;
     uint160 address = uint160(*pkhash);
-    if(!qtumDelegation.GetDelegation(address, delegation)) {
+    if(!sicashDelegation.GetDelegation(address, delegation)) {
         throw JSONRPCError(RPC_INTERNAL_ERROR, "Failed to get delegation");
     }
-    bool verified = qtumDelegation.VerifyDelegation(address, delegation);
+    bool verified = sicashDelegation.VerifyDelegation(address, delegation);
 
     // Fill the json object with information
     UniValue result(UniValue::VOBJ);
@@ -2002,7 +2002,7 @@ UniValue getdelegationsforstaker(const JSONRPCRequest& request)
                 "requires -logevents to be enabled\n"
                 "\nGet the current list of delegates for a super staker.\n",
                 {
-                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The qtum address string for staker"},
+                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The sicash address string for staker"},
                 },
                 RPCResult{
             "[{\n"
@@ -2038,14 +2038,14 @@ UniValue getdelegationsforstaker(const JSONRPCRequest& request)
     }
 
     // Get delegations for staker
-    QtumDelegation qtumDelegation;
+    SICashDelegation sicashDelegation;
     std::vector<DelegationEvent> events;
     uint160 address = uint160(*pkhash);
     DelegationsStakerFilter filter(address);
-    if(!qtumDelegation.FilterDelegationEvents(events, filter)) {
+    if(!sicashDelegation.FilterDelegationEvents(events, filter)) {
         throw JSONRPCError(RPC_INTERNAL_ERROR, "Failed to get delegations for staker");
     }
-    std::map<uint160, Delegation> delegations = qtumDelegation.DelegationsFromEvents(events);
+    std::map<uint160, Delegation> delegations = sicashDelegation.DelegationsFromEvents(events);
 
     // Fill the json object with information
     UniValue result(UniValue::VARR);
@@ -2239,8 +2239,8 @@ UniValue gettxout(const JSONRPCRequest& request)
             "     \"hex\" : \"hex\",        (string) \n"
             "     \"reqSigs\" : n,          (numeric) Number of required signatures\n"
             "     \"type\" : \"pubkeyhash\", (string) The type, eg pubkeyhash\n"
-            "     \"addresses\" : [          (array of string) array of qtum addresses\n"
-            "        \"address\"     (string) qtum address\n"
+            "     \"addresses\" : [          (array of string) array of sicash addresses\n"
+            "        \"address\"     (string) sicash address\n"
             "        ,...\n"
             "     ]\n"
             "  },\n"

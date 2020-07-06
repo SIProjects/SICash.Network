@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#define QTUM_RELEASES "https://github.com/qtumproject/qtum/releases"
+#define QTUM_RELEASES "https://github.com/sicashproject/sicash/releases"
 
 class Version {
 
@@ -79,12 +79,12 @@ private:
     }
 };
 
-class QtumVersionChecker : public QObject
+class SICashVersionChecker : public QObject
 {
     Q_OBJECT
 public:
-    explicit QtumVersionChecker(QObject *parent = 0);
-    ~QtumVersionChecker();
+    explicit SICashVersionChecker(QObject *parent = 0);
+    ~SICashVersionChecker();
 
     bool newVersionAvailable();
 

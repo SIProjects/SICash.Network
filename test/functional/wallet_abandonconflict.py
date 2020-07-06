@@ -19,7 +19,7 @@ from test_framework.util import (
     connect_nodes,
     disconnect_nodes,
 )
-from test_framework.qtumconfig import *
+from test_framework.sicashconfig import *
 
 class AbandonConflictTest(BitcoinTestFramework):
     def set_test_params(self):

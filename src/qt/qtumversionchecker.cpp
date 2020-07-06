@@ -1,4 +1,4 @@
-#include <qt/qtumversionchecker.h>
+#include <qt/sicashversionchecker.h>
 #include <clientversion.h>
 
 #include <QNetworkAccessManager>
@@ -8,25 +8,25 @@
 #include <QRegularExpression>
 #include <QRegularExpressionMatchIterator>
 
-#define paternVersion "qtum-([0-9]+\\.)?([0-9]+\\.)?([0-9]+)-"
+#define paternVersion "sicash-([0-9]+\\.)?([0-9]+\\.)?([0-9]+)-"
 
-QtumVersionChecker::QtumVersionChecker(QObject *parent) : QObject(parent)
+SICashVersionChecker::SICashVersionChecker(QObject *parent) : QObject(parent)
 {
     currentVersion = Version(CLIENT_VERSION_MAJOR, CLIENT_VERSION_MINOR, CLIENT_VERSION_REVISION);
 }
 
-QtumVersionChecker::~QtumVersionChecker()
+SICashVersionChecker::~SICashVersionChecker()
 {
 
 }
 
-bool QtumVersionChecker::newVersionAvailable()
+bool SICashVersionChecker::newVersionAvailable()
 {
     Version maxReleaseVersion = getMaxReleaseVersion();
     return maxReleaseVersion > currentVersion;
 }
 
-QList<Version> QtumVersionChecker::getVersions()
+QList<Version> SICashVersionChecker::getVersions()
 {
     QNetworkAccessManager manager;
     QNetworkReply *response = manager.get(QNetworkRequest(QUrl(QTUM_RELEASES)));
@@ -52,7 +52,7 @@ QList<Version> QtumVersionChecker::getVersions()
     return versions;
 }
 
-Version QtumVersionChecker::getMaxReleaseVersion()
+Version SICashVersionChecker::getMaxReleaseVersion()
 {
     QList<Version> versions = getVersions();
     Version maxVersion;

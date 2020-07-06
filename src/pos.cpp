@@ -15,15 +15,15 @@
 #include <script/sign.h>
 #include <consensus/consensus.h>
 #include <util/signstr.h>
-#include <qtum/qtumdelegation.h>
+#include <sicash/sicashdelegation.h>
 
 using namespace std;
 
 // Delegation contract function
-QtumDelegation& GetQtumDelegation()
+SICashDelegation& GetSICashDelegation()
 {
-    static QtumDelegation qtumDelegation;
-    return qtumDelegation;
+    static SICashDelegation sicashDelegation;
+    return sicashDelegation;
 }
 
 // Stake Modifier (hash modifier of proof-of-stake):
@@ -190,19 +190,19 @@ bool CheckProofOfStake(CBlockIndex* pindexPrev, CValidationState& state, const C
         /////////////////////////////////////////////////
 
         // Check if the delegation contract exist
-        QtumDelegation& qtumDelegation = GetQtumDelegation();
-        if(!qtumDelegation.ExistDelegationContract())
+        SICashDelegation& sicashDelegation = GetSICashDelegation();
+        if(!sicashDelegation.ExistDelegationContract())
             return state.Invalid(ValidationInvalidReason::BLOCK_HEADER_REJECT, false, REJECT_INVALID, "stake-delegation-contract-not-exist", strprintf("CheckProofOfStake() : The delegation contract doesn't exist, block height %i", nOfflineStakeHeight)); // Internal error, delegation contract not exist
 
         // Get the delegation from the contract
         uint160 address = uint160(ExtractPublicKeyHash(coinHeaderPrev.out.scriptPubKey));
         Delegation delegation;
-        if(!qtumDelegation.GetDelegation(address, delegation)) {
+        if(!sicashDelegation.GetDelegation(address, delegation)) {
             return state.Invalid(ValidationInvalidReason::BLOCK_HEADER_REJECT, false, REJECT_INVALID, "stake-get-delegation-failed", strprintf("CheckProofOfStake() : Failed to get delegation from the delegation contract")); // Internal error, get delegation from the delegation contract
         }
 
         // Verify delegation received from the contract
-        bool verifiedDelegation = qtumDelegation.VerifyDelegation(address, delegation);
+        bool verifiedDelegation = sicashDelegation.VerifyDelegation(address, delegation);
         bool hasDelegationProof = vchPoD.size() > 0;
 
         // Check that if PoD is present then the delegation received from the contract can be verified
@@ -520,9 +520,9 @@ int GetDelegationFeeTx(const CTransaction& tx, const Coin& coin, bool delegateOu
 bool GetDelegationFeeFromContract(const uint160& address, uint8_t& fee)
 {
     Delegation delegation;
-    QtumDelegation& qtumDelegation = GetQtumDelegation();
-    bool ret = qtumDelegation.GetDelegation(address, delegation);
-    if(ret) ret &= qtumDelegation.VerifyDelegation(address, delegation);
+    SICashDelegation& sicashDelegation = GetSICashDelegation();
+    bool ret = sicashDelegation.GetDelegation(address, delegation);
+    if(ret) ret &= sicashDelegation.VerifyDelegation(address, delegation);
     if(ret)
     {
         fee = delegation.fee;

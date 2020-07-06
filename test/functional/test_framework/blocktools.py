@@ -39,7 +39,7 @@ from .script import (
     hash160,
 )
 from .util import assert_equal
-from .qtumconfig import INITIAL_BLOCK_REWARD
+from .sicashconfig import INITIAL_BLOCK_REWARD
 from io import BytesIO
 
 MAX_BLOCK_SIGOPS = 20000

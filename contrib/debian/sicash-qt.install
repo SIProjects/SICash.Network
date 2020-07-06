@@ -1,0 +1,6 @@
+usr/local/bin/sicash-qt usr/bin
+share/pixmaps/sicash32.xpm usr/share/pixmaps
+share/pixmaps/sicash16.xpm usr/share/pixmaps
+share/pixmaps/sicash128.png usr/share/pixmaps
+debian/sicash-qt.desktop usr/share/applications
+debian/sicash-qt.protocol usr/share/kde4/services/

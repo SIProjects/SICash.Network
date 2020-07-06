@@ -1,17 +1,17 @@
-#include "qtumpushbutton.h"
+#include "sicashpushbutton.h"
 #include <QStylePainter>
 
-QtumPushButton::QtumPushButton(QWidget *parent):
+SICashPushButton::SICashPushButton(QWidget *parent):
     QPushButton(parent),
     m_iconCached(false)
 {}
 
-QtumPushButton::QtumPushButton(const QString &text, QWidget *parent):
+SICashPushButton::SICashPushButton(const QString &text, QWidget *parent):
     QPushButton(text, parent),
     m_iconCached(false)
 {}
 
-void QtumPushButton::paintEvent(QPaintEvent *)
+void SICashPushButton::paintEvent(QPaintEvent *)
 {
     QStylePainter p(this);
     QStyleOptionButton option;
@@ -20,7 +20,7 @@ void QtumPushButton::paintEvent(QPaintEvent *)
     p.drawControl(QStyle::CE_PushButton, option);
 }
 
-void QtumPushButton::updateIcon(QStyleOptionButton &pushbutton)
+void SICashPushButton::updateIcon(QStyleOptionButton &pushbutton)
 {
     // Update sunken icon
     if((pushbutton.state & QStyle::State_Enabled) &&

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=0.17.6
+Name=SICash Core
+Comment=Connect to the SICash P2P Network
+Exec=sicash-qt %u
+Terminal=false
+Type=Application
+Icon=sicash128
+MimeType=x-scheme-handler/sicash;
+Categories=Network;
+StartupWMClass=SICash-qt
+Name[en_US]=sicash-qt

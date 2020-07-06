@@ -44,7 +44,7 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>QtumGUI</name>
+    <name>SICashGUI</name>
     <message>
         <source>Warning</source>
         <translation>අවවාදය</translation>
@@ -308,6 +308,6 @@
     <name>WalletView</name>
     </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     </context>
 </TS>

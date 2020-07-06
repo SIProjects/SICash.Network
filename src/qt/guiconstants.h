@@ -42,19 +42,19 @@ static const int TOOLTIP_WRAP_THRESHOLD = 80;
 /* Number of frames in spinner animation */
 #define SPINNER_FRAMES 36
 
-#define QAPP_ORG_NAME "Qtum"
-#define QAPP_ORG_DOMAIN "qtum.org"
-#define QAPP_APP_NAME_DEFAULT "Qtum-Qt"
-#define QAPP_APP_NAME_TESTNET "Qtum-Qt-testnet"
-#define QAPP_APP_NAME_REGTEST "Qtum-Qt-regtest"
+#define QAPP_ORG_NAME "SICash"
+#define QAPP_ORG_DOMAIN "sicash.org"
+#define QAPP_APP_NAME_DEFAULT "SICash-Qt"
+#define QAPP_APP_NAME_TESTNET "SICash-Qt-testnet"
+#define QAPP_APP_NAME_REGTEST "SICash-Qt-regtest"
 
 /* One gigabyte (GB) in bytes */
 static constexpr uint64_t GB_BYTES{1000000000};
 
-/* Mainnet qtum explorer uri */
-static const QString QTUM_INFO_MAINNET = "<a href='https://qtum.info/%1/%2'>%2</a>";
+/* Mainnet sicash explorer uri */
+static const QString QTUM_INFO_MAINNET = "<a href='https://sicash.info/%1/%2'>%2</a>";
 
-/* Testnet qtum explorer uri */
-static const QString QTUM_INFO_TESTNET = "<a href='https://testnet.qtum.info/%1/%2'>%2</a>";
+/* Testnet sicash explorer uri */
+static const QString QTUM_INFO_TESTNET = "<a href='https://testnet.sicash.info/%1/%2'>%2</a>";
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

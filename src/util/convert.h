@@ -1,7 +1,7 @@
 #ifndef QTUM_CONVERT_H
 #define QTUM_CONVERT_H
 
-////////////////////////////////////////////////////// qtum
+////////////////////////////////////////////////////// sicash
 #include <uint256.h>
 #include <libdevcore/Common.h>
 #include <libdevcore/CommonData.h>

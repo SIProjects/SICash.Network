@@ -1,5 +1,5 @@
 #include <boost/test/unit_test.hpp>
-#include <qtumtests/test_utils.h>
+#include <sicashtests/test_utils.h>
 #include <script/standard.h>
 #include <chainparams.h>
 
@@ -328,22 +328,22 @@ void createTestContractsAndBlocks(TestChain100Setup* testChain100Setup, const va
     };
 
     dev::h256 hashTemp(hash);
-    std::vector<QtumTransaction> txs;
-    txs.push_back(createQtumTransaction(code[0], 0, dev::u256(500000), dev::u256(1), hashTemp, addr, 0));
-    txs.push_back(createQtumTransaction(code1, 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
-    txs.push_back(createQtumTransaction(code[2], 0, dev::u256(500000), dev::u256(1), ++hashTemp, addr, 0));
+    std::vector<SICashTransaction> txs;
+    txs.push_back(createSICashTransaction(code[0], 0, dev::u256(500000), dev::u256(1), hashTemp, addr, 0));
+    txs.push_back(createSICashTransaction(code1, 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
+    txs.push_back(createSICashTransaction(code[2], 0, dev::u256(500000), dev::u256(1), ++hashTemp, addr, 0));
     auto result = executeBC(txs);
 
     generateBlocks(50);
     txs.clear();
-    txs.push_back(createQtumTransaction(code2, 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
-    txs.push_back(createQtumTransaction(code[4], 0, dev::u256(500000), dev::u256(1), ++hashTemp, addr, 0));
+    txs.push_back(createSICashTransaction(code2, 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
+    txs.push_back(createSICashTransaction(code[4], 0, dev::u256(500000), dev::u256(1), ++hashTemp, addr, 0));
     result = executeBC(txs);
 
     generateBlocks(50);
     txs.clear();
-    txs.push_back(createQtumTransaction(code3, 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
-    txs.push_back(createQtumTransaction(code[6], 0, dev::u256(500000), dev::u256(1), ++hashTemp, addr, 0));
+    txs.push_back(createSICashTransaction(code3, 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
+    txs.push_back(createSICashTransaction(code[6], 0, dev::u256(500000), dev::u256(1), ++hashTemp, addr, 0));
     result = executeBC(txs);
 }
 
@@ -364,24 +364,24 @@ BOOST_FIXTURE_TEST_SUITE(dgp_tests, TestChain100Setup)
 BOOST_AUTO_TEST_CASE(gas_schedule_default_state_test1){
     initState();
     contractLoading();
-    QtumDGP qtumDGP(globalState.get());
-    dev::eth::EVMSchedule schedule = qtumDGP.getGasSchedule(100);
+    SICashDGP sicashDGP(globalState.get());
+    dev::eth::EVMSchedule schedule = sicashDGP.getGasSchedule(100);
     BOOST_CHECK(compareEVMSchedule(schedule, dev::eth::EIP158Schedule));
 }
 
 BOOST_AUTO_TEST_CASE(gas_schedule_default_state_test2){
     initState();
     contractLoading();
-    QtumDGP qtumDGP(globalState.get());
-    dev::eth::EVMSchedule schedule = qtumDGP.getGasSchedule(0);
+    SICashDGP sicashDGP(globalState.get());
+    dev::eth::EVMSchedule schedule = sicashDGP.getGasSchedule(0);
     BOOST_CHECK(compareEVMSchedule(schedule, dev::eth::EIP158Schedule));
 }
 
 BOOST_AUTO_TEST_CASE(gas_schedule_default_state_test3){
     initState();
     contractLoading();
-    QtumDGP qtumDGP(globalState.get());
-    dev::eth::EVMSchedule schedule = qtumDGP.getGasSchedule(1400);
+    SICashDGP sicashDGP(globalState.get());
+    dev::eth::EVMSchedule schedule = sicashDGP.getGasSchedule(1400);
     BOOST_CHECK(compareEVMSchedule(schedule, dev::eth::ConstantinopleSchedule));
 }
 
@@ -390,14 +390,14 @@ BOOST_AUTO_TEST_CASE(gas_schedule_one_paramsInstance_introductory_block_1_test1)
     contractLoading();
 
     dev::h256 hashTemp(hash);
-    std::vector<QtumTransaction> txs;
-    txs.push_back(createQtumTransaction(code[0], 0, dev::u256(500000), dev::u256(1), hashTemp, GasScheduleDGP, 0));
-    txs.push_back(createQtumTransaction(code[1], 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
-    txs.push_back(createQtumTransaction(code[2], 0, dev::u256(500000), dev::u256(1), ++hashTemp, GasScheduleDGP, 0));
+    std::vector<SICashTransaction> txs;
+    txs.push_back(createSICashTransaction(code[0], 0, dev::u256(500000), dev::u256(1), hashTemp, GasScheduleDGP, 0));
+    txs.push_back(createSICashTransaction(code[1], 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
+    txs.push_back(createSICashTransaction(code[2], 0, dev::u256(500000), dev::u256(1), ++hashTemp, GasScheduleDGP, 0));
     auto result = executeBC(txs);
 
-    QtumDGP qtumDGP(globalState.get());
-    dev::eth::EVMSchedule schedule = qtumDGP.getGasSchedule(0);
+    SICashDGP sicashDGP(globalState.get());
+    dev::eth::EVMSchedule schedule = sicashDGP.getGasSchedule(0);
     BOOST_CHECK(compareEVMSchedule(schedule, dev::eth::EIP158Schedule));
 }
 
@@ -406,14 +406,14 @@ BOOST_AUTO_TEST_CASE(gas_schedule_one_paramsInstance_introductory_block_1_test2)
     contractLoading();
 
     dev::h256 hashTemp(hash);
-    std::vector<QtumTransaction> txs;
-    txs.push_back(createQtumTransaction(code[0], 0, dev::u256(500000), dev::u256(1), hashTemp, GasScheduleDGP, 0));
-    txs.push_back(createQtumTransaction(code[1], 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
-    txs.push_back(createQtumTransaction(code[2], 0, dev::u256(500000), dev::u256(1), ++hashTemp, GasScheduleDGP, 0));
+    std::vector<SICashTransaction> txs;
+    txs.push_back(createSICashTransaction(code[0], 0, dev::u256(500000), dev::u256(1), hashTemp, GasScheduleDGP, 0));
+    txs.push_back(createSICashTransaction(code[1], 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
+    txs.push_back(createSICashTransaction(code[2], 0, dev::u256(500000), dev::u256(1), ++hashTemp, GasScheduleDGP, 0));
     auto result = executeBC(txs);
 
-    QtumDGP qtumDGP(globalState.get());
-    dev::eth::EVMSchedule schedule = qtumDGP.getGasSchedule(502); // After initializing the tests, the height of the chain 502
+    SICashDGP sicashDGP(globalState.get());
+    dev::eth::EVMSchedule schedule = sicashDGP.getGasSchedule(502); // After initializing the tests, the height of the chain 502
     BOOST_CHECK(compareEVMSchedule(schedule, EVMScheduleContractGasSchedule));
 }
 
@@ -421,9 +421,9 @@ BOOST_AUTO_TEST_CASE(gas_schedule_passage_from_0_to_130_three_paramsInstance_tes
 //    initState();
     contractLoading();    
     createTestContractsAndBlocks(this, code[1], code[3], code[5], GasScheduleDGP);
-    QtumDGP qtumDGP(globalState.get());
+    SICashDGP sicashDGP(globalState.get());
     for(size_t i = 0; i < 1300; i++){
-        dev::eth::EVMSchedule schedule = qtumDGP.getGasSchedule(i);
+        dev::eth::EVMSchedule schedule = sicashDGP.getGasSchedule(i);
         std::function<bool(const dev::eth::EVMSchedule&, const dev::eth::EVMSchedule&)> func = compareEVMSchedule;
         checkValue<dev::eth::EVMSchedule>(schedule, dev::eth::EIP158Schedule, EVMScheduleContractGasSchedule,
             EVMScheduleContractGasSchedule2, EVMScheduleContractGasSchedule3, i, func);
@@ -435,9 +435,9 @@ BOOST_AUTO_TEST_CASE(gas_schedule_passage_from_130_to_0_three_paramsInstance_tes
     contractLoading();
     
     createTestContractsAndBlocks(this, code[1], code[3], code[5], GasScheduleDGP);
-    QtumDGP qtumDGP(globalState.get());
+    SICashDGP sicashDGP(globalState.get());
     for(size_t i = 1300; i > 0; i--){
-        dev::eth::EVMSchedule schedule = qtumDGP.getGasSchedule(i);
+        dev::eth::EVMSchedule schedule = sicashDGP.getGasSchedule(i);
         std::function<bool(const dev::eth::EVMSchedule&, const dev::eth::EVMSchedule&)> func = compareEVMSchedule;
         checkValue<dev::eth::EVMSchedule>(schedule, dev::eth::EIP158Schedule, EVMScheduleContractGasSchedule,
             EVMScheduleContractGasSchedule2, EVMScheduleContractGasSchedule3, i, func);
@@ -447,16 +447,16 @@ BOOST_AUTO_TEST_CASE(gas_schedule_passage_from_130_to_0_three_paramsInstance_tes
 BOOST_AUTO_TEST_CASE(block_size_default_state_test1){
     initState();
     contractLoading();
-    QtumDGP qtumDGP(globalState.get());
-    uint32_t blockSize = qtumDGP.getBlockSize(100);
+    SICashDGP sicashDGP(globalState.get());
+    uint32_t blockSize = sicashDGP.getBlockSize(100);
     BOOST_CHECK(blockSize == DEFAULT_BLOCK_SIZE_DGP);
 }
 
 BOOST_AUTO_TEST_CASE(block_size_default_state_test2){
     initState();
     contractLoading();
-    QtumDGP qtumDGP(globalState.get());
-    uint32_t blockSize = qtumDGP.getBlockSize(0);
+    SICashDGP sicashDGP(globalState.get());
+    uint32_t blockSize = sicashDGP.getBlockSize(0);
     BOOST_CHECK(blockSize == DEFAULT_BLOCK_SIZE_DGP);
 }
 
@@ -465,14 +465,14 @@ BOOST_AUTO_TEST_CASE(block_size_one_paramsInstance_introductory_block_1_test1){
     contractLoading();
 
     dev::h256 hashTemp(hash);
-    std::vector<QtumTransaction> txs;
-    txs.push_back(createQtumTransaction(code[0], 0, dev::u256(500000), dev::u256(1), hashTemp, BlockSizeDGP, 0));
-    txs.push_back(createQtumTransaction(code[7], 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
-    txs.push_back(createQtumTransaction(code[2], 0, dev::u256(500000), dev::u256(1), ++hashTemp, BlockSizeDGP, 0));
+    std::vector<SICashTransaction> txs;
+    txs.push_back(createSICashTransaction(code[0], 0, dev::u256(500000), dev::u256(1), hashTemp, BlockSizeDGP, 0));
+    txs.push_back(createSICashTransaction(code[7], 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
+    txs.push_back(createSICashTransaction(code[2], 0, dev::u256(500000), dev::u256(1), ++hashTemp, BlockSizeDGP, 0));
     auto result = executeBC(txs);
 
-    QtumDGP qtumDGP(globalState.get());
-    uint32_t blockSize = qtumDGP.getBlockSize(0);
+    SICashDGP sicashDGP(globalState.get());
+    uint32_t blockSize = sicashDGP.getBlockSize(0);
     BOOST_CHECK(blockSize == DEFAULT_BLOCK_SIZE_DGP);
 }
 
@@ -481,14 +481,14 @@ BOOST_AUTO_TEST_CASE(block_size_one_paramsInstance_introductory_block_1_test2){
     contractLoading();
 
     dev::h256 hashTemp(hash);
-    std::vector<QtumTransaction> txs;
-    txs.push_back(createQtumTransaction(code[0], 0, dev::u256(500000), dev::u256(1), hashTemp, BlockSizeDGP, 0));
-    txs.push_back(createQtumTransaction(code[7], 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
-    txs.push_back(createQtumTransaction(code[2], 0, dev::u256(500000), dev::u256(1), ++hashTemp, BlockSizeDGP, 0));
+    std::vector<SICashTransaction> txs;
+    txs.push_back(createSICashTransaction(code[0], 0, dev::u256(500000), dev::u256(1), hashTemp, BlockSizeDGP, 0));
+    txs.push_back(createSICashTransaction(code[7], 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
+    txs.push_back(createSICashTransaction(code[2], 0, dev::u256(500000), dev::u256(1), ++hashTemp, BlockSizeDGP, 0));
     auto result = executeBC(txs);
 
-    QtumDGP qtumDGP(globalState.get());
-    uint32_t blockSize = qtumDGP.getBlockSize(502);
+    SICashDGP sicashDGP(globalState.get());
+    uint32_t blockSize = sicashDGP.getBlockSize(502);
     BOOST_CHECK(blockSize == 1000000);
 }
 
@@ -497,9 +497,9 @@ BOOST_AUTO_TEST_CASE(block_size_passage_from_0_to_130_three_paramsInstance_test)
     contractLoading();
     
     createTestContractsAndBlocks(this, code[7], code[8], code[9], BlockSizeDGP);
-    QtumDGP qtumDGP(globalState.get());
+    SICashDGP sicashDGP(globalState.get());
     for(size_t i = 0; i < 1300; i++){
-        uint32_t blockSize = qtumDGP.getBlockSize(i);
+        uint32_t blockSize = sicashDGP.getBlockSize(i);
         std::function<bool(const uint64_t&, const uint64_t&)> func = compareUint64;
         checkValue<uint64_t>(blockSize, DEFAULT_BLOCK_SIZE_DGP, 1000000, 2000000, 500123, i, func);
     }
@@ -510,9 +510,9 @@ BOOST_AUTO_TEST_CASE(block_size_passage_from_130_to_0_three_paramsInstance_test)
     contractLoading();
     
     createTestContractsAndBlocks(this, code[7], code[8], code[9], BlockSizeDGP);
-    QtumDGP qtumDGP(globalState.get());
+    SICashDGP sicashDGP(globalState.get());
     for(size_t i = 1300; i > 0; i--){
-        uint32_t blockSize = qtumDGP.getBlockSize(i);
+        uint32_t blockSize = sicashDGP.getBlockSize(i);
         std::function<bool(const uint64_t&, const uint64_t&)> func = compareUint64;
         checkValue<uint32_t>(blockSize, DEFAULT_BLOCK_SIZE_DGP, 1000000, 2000000, 500123, i, func);
     }
@@ -521,16 +521,16 @@ BOOST_AUTO_TEST_CASE(block_size_passage_from_130_to_0_three_paramsInstance_test)
 BOOST_AUTO_TEST_CASE(min_gas_price_default_state_test1){
     initState();
     contractLoading();
-    QtumDGP qtumDGP(globalState.get());
-    uint64_t minGasPrice = qtumDGP.getMinGasPrice(100);
+    SICashDGP sicashDGP(globalState.get());
+    uint64_t minGasPrice = sicashDGP.getMinGasPrice(100);
     BOOST_CHECK(minGasPrice == DEFAULT_MIN_GAS_PRICE_DGP);
 }
 
 BOOST_AUTO_TEST_CASE(min_gas_price_default_state_test2){
     initState();
     contractLoading();
-    QtumDGP qtumDGP(globalState.get());
-    uint64_t minGasPrice = qtumDGP.getMinGasPrice(0);
+    SICashDGP sicashDGP(globalState.get());
+    uint64_t minGasPrice = sicashDGP.getMinGasPrice(0);
     BOOST_CHECK(minGasPrice == DEFAULT_MIN_GAS_PRICE_DGP);
 }
 
@@ -539,14 +539,14 @@ BOOST_AUTO_TEST_CASE(min_gas_price_one_paramsInstance_introductory_block_1_test1
     contractLoading();
 
     dev::h256 hashTemp(hash);
-    std::vector<QtumTransaction> txs;
-    txs.push_back(createQtumTransaction(code[0], 0, dev::u256(500000), dev::u256(1), hashTemp, GasPriceDGP, 0));
-    txs.push_back(createQtumTransaction(code[10], 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
-    txs.push_back(createQtumTransaction(code[2], 0, dev::u256(500000), dev::u256(1), ++hashTemp, GasPriceDGP, 0));
+    std::vector<SICashTransaction> txs;
+    txs.push_back(createSICashTransaction(code[0], 0, dev::u256(500000), dev::u256(1), hashTemp, GasPriceDGP, 0));
+    txs.push_back(createSICashTransaction(code[10], 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
+    txs.push_back(createSICashTransaction(code[2], 0, dev::u256(500000), dev::u256(1), ++hashTemp, GasPriceDGP, 0));
     auto result = executeBC(txs);
 
-    QtumDGP qtumDGP(globalState.get());
-    uint64_t minGasPrice = qtumDGP.getMinGasPrice(0);
+    SICashDGP sicashDGP(globalState.get());
+    uint64_t minGasPrice = sicashDGP.getMinGasPrice(0);
     BOOST_CHECK(minGasPrice == DEFAULT_MIN_GAS_PRICE_DGP);
 }
 
@@ -555,14 +555,14 @@ BOOST_AUTO_TEST_CASE(min_gas_price_one_paramsInstance_introductory_block_1_test2
     contractLoading();
 
     dev::h256 hashTemp(hash);
-    std::vector<QtumTransaction> txs;
-    txs.push_back(createQtumTransaction(code[0], 0, dev::u256(500000), dev::u256(1), hashTemp, GasPriceDGP, 0));
-    txs.push_back(createQtumTransaction(code[10], 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
-    txs.push_back(createQtumTransaction(code[2], 0, dev::u256(500000), dev::u256(1), ++hashTemp, GasPriceDGP, 0));
+    std::vector<SICashTransaction> txs;
+    txs.push_back(createSICashTransaction(code[0], 0, dev::u256(500000), dev::u256(1), hashTemp, GasPriceDGP, 0));
+    txs.push_back(createSICashTransaction(code[10], 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 0));
+    txs.push_back(createSICashTransaction(code[2], 0, dev::u256(500000), dev::u256(1), ++hashTemp, GasPriceDGP, 0));
     auto result = executeBC(txs);
 
-    QtumDGP qtumDGP(globalState.get());
-    uint64_t minGasPrice = qtumDGP.getMinGasPrice(502);
+    SICashDGP sicashDGP(globalState.get());
+    uint64_t minGasPrice = sicashDGP.getMinGasPrice(502);
     BOOST_CHECK(minGasPrice == 13);
 }
 
@@ -571,9 +571,9 @@ BOOST_AUTO_TEST_CASE(min_gas_price_passage_from_0_to_130_three_paramsInstance_te
     contractLoading();
     
     createTestContractsAndBlocks(this, code[10], code[11], code[12], GasPriceDGP);
-    QtumDGP qtumDGP(globalState.get());
+    SICashDGP sicashDGP(globalState.get());
     for(size_t i = 0; i < 1300; i++){
-        uint64_t minGasPrice = qtumDGP.getMinGasPrice(i);
+        uint64_t minGasPrice = sicashDGP.getMinGasPrice(i);
         std::function<bool(const uint64_t&, const uint64_t&)> func = compareUint64;
         checkValue<uint64_t>(minGasPrice, DEFAULT_MIN_GAS_PRICE_DGP, 13, 9850, 123, i, func);
     }
@@ -584,9 +584,9 @@ BOOST_AUTO_TEST_CASE(min_gas_price_passage_from_130_to_0_three_paramsInstance_te
     contractLoading();
     
     createTestContractsAndBlocks(this, code[10], code[11], code[12], GasPriceDGP);
-    QtumDGP qtumDGP(globalState.get());
+    SICashDGP sicashDGP(globalState.get());
     for(size_t i = 1300; i > 0; i--){
-        uint64_t minGasPrice = qtumDGP.getMinGasPrice(i);
+        uint64_t minGasPrice = sicashDGP.getMinGasPrice(i);
         std::function<bool(const uint64_t&, const uint64_t&)> func = compareUint64;
         checkValue<uint64_t>(minGasPrice, DEFAULT_MIN_GAS_PRICE_DGP, 13, 9850, 123, i, func);
     }

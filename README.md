@@ -1,153 +1,153 @@
-What is Qtum?
+What is SICash?
 -------------
 
-Qtum is a decentralized blockchain project built on Bitcoin's UTXO model, with support for Ethereum Virtual Machine based smart contracts, and secured by a proof of stake consensus model. It achieves this through the revolutionary Account Abstraction Layer which allows the EVM to communicate with Qtum's Bitcoin-like UTXO blockchain. For more general information about Qtum as well as links to join our community, go to https://qtum.org
+SICash is a decentralized blockchain project built on Bitcoin's UTXO model, with support for Ethereum Virtual Machine based smart contracts, and secured by a proof of stake consensus model. It achieves this through the revolutionary Account Abstraction Layer which allows the EVM to communicate with SICash's Bitcoin-like UTXO blockchain. For more general information about SICash as well as links to join our community, go to https://sicash.org
 
-Welcome to the Qtum Ignition Main Network. This is the main network where the tokens hold value and should be guarded very carefully. If you are testing the network, or developing unstable software on Qtum, we highly recommend using either testnet or regtest mode. 
+Welcome to the SICash Ignition Main Network. This is the main network where the tokens hold value and should be guarded very carefully. If you are testing the network, or developing unstable software on SICash, we highly recommend using either testnet or regtest mode.
 
-The major features of the Qtum network include:
+The major features of the SICash network include:
 
-1. Compatibility with the Ethereum Virtual Machine, which allows for compatibility with most existing Solidity based smart contracts. No special solidity compiler is required to deploy your smart contract to Qtum. 
-2. A Proof of Stake consensus system which is optimized for Qtum's contract model. Any user can stake and help to secure the network. There is no voting, master nodes, or minimum amount required. There have been transactions as small as 2 Qtum that have created blocks in the past. Staking from smart contracts is under development.
-3. The Decentralized Governance Protocol is completely implemented and functional, which allows certain network parameters to be modified without a fork or other network disruption. This currently controls parameters like block size, gas prices, etc. 
-4. Uses the UTXO transaction model and is compatible with Bitcoin, allowing for existing tooling and workflows to be used with Qtum. This allows for the infamous SPV protocol to be used which is ideal for light wallets on mobile phones and IoT devices.
+1. Compatibility with the Ethereum Virtual Machine, which allows for compatibility with most existing Solidity based smart contracts. No special solidity compiler is required to deploy your smart contract to SICash.
+2. A Proof of Stake consensus system which is optimized for SICash's contract model. Any user can stake and help to secure the network. There is no voting, master nodes, or minimum amount required. There have been transactions as small as 2 SICash that have created blocks in the past. Staking from smart contracts is under development.
+3. The Decentralized Governance Protocol is completely implemented and functional, which allows certain network parameters to be modified without a fork or other network disruption. This currently controls parameters like block size, gas prices, etc.
+4. Uses the UTXO transaction model and is compatible with Bitcoin, allowing for existing tooling and workflows to be used with SICash. This allows for the infamous SPV protocol to be used which is ideal for light wallets on mobile phones and IoT devices.
 
-Note: Qtum Core is considered beta software. We make no warranties or guarantees of its security or stability.
+Note: SICash Core is considered beta software. We make no warranties or guarantees of its security or stability.
 
-Qtum Documentation and Usage Resources
+SICash Documentation and Usage Resources
 ---------------
 
-These are some resources that might be helpful in understanding Qtum.
+These are some resources that might be helpful in understanding SICash.
 
 Basic usage resources:
 
-* [User guide](https://docs.qtum.site/en/)
-* [Qtum-Qt Wallet Tutorial](https://github.com/qtumproject/documents/tree/master/en/Qtum-Wallet-Tutorial#qtum-qt-wallet-tutorial)
-* [Qtum staking tutorial](https://github.com/qtumproject/documents/tree/master/en/How-to-Stake-with-Qtum)
-* [Qtum tutorial on Raspberry Pi](https://github.com/qtumproject/documents/tree/master/en/Qtum-on-Raspberry-Pi)
-* [Running Qtum on Amazon AWS using Qtum AMI](https://github.com/qtumproject/documents/tree/master/en/Qtum-AWS)
-* [Encrypting and unlocking wallet](https://github.com/qtumproject/documents/tree/master/en/Encrypt-and-Unlock-Qtum-Wallet)
-* [Testnet guide](https://github.com/qtumproject/documents/blob/master/en/Testnet-User-Guide.md)
-* [Block explorer](https://qtum.info), [Older explorer](https://explorer.qtum.org)
+* [User guide](https://docs.sicash.site/en/)
+* [SICash-Qt Wallet Tutorial](https://github.com/sicashproject/documents/tree/master/en/SICash-Wallet-Tutorial#sicash-qt-wallet-tutorial)
+* [SICash staking tutorial](https://github.com/sicashproject/documents/tree/master/en/How-to-Stake-with-SICash)
+* [SICash tutorial on Raspberry Pi](https://github.com/sicashproject/documents/tree/master/en/SICash-on-Raspberry-Pi)
+* [Running SICash on Amazon AWS using SICash AMI](https://github.com/sicashproject/documents/tree/master/en/SICash-AWS)
+* [Encrypting and unlocking wallet](https://github.com/sicashproject/documents/tree/master/en/Encrypt-and-Unlock-SICash-Wallet)
+* [Testnet guide](https://github.com/sicashproject/documents/blob/master/en/Testnet-User-Guide.md)
+* [Block explorer](https://sicash.info), [Older explorer](https://explorer.sicash.org)
 
 
 Development resources:
 
-* [Qtum Book - A Developer's Guide To QTUM](http://book.qtum.site/en/)
-* [Qtum contract usage](https://docs.qtum.site/en/QRC20-Token-Introduce.html)
-* [Deploying a custom token to Qtum](https://blog.qtum.org/qtum-custom-token-walkthrough-467d725fa27d)
-* [QtumJS document](https://qtumproject.github.io/qtumjs-doc/)
-* [Smart contract ICO example](http://book.qtum.site/en/part3/ico.htm)
-* [Early example faucet contract](http://earlz.net/view/2017/06/30/2144/the-qtum-sparknet-faucet)
+* [SICash Book - A Developer's Guide To QTUM](http://book.sicash.site/en/)
+* [SICash contract usage](https://docs.sicash.site/en/SRC20-Token-Introduce.html)
+* [Deploying a custom token to SICash](https://blog.sicash.org/sicash-custom-token-walkthrough-467d725fa27d)
+* [SICashJS document](https://sicashproject.github.io/sicashjs-doc/)
+* [Smart contract ICO example](http://book.sicash.site/en/part3/ico.htm)
+* [Early example faucet contract](http://earlz.net/view/2017/06/30/2144/the-sicash-sparknet-faucet)
 
-General Info about Qtum:
+General Info about SICash:
 
-* [CIRCLERESEARCH Qtum Primer](https://www.circle.com/marketing/pdfs/research/circle-research-qtum.pdf)
-* [Qtum's PoS vs CASPER](https://www.reddit.com/r/Qtum/comments/788oa5/qtums_pos_vs_casper_and_the_nothingatstake_problem/)
-* [Technical article explaining Qtum's PoS model in depth](http://earlz.net/view/2017/07/27/1904/the-missing-explanation-of-proof-of-stake-version)
+* [CIRCLERESEARCH SICash Primer](https://www.circle.com/marketing/pdfs/research/circle-research-sicash.pdf)
+* [SICash's PoS vs CASPER](https://www.reddit.com/r/SICash/comments/788oa5/sicashs_pos_vs_casper_and_the_nothingatstake_problem/)
+* [Technical article explaining SICash's PoS model in depth](http://earlz.net/view/2017/07/27/1904/the-missing-explanation-of-proof-of-stake-version)
 
 
 Developer's Tools
 -----------------
 
 * Smart contract deployment tool
-  * https://github.com/qtumproject/solar
+  * https://github.com/sicashproject/solar
 * DApp JavaScript Library
-  * https://github.com/qtumproject/qtumjs
-* A toolkit for building qtum light wallets
-  * https://github.com/qtumproject/qtumjs-wallet
-* CORS qtumd RPC proxy for DApp
-  * https://github.com/qtumproject/qtumportal
-* Docker images for running qtum services
-  * https://github.com/qtumproject/qtum-docker
-* qtum.info API that powers the block explorer and the QTUM Web wallet
-  * https://github.com/qtumproject/qtuminfo-api#qtuminfo-api-documentation
+  * https://github.com/sicashproject/sicashjs
+* A toolkit for building sicash light wallets
+  * https://github.com/sicashproject/sicashjs-wallet
+* CORS sicashd RPC proxy for DApp
+  * https://github.com/sicashproject/sicashportal
+* Docker images for running sicash services
+  * https://github.com/sicashproject/sicash-docker
+* sicash.info API that powers the block explorer and the QTUM Web wallet
+  * https://github.com/sicashproject/sicashinfo-api#sicashinfo-api-documentation
 
 
-What is Qtum Core?
+What is SICash Core?
 ------------------
 
-Qtum Core is our primary mainnet wallet. It implements a full node and is capable of storing, validating, and distributing all history of the Qtum network. Qtum Core is considered the reference implementation for the Qtum network. 
+SICash Core is our primary mainnet wallet. It implements a full node and is capable of storing, validating, and distributing all history of the SICash network. SICash Core is considered the reference implementation for the SICash network.
 
-Qtum Core currently implements the following:
+SICash Core currently implements the following:
 
 * Sending/Receiving QTUM coins
-* Sending/Receiving QRC20 tokens on the Qtum network
-* Staking and creating blocks for the Qtum network
+* Sending/Receiving SRC20 tokens on the SICash network
+* Staking and creating blocks for the SICash network
 * Creating and interacting with smart contracts
 * Running a full node for distributing the blockchain to other users
 * "Prune" mode, which minimizes disk usage
-* Regtest mode, which enables developers to very quickly build their own private Qtum network for Dapp testing
-* Testnet mode, using the public Qtum Testnet, with faucet available
+* Regtest mode, which enables developers to very quickly build their own private SICash network for Dapp testing
+* Testnet mode, using the public SICash Testnet, with faucet available
 * Compatibility with the Bitcoin Core set of RPC commands and APIs
 * Full SegWit capability with p2sh-segwit (legacy) and bech32 (native) addresses
 
 Alternative Wallets
 -------------------
 
-Qtum Core uses a full node model, and thus requires downloading the entire blockchain. If you do not need the entire blockchain, and do not intend on developing smart contracts, it may be more ideal to use an alternative wallet such as one of our light wallets that can be synchronized in a matter of seconds. 
+SICash Core uses a full node model, and thus requires downloading the entire blockchain. If you do not need the entire blockchain, and do not intend on developing smart contracts, it may be more ideal to use an alternative wallet such as one of our light wallets that can be synchronized in a matter of seconds.
 
-### Qtum Web Wallet
+### SICash Web Wallet
 
 A browser wallet that supports the Ledger hardware wallet, offline cold wallet, and restoration from mobile wallets.
 
-Web site https://qtumwallet.org
+Web site https://sicashwallet.org
 
-User documentation https://github.com/qtumproject/documents/tree/master/en/QTUM-WebWallet-usage
+User documentation https://github.com/sicashproject/documents/tree/master/en/QTUM-WebWallet-usage
 
-### Qtum Electrum
+### SICash Electrum
 
-A light wallet that supports the Ledger and Trezor hardware wallets and is based on the well-known Electrum wallet software. 
+A light wallet that supports the Ledger and Trezor hardware wallets and is based on the well-known Electrum wallet software.
 
-Download: https://github.com/qtumproject/qtum-electrum/releases
+Download: https://github.com/sicashproject/sicash-electrum/releases
 
 ### iOS and Android Wallets
 
-These wallets run on mobile devices and synchronize quickly. 
+These wallets run on mobile devices and synchronize quickly.
 
-Android Download: https://play.google.com/store/apps/details?id=org.qtum.newwallet
+Android Download: https://play.google.com/store/apps/details?id=org.sicash.newwallet
 
-iOS Download: https://github.com/qtumproject/qtum-ios (open source, deprecated)
+iOS Download: https://github.com/sicashproject/sicash-ios (open source, deprecated)
 
 ### Ledger Chrome Wallet
 
 This light wallet runs in your Chrome browser as a browser extension. This wallet requires a Ledger device to use.
 
-How to install: https://ledger.zendesk.com/hc/en-us/articles/115003776913-How-to-install-and-use-Qtum-with-Ledger
+How to install: https://ledger.zendesk.com/hc/en-us/articles/115003776913-How-to-install-and-use-SICash-with-Ledger
 
 
 ### Community Resources
 
-Make sure to check out these resources as well for more information and to keep up to date with all the latest news about Qtum. At least 1 developer is always around, so if you're developing on Qtum and need help, we'd love to welcome you to our community.
+Make sure to check out these resources as well for more information and to keep up to date with all the latest news about SICash. At least 1 developer is always around, so if you're developing on SICash and need help, we'd love to welcome you to our community.
 
-*	@Qtum on Twitter https://twitter.com/qtum
-* Qtum blog https://blog.qtum.org/
-*	Qtum Telegram Group https://t.me/qtumofficial, other languages available
-* Qtum Discord https://discordapp.com/invite/wRfmkQ9
-*	/r/Qtum on Reddit https://www.reddit.com/r/Qtum/
-*	Qtum.org https://qtum.org
-*	Qtum on Facebook https://www.facebook.com/QtumOfficial/
-*	Qtum Forum https://forum.qtum.org
+*	@SICash on Twitter https://twitter.com/sicash
+* SICash blog https://blog.sicash.org/
+*	SICash Telegram Group https://t.me/sicashofficial, other languages available
+* SICash Discord https://discordapp.com/invite/wRfmkQ9
+*	/r/SICash on Reddit https://www.reddit.com/r/SICash/
+*	SICash.org https://sicash.org
+*	SICash on Facebook https://www.facebook.com/SICashOfficial/
+*	SICash Forum https://forum.sicash.org
 
-### Qtum Smart Contract Limitations
+### SICash Smart Contract Limitations
 
 *	EVM smart contracts cannot receive coins from or send coins to any address type other than pay-to-pubkeyhash (starts with Q) addresses. This is due to a limitation in the EVM
 *	Contracts are not allowed to create contracts with an initial endowment of coins. The contract must first be created, and then be sent coins in a separate transaction. Humans are also not allowed to create contracts with an initial endowment of coins.
-*	Although all of the infrastructure is present, Qtum Core does not currently parse Solidity event data. You must parse this yourself using either searchlogs or -record-log-opcodes features.
+*	Although all of the infrastructure is present, SICash Core does not currently parse Solidity event data. You must parse this yourself using either searchlogs or -record-log-opcodes features.
 *	It is not possible to send a contract coins without also executing the contract. This is also the case of Ethereum. This was promised in earlier discussions and technically does work, but due to lack of time for testing this feature was disabled. We hope to reenable this feature with release of the x86 virtual machine in 2020.
-*	In Qtum there can be multiple addresses used to create a proof-of-stake block. However, the EVM can only see the first output using the coinbase operation in Solidity (this address is also the one registered for the continuous staker rewards after 500 blocks).
+*	In SICash there can be multiple addresses used to create a proof-of-stake block. However, the EVM can only see the first output using the coinbase operation in Solidity (this address is also the one registered for the continuous staker rewards after 500 blocks).
 
 ----------
 
-# Building Qtum Core
+# Building SICash Core
 
 ### Validate and Reproduce Binaries
 
-Qtum uses a tool called Gitian to make reproducible builds that can be verified by anyone. Instructions on setting up a Gitian VM and building Qtum are provided in [Gitan Building](https://github.com/qtumproject/qtum/blob/master/doc/gitian-building.md)
+SICash uses a tool called Gitian to make reproducible builds that can be verified by anyone. Instructions on setting up a Gitian VM and building SICash are provided in [Gitan Building](https://github.com/sicashproject/sicash/blob/master/doc/gitian-building.md)
 
 ### Build on Ubuntu
 
-This is a quick start script for compiling Qtum on Ubuntu
+This is a quick start script for compiling SICash on Ubuntu
 
 
     sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils git cmake libboost-all-dev libgmp3-dev
@@ -159,17 +159,17 @@ This is a quick start script for compiling Qtum on Ubuntu
     # If you want to build the Qt GUI:
     sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler qrencode
 
-    git clone https://github.com/qtumproject/qtum --recursive
-    cd qtum
+    git clone https://github.com/sicashproject/sicash --recursive
+    cd sicash
 
     # Note autogen will prompt to install some more dependencies if needed
     ./autogen.sh
-    ./configure 
+    ./configure
     make -j2
-    
+
 ### Build on CentOS
 
-Here is a brief description for compiling Qtum on CentOS, for more details please refer to [the specific document](https://github.com/qtumproject/qtum/blob/master/doc/build-unix.md)
+Here is a brief description for compiling SICash on CentOS, for more details please refer to [the specific document](https://github.com/sicashproject/sicash/blob/master/doc/build-unix.md)
 
     # Compiling boost manually
     sudo yum install python-devel bzip2-devel
@@ -180,17 +180,17 @@ Here is a brief description for compiling Qtum on CentOS, for more details pleas
     ./bootstrap.sh --prefix=/usr --libdir=/usr/lib64
     ./b2 headers
     sudo ./b2 -j4 install
-    
-    # Installing Dependencies for Qtum
+
+    # Installing Dependencies for SICash
     sudo yum install epel-release
     sudo yum install libtool libdb4-cxx-devel openssl-devel libevent-devel gmp-devel
-    
+
     # If you want to build the Qt GUI:
     sudo yum install qt5-qttools-devel protobuf-devel qrencode-devel
-    
-    # Building Qtum
-    git clone --recursive https://github.com/qtumproject/qtum.git
-    cd qtum
+
+    # Building SICash
+    git clone --recursive https://github.com/sicashproject/sicash.git
+    cd sicash
     ./autogen.sh
     ./configure
     make -j4
@@ -216,16 +216,16 @@ Then install [Homebrew](https://brew.sh).
 
 NOTE: Building with Qt4 is still supported, however, could result in a broken UI. Building with Qt5 is recommended.
 
-#### Build Qtum Core
+#### Build SICash Core
 
-1. Clone the qtum source code and cd into `qtum`
+1. Clone the sicash source code and cd into `sicash`
 
-        git clone --recursive https://github.com/qtumproject/qtum.git
-        cd qtum
+        git clone --recursive https://github.com/sicashproject/sicash.git
+        cd sicash
 
-2.  Build qtum-core:
+2.  Build sicash-core:
 
-    Configure and build the headless qtum binaries as well as the GUI (if Qt is found).
+    Configure and build the headless sicash binaries as well as the GUI (if Qt is found).
 
     You can disable the GUI build by passing `--without-gui` to configure.
 
@@ -239,22 +239,22 @@ NOTE: Building with Qt4 is still supported, however, could result in a broken UI
 
 ### Run
 
-Then you can either run the command-line daemon using `src/qtumd` and `src/qtum-cli`, or you can run the Qt GUI using `src/qt/qtum-qt`
+Then you can either run the command-line daemon using `src/sicashd` and `src/sicash-cli`, or you can run the Qt GUI using `src/qt/sicash-qt`
 
 License
 -------
 
-Qtum is GPLv3 licensed.
+SICash is GPLv3 licensed.
 
 
 Development Process
 -------------------
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/qtumproject/qtum/tags) are created
-regularly to indicate new official, stable release versions of Qtum.
+completely stable. [Tags](https://github.com/sicashproject/sicash/tags) are created
+regularly to indicate new official, stable release versions of SICash.
 
-The contribution workflow is described in [CONTRIBUTING.md](https://github.com/qtumproject/qtum/blob/master/CONTRIBUTING.md).
+The contribution workflow is described in [CONTRIBUTING.md](https://github.com/sicashproject/sicash/blob/master/CONTRIBUTING.md).
 
 
 Testing
@@ -282,4 +282,3 @@ Changes should be tested by somebody other than the developer who wrote the
 code. This is especially important for large or high-risk changes. It is useful
 to add a test plan to the pull request description if testing the changes is
 not straightforward.
-

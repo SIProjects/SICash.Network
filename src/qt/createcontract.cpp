@@ -57,7 +57,7 @@ CreateContract::CreateContract(const PlatformStyle *platformStyle, QWidget *pare
     m_ABIFunctionField = new ABIFunctionField(platformStyle, ABIFunctionField::Create, ui->scrollAreaConstructor);
     ui->scrollAreaConstructor->setWidget(m_ABIFunctionField);
     ui->labelBytecode->setToolTip(tr("The bytecode of the contract"));
-    ui->labelSenderAddress->setToolTip(tr("The qtum address that will be used to create the contract."));
+    ui->labelSenderAddress->setToolTip(tr("The sicash address that will be used to create the contract."));
 
     m_tabInfo = new TabBarInfo(ui->stackedWidget);
     m_tabInfo->addTab(0, tr("Create Contract"));
@@ -110,7 +110,7 @@ CreateContract::~CreateContract()
 void CreateContract::setLinkLabels()
 {
     ui->labelSolidity->setOpenExternalLinks(true);
-    ui->labelSolidity->setText("<a href=\"https://qmix.qtum.org/\">Solidity compiler</a>");
+    ui->labelSolidity->setText("<a href=\"https://qmix.sicash.org/\">Solidity compiler</a>");
 }
 
 void CreateContract::setModel(WalletModel *_model)

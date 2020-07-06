@@ -24,7 +24,7 @@ static const char DB_COINS = 'c';
 static const char DB_BLOCK_FILES = 'f';
 static const char DB_BLOCK_INDEX = 'b';
 
-////////////////////////////////////////// // qtum
+////////////////////////////////////////// // sicash
 static const char DB_HEIGHTINDEX = 'h';
 static const char DB_STAKEINDEX = 's';
 static const char DB_DELEGATEINDEX = 'd';
@@ -36,7 +36,7 @@ static const char DB_FLAG = 'F';
 static const char DB_REINDEX_FLAG = 'R';
 static const char DB_LAST_BLOCK = 'l';
 
-////////////////////////////////////////// // qtum
+////////////////////////////////////////// // sicash
 static const char DB_ADDRESSINDEX = 'a';
 static const char DB_ADDRESSUNSPENTINDEX = 'u';
 static const char DB_TIMESTAMPINDEX = 'S';
@@ -281,7 +281,7 @@ bool CBlockTreeDB::ReadFlag(const std::string &name, bool &fValue) {
     return true;
 }
 
-/////////////////////////////////////////////////////// // qtum
+/////////////////////////////////////////////////////// // sicash
 bool CBlockTreeDB::WriteHeightIndex(const CHeightTxIndexKey &heightIndex, const std::vector<uint256>& hash) {
     CDBBatch batch(*this);
     batch.Write(std::make_pair(DB_HEIGHTINDEX, heightIndex), hash);
@@ -692,11 +692,11 @@ bool CBlockTreeDB::LoadBlockIndexGuts(const Consensus::Params& consensusParams, 
                 pindexNew->nMoneySupply   = diskindex.nMoneySupply;
                 pindexNew->nStatus        = diskindex.nStatus;
                 pindexNew->nTx            = diskindex.nTx;
-                pindexNew->hashStateRoot  = diskindex.hashStateRoot; // qtum
-                pindexNew->hashUTXORoot   = diskindex.hashUTXORoot; // qtum
+                pindexNew->hashStateRoot  = diskindex.hashStateRoot; // sicash
+                pindexNew->hashUTXORoot   = diskindex.hashUTXORoot; // sicash
                 pindexNew->nStakeModifier = diskindex.nStakeModifier;
                 pindexNew->prevoutStake   = diskindex.prevoutStake;
-                pindexNew->vchBlockSigDlgt    = diskindex.vchBlockSigDlgt; // qtum
+                pindexNew->vchBlockSigDlgt    = diskindex.vchBlockSigDlgt; // sicash
 
                 if (!CheckIndexProof(*pindexNew, Params().GetConsensus()))
                     return error("%s: CheckIndexProof failed: %s", __func__, pindexNew->ToString());

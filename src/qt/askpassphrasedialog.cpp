@@ -133,7 +133,7 @@ void AskPassphraseDialog::accept()
             if(newpass1 == newpass2)
             {
                 QString encryption_reminder = tr("Remember that encrypting your wallet cannot fully protect "
-                "your qtums from being stolen by malware infecting your computer.");
+                "your sicashs from being stolen by malware infecting your computer.");
                 if (m_passphrase_out) {
                     m_passphrase_out->assign(newpass1);
                     QMessageBox::warning(this, tr("Wallet to be encrypted"),

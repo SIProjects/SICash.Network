@@ -14,8 +14,8 @@ from test_framework.util import (
     connect_nodes,
     sync_blocks,
 )
-from test_framework.qtum import convert_btc_address_to_qtum
-from test_framework.qtumconfig import INITIAL_BLOCK_REWARD, COINBASE_MATURITY
+from test_framework.sicash import convert_btc_address_to_sicash
+from test_framework.sicashconfig import INITIAL_BLOCK_REWARD, COINBASE_MATURITY
 
 
 def create_transactions(node, address, amt, fees):

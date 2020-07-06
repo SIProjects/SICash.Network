@@ -15,8 +15,8 @@ from test_framework.util import (
     connect_nodes,
     wait_until,
 )
-from test_framework.qtumconfig import *
-from test_framework.qtum import convert_btc_address_to_qtum
+from test_framework.sicashconfig import *
+from test_framework.sicash import convert_btc_address_to_sicash
 
 class WalletTest(BitcoinTestFramework):
     def set_test_params(self):
@@ -325,13 +325,13 @@ class WalletTest(BitcoinTestFramework):
         assert_raises_rpc_error(-4, "is not known", self.nodes[0].dumpprivkey, temp_address)
 
         # This will raise an exception for attempting to get the private key of an invalid Bitcoin address
-        assert_raises_rpc_error(-5, "Invalid Qtum address", self.nodes[0].dumpprivkey, "invalid")
+        assert_raises_rpc_error(-5, "Invalid SICash address", self.nodes[0].dumpprivkey, "invalid")
 
         # This will raise an exception for attempting to set a label for an invalid Bitcoin address
-        assert_raises_rpc_error(-5, "Invalid Qtum address", self.nodes[0].setlabel, "invalid address", "label")
+        assert_raises_rpc_error(-5, "Invalid SICash address", self.nodes[0].setlabel, "invalid address", "label")
 
         # This will raise an exception for importing an invalid address
-        assert_raises_rpc_error(-5, "Invalid Qtum address or script", self.nodes[0].importaddress, "invalid")
+        assert_raises_rpc_error(-5, "Invalid SICash address or script", self.nodes[0].importaddress, "invalid")
 
         # This will raise an exception for attempting to import a pubkey that isn't in hex
         assert_raises_rpc_error(-5, "Pubkey must be a hex string", self.nodes[0].importpubkey, "not hex")
@@ -477,8 +477,8 @@ class WalletTest(BitcoinTestFramework):
 
         # Test getaddressinfo on external address. Note that these addresses are taken from disablewallet.py
         assert_raises_rpc_error(-5, "Invalid address", self.nodes[0].getaddressinfo, "3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy")
-        address_info = self.nodes[0].getaddressinfo(convert_btc_address_to_qtum("mneYUmWYsuk7kySiURxCi3AGxrAqZxLgPZ"))
-        assert_equal(address_info['address'], convert_btc_address_to_qtum("mneYUmWYsuk7kySiURxCi3AGxrAqZxLgPZ"))
+        address_info = self.nodes[0].getaddressinfo(convert_btc_address_to_sicash("mneYUmWYsuk7kySiURxCi3AGxrAqZxLgPZ"))
+        assert_equal(address_info['address'], convert_btc_address_to_sicash("mneYUmWYsuk7kySiURxCi3AGxrAqZxLgPZ"))
         assert_equal(address_info["scriptPubKey"], "76a9144e3854046c7bd1594ac904e4793b6a45b36dea0988ac")
         assert not address_info["ismine"]
         assert not address_info["iswatchonly"]

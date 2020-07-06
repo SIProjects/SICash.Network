@@ -52,7 +52,7 @@ from test_framework.script import (
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import assert_equal
 from data import invalid_txs
-from test_framework.qtumconfig import *
+from test_framework.sicashconfig import *
 
 #  Use this class for tests that require behavior other than normal "mininode" behavior.
 #  For now, it is used to serialize a bloated varint (b64).

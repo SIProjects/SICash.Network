@@ -6,7 +6,7 @@
 #include <stdint.h>
 #include <uint256.h>
 
-class QtumDelegationPriv;
+class SICashDelegationPriv;
 class ContractABI;
 
 extern const std::string strDelegationsABI;
@@ -77,7 +77,7 @@ struct DelegationEvent
 };
 
 /**
- * @brief The IQtumStaker class Delegation filter
+ * @brief The ISICashStaker class Delegation filter
  */
 class IDelegationFilter
 {
@@ -86,20 +86,20 @@ public:
 };
 
 /**
- * @brief The QtumDelegation class Communicate with the qtum delegation contract
+ * @brief The SICashDelegation class Communicate with the sicash delegation contract
  */
-class QtumDelegation {
+class SICashDelegation {
     
 public:
     /**
-     * @brief QtumDelegation Constructor
+     * @brief SICashDelegation Constructor
      */
-    QtumDelegation();
+    SICashDelegation();
 
     /**
-     * @brief ~QtumDelegation Destructor
+     * @brief ~SICashDelegation Destructor
      */
-    virtual ~QtumDelegation();
+    virtual ~SICashDelegation();
 
     /**
      * @brief GetDelegation Get delegation for an address
@@ -166,8 +166,8 @@ public:
     static bool BytecodeAdd(const std::string& hexStaker, const int& fee, const std::vector<unsigned char>& PoD, std::string& datahex, std::string& errorMessage);
 
 private:
-    QtumDelegation(const QtumDelegation&);
-    QtumDelegation& operator=(const QtumDelegation&);
-    QtumDelegationPriv* priv;
+    SICashDelegation(const SICashDelegation&);
+    SICashDelegation& operator=(const SICashDelegation&);
+    SICashDelegationPriv* priv;
 };
 #endif

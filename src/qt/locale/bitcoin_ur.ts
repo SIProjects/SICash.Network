@@ -120,7 +120,7 @@
     <name>BanTableModel</name>
     </context>
 <context>
-    <name>QtumGUI</name>
+    <name>SICashGUI</name>
     <message>
         <source>Error</source>
         <translation>نقص</translation>
@@ -344,7 +344,7 @@
     </message>
     </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     <message>
         <source>Insufficient funds</source>
         <translation>ناکافی فنڈز</translation>

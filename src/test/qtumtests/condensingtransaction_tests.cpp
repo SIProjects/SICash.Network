@@ -1,5 +1,5 @@
 #include <boost/test/unit_test.hpp>
-#include <qtumtests/test_utils.h>
+#include <sicashtests/test_utils.h>
 
 const std::vector<valtype> code = {
     /*
@@ -209,11 +209,11 @@ BOOST_AUTO_TEST_CASE(condensingtransactionbehavior_tests){
     initState();
     dev::h256 hashTemp(hash);
 
-    std::vector<QtumTransaction> txs;
+    std::vector<SICashTransaction> txs;
     std::vector<dev::Address> addresses;
     for(size_t i = 0; i < 3; i++){
-        txs.push_back(createQtumTransaction(code[i], 0, dev::u256(500000), dev::u256(1), hashTemp, dev::Address(), i));
-        addresses.push_back(createQtumAddress(hashTemp, i));
+        txs.push_back(createSICashTransaction(code[i], 0, dev::u256(500000), dev::u256(1), hashTemp, dev::Address(), i));
+        addresses.push_back(createSICashAddress(hashTemp, i));
         ++hashTemp;
     }
     auto result = executeBC(txs);
@@ -222,22 +222,22 @@ BOOST_AUTO_TEST_CASE(condensingtransactionbehavior_tests){
 
     txs.clear();
     for(size_t i = 0; i < 3; i++){
-        txs.push_back(createQtumTransaction(code[i + 3], 0, dev::u256(500000), dev::u256(1), hashTemp, addresses[i]));
+        txs.push_back(createSICashTransaction(code[i + 3], 0, dev::u256(500000), dev::u256(1), hashTemp, addresses[i]));
     }
     result = executeBC(txs);
     balances = {0,0,0};
     checkRes(result.second, addresses, balances, 0);
 
     txs.clear();
-    txs.push_back(createQtumTransaction(code[6], 8000, dev::u256(500000), dev::u256(1), hashTemp, addresses[0]));
+    txs.push_back(createSICashTransaction(code[6], 8000, dev::u256(500000), dev::u256(1), hashTemp, addresses[0]));
     result = executeBC(txs);
     balances = {5000,2500,500};
     checkRes(result.second, addresses, balances, 1);
     checkTx(result.second.valueTransfers[0], 1, 3, {2500,5000,500});
 
     txs.clear();
-    txs.push_back(createQtumTransaction(code[7], 2000, dev::u256(500000), dev::u256(1), hashTemp, addresses[0]));
-    txs.push_back(createQtumTransaction(code[8], 2000, dev::u256(500000), dev::u256(1), hashTemp, addresses[0]));
+    txs.push_back(createSICashTransaction(code[7], 2000, dev::u256(500000), dev::u256(1), hashTemp, addresses[0]));
+    txs.push_back(createSICashTransaction(code[8], 2000, dev::u256(500000), dev::u256(1), hashTemp, addresses[0]));
     result = executeBC(txs);
     balances = {0,11500,500};
     checkRes(result.second, addresses, balances, 2);
@@ -245,8 +245,8 @@ BOOST_AUTO_TEST_CASE(condensingtransactionbehavior_tests){
     checkTx(result.second.valueTransfers[1], 3, 1, {11500});
 
     txs.clear();
-    txs.push_back(createQtumTransaction(code[6], 2000, dev::u256(30000), dev::u256(1), hashTemp, addresses[1]));
-    txs.push_back(createQtumTransaction(code[9], 0, dev::u256(500000), dev::u256(1), hashTemp, addresses[1]));
+    txs.push_back(createSICashTransaction(code[6], 2000, dev::u256(30000), dev::u256(1), hashTemp, addresses[1]));
+    txs.push_back(createSICashTransaction(code[9], 0, dev::u256(500000), dev::u256(1), hashTemp, addresses[1]));
     result = executeBC(txs);
     balances = {0,0,0};
     checkRes(result.second, addresses, balances, 2);
@@ -258,19 +258,19 @@ BOOST_AUTO_TEST_CASE(condensingtransactionbreadthways_tests){
     initState();
     dev::h256 hashTemp(hash);
     std::vector<dev::Address> addresses;
-    std::vector<QtumTransaction> txs;
+    std::vector<SICashTransaction> txs;
     for(size_t i = 0; i < 3; i++){
-        txs.push_back(createQtumTransaction(code[i], 0, dev::u256(500000), dev::u256(1), hashTemp, dev::Address(), i));
-        addresses.push_back(createQtumAddress(hashTemp, i));
+        txs.push_back(createSICashTransaction(code[i], 0, dev::u256(500000), dev::u256(1), hashTemp, dev::Address(), i));
+        addresses.push_back(createSICashAddress(hashTemp, i));
         ++hashTemp;
     }
-    txs.push_back(createQtumTransaction(code[10], 0, dev::u256(500000), dev::u256(1), hashTemp, dev::Address(), 4));
-    addresses.push_back(createQtumAddress(hashTemp, 4));
+    txs.push_back(createSICashTransaction(code[10], 0, dev::u256(500000), dev::u256(1), hashTemp, dev::Address(), 4));
+    addresses.push_back(createSICashAddress(hashTemp, 4));
     auto result = executeBC(txs);
 
     txs.clear();
-    txs.push_back(createQtumTransaction(code[0], 15000, dev::u256(500000), dev::u256(1), hashTemp, addresses[3]));
-    txs.push_back(createQtumTransaction(code[11], 0, dev::u256(500000), dev::u256(1), hashTemp, addresses[3]));
+    txs.push_back(createSICashTransaction(code[0], 15000, dev::u256(500000), dev::u256(1), hashTemp, addresses[3]));
+    txs.push_back(createSICashTransaction(code[11], 0, dev::u256(500000), dev::u256(1), hashTemp, addresses[3]));
 
     result = executeBC(txs);
     std::vector<dev::u256> balances = {5000,5000,5000,0};
@@ -283,15 +283,15 @@ BOOST_AUTO_TEST_CASE(condensingtransactiondeep_tests){
     initState();
     dev::h256 hashTemp(hash);
     std::vector<dev::Address> addresses;
-    std::vector<QtumTransaction> txs;
+    std::vector<SICashTransaction> txs;
     for(size_t i = 12; i < 17; i++){
-        txs.push_back(createQtumTransaction(code[i], 0, dev::u256(500000), dev::u256(1), hashTemp, dev::Address(), i));
-        addresses.push_back(createQtumAddress(hashTemp, i));
+        txs.push_back(createSICashTransaction(code[i], 0, dev::u256(500000), dev::u256(1), hashTemp, dev::Address(), i));
+        addresses.push_back(createSICashAddress(hashTemp, i));
         ++hashTemp;
     }
     auto result = executeBC(txs);
     txs.clear();
-    txs.push_back(createQtumTransaction(code[11], 20000, dev::u256(500000), dev::u256(1), hashTemp, addresses[4]));
+    txs.push_back(createSICashTransaction(code[11], 20000, dev::u256(500000), dev::u256(1), hashTemp, addresses[4]));
     result = executeBC(txs);
     std::vector<dev::u256> balances = {1250,1250,2500,5000,10000};
     checkRes(result.second, addresses, balances, 1);
@@ -302,18 +302,18 @@ BOOST_AUTO_TEST_CASE(condensingtransactionsuicide_tests){
     initState();
     dev::h256 hashTemp(hash);
     std::vector<dev::Address> addresses;
-    std::vector<QtumTransaction> txs;
-    txs.push_back(createQtumTransaction(code[12], 0, dev::u256(500000), dev::u256(1), hashTemp, dev::Address(), 0));
-    addresses.push_back(createQtumAddress(hashTemp, 0));
+    std::vector<SICashTransaction> txs;
+    txs.push_back(createSICashTransaction(code[12], 0, dev::u256(500000), dev::u256(1), hashTemp, dev::Address(), 0));
+    addresses.push_back(createSICashAddress(hashTemp, 0));
     
-    txs.push_back(createQtumTransaction(code[17], 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 1));
-    txs.push_back(createQtumTransaction(valtype(), 13000, dev::u256(500000), dev::u256(1), hashTemp, createQtumAddress(hashTemp, 1), 1));
+    txs.push_back(createSICashTransaction(code[17], 0, dev::u256(500000), dev::u256(1), ++hashTemp, dev::Address(), 1));
+    txs.push_back(createSICashTransaction(valtype(), 13000, dev::u256(500000), dev::u256(1), hashTemp, createSICashAddress(hashTemp, 1), 1));
 
-    addresses.push_back(createQtumAddress(hashTemp, 1));
+    addresses.push_back(createSICashAddress(hashTemp, 1));
     auto result = executeBC(txs);
 
     txs.clear();
-    txs.push_back(createQtumTransaction(code[18], 0, dev::u256(500000), dev::u256(1), hashTemp, addresses[1]));
+    txs.push_back(createSICashTransaction(code[18], 0, dev::u256(500000), dev::u256(1), hashTemp, addresses[1]));
     result = executeBC(txs);
     std::vector<dev::u256> balances = {13000,0};
     checkRes(result.second, addresses, balances, 1);
@@ -324,16 +324,16 @@ BOOST_AUTO_TEST_CASE(condensingtransactionpaytopubkeyhash_tests){
     initState();
     dev::h256 hashTemp(hash);
     std::vector<dev::Address> addresses;
-    std::vector<QtumTransaction> txs;
+    std::vector<SICashTransaction> txs;
 
-    txs.push_back(createQtumTransaction(code[19], 0, dev::u256(500000), dev::u256(1), hashTemp, dev::Address(), 13));
-    txs.push_back(createQtumTransaction(valtype(), 13000, dev::u256(500000), dev::u256(1), hashTemp, createQtumAddress(hashTemp, 13), 13));
+    txs.push_back(createSICashTransaction(code[19], 0, dev::u256(500000), dev::u256(1), hashTemp, dev::Address(), 13));
+    txs.push_back(createSICashTransaction(valtype(), 13000, dev::u256(500000), dev::u256(1), hashTemp, createSICashAddress(hashTemp, 13), 13));
 
-    addresses.push_back(createQtumAddress(hashTemp, 13));
+    addresses.push_back(createSICashAddress(hashTemp, 13));
     auto result = executeBC(txs);
 
     txs.clear();
-    txs.push_back(createQtumTransaction(code[11], 0, dev::u256(500000), dev::u256(1), hashTemp, addresses[0]));
+    txs.push_back(createSICashTransaction(code[11], 0, dev::u256(500000), dev::u256(1), hashTemp, addresses[0]));
     result = executeBC(txs);
     std::vector<dev::u256> balances = {6500,6500};
     checkRes(result.second, addresses, balances, 1);

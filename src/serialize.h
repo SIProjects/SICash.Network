@@ -24,7 +24,7 @@
 #include <prevector.h>
 #include <span.h>
 
-static const unsigned int MAX_SIZE = 0x10000000; // Qtum: Increase max serialized size to 256mb
+static const unsigned int MAX_SIZE = 0x10000000; // SICash: Increase max serialized size to 256mb
 
 /**
  * Dummy data type to identify deserializing constructors.
