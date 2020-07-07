@@ -1,5 +1,5 @@
-#ifndef QTUMDELEGATION_H
-#define QTUMDELEGATION_H
+#ifndef SICASHDELEGATION_H
+#define SICASHDELEGATION_H
 #include <string>
 #include <vector>
 #include <map>
@@ -89,7 +89,7 @@ public:
  * @brief The SICashDelegation class Communicate with the sicash delegation contract
  */
 class SICashDelegation {
-    
+
 public:
     /**
      * @brief SICashDelegation Constructor
