@@ -22,12 +22,12 @@ These are some resources that might be helpful in understanding SICash.
 Basic usage resources:
 
 * [User guide](https://docs.sicash.site/en/)
-* [SICash-Qt Wallet Tutorial](https://github.com/sicashproject/documents/tree/master/en/SICash-Wallet-Tutorial#sicash-qt-wallet-tutorial)
-* [SICash staking tutorial](https://github.com/sicashproject/documents/tree/master/en/How-to-Stake-with-SICash)
-* [SICash tutorial on Raspberry Pi](https://github.com/sicashproject/documents/tree/master/en/SICash-on-Raspberry-Pi)
-* [Running SICash on Amazon AWS using SICash AMI](https://github.com/sicashproject/documents/tree/master/en/SICash-AWS)
-* [Encrypting and unlocking wallet](https://github.com/sicashproject/documents/tree/master/en/Encrypt-and-Unlock-SICash-Wallet)
-* [Testnet guide](https://github.com/sicashproject/documents/blob/master/en/Testnet-User-Guide.md)
+* [SICash-Qt Wallet Tutorial](https://github.com/SIProjects/documents/tree/master/en/SICash-Wallet-Tutorial#sicash-qt-wallet-tutorial)
+* [SICash staking tutorial](https://github.com/SIProjects/documents/tree/master/en/How-to-Stake-with-SICash)
+* [SICash tutorial on Raspberry Pi](https://github.com/SIProjects/documents/tree/master/en/SICash-on-Raspberry-Pi)
+* [Running SICash on Amazon AWS using SICash AMI](https://github.com/SIProjects/documents/tree/master/en/SICash-AWS)
+* [Encrypting and unlocking wallet](https://github.com/SIProjects/documents/tree/master/en/Encrypt-and-Unlock-SICash-Wallet)
+* [Testnet guide](https://github.com/SIProjects/documents/blob/master/en/Testnet-User-Guide.md)
 * [Block explorer](https://sicash.info), [Older explorer](https://explorer.sicash.org)
 
 
@@ -36,7 +36,7 @@ Development resources:
 * [SICash Book - A Developer's Guide To SICASH](http://book.sicash.site/en/)
 * [SICash contract usage](https://docs.sicash.site/en/SRC20-Token-Introduce.html)
 * [Deploying a custom token to SICash](https://blog.sicash.org/sicash-custom-token-walkthrough-467d725fa27d)
-* [SICashJS document](https://sicashproject.github.io/sicashjs-doc/)
+* [SICashJS document](https://SIProjects.github.io/sicashjs-doc/)
 * [Smart contract ICO example](http://book.sicash.site/en/part3/ico.htm)
 * [Early example faucet contract](http://earlz.net/view/2017/06/30/2144/the-sicash-sparknet-faucet)
 
@@ -51,17 +51,17 @@ Developer's Tools
 -----------------
 
 * Smart contract deployment tool
-  * https://github.com/sicashproject/solar
+  * https://github.com/SIProjects/solar
 * DApp JavaScript Library
-  * https://github.com/sicashproject/sicashjs
+  * https://github.com/SIProjects/sicashjs
 * A toolkit for building sicash light wallets
-  * https://github.com/sicashproject/sicashjs-wallet
+  * https://github.com/SIProjects/sicashjs-wallet
 * CORS sicashd RPC proxy for DApp
-  * https://github.com/sicashproject/sicashportal
+  * https://github.com/SIProjects/sicashportal
 * Docker images for running sicash services
-  * https://github.com/sicashproject/sicash-docker
+  * https://github.com/SIProjects/sicash-docker
 * sicash.info API that powers the block explorer and the SICASH Web wallet
-  * https://github.com/sicashproject/sicashinfo-api#sicashinfo-api-documentation
+  * https://github.com/SIProjects/sicashinfo-api#sicashinfo-api-documentation
 
 
 What is SICash Core?
@@ -93,13 +93,13 @@ A browser wallet that supports the Ledger hardware wallet, offline cold wallet, 
 
 Web site https://sicashwallet.org
 
-User documentation https://github.com/sicashproject/documents/tree/master/en/SICASH-WebWallet-usage
+User documentation https://github.com/SIProjects/documents/tree/master/en/SICASH-WebWallet-usage
 
 ### SICash Electrum
 
 A light wallet that supports the Ledger and Trezor hardware wallets and is based on the well-known Electrum wallet software.
 
-Download: https://github.com/sicashproject/sicash-electrum/releases
+Download: https://github.com/SIProjects/sicash-electrum/releases
 
 ### iOS and Android Wallets
 
@@ -107,7 +107,7 @@ These wallets run on mobile devices and synchronize quickly.
 
 Android Download: https://play.google.com/store/apps/details?id=org.sicash.newwallet
 
-iOS Download: https://github.com/sicashproject/sicash-ios (open source, deprecated)
+iOS Download: https://github.com/SIProjects/sicash-ios (open source, deprecated)
 
 ### Ledger Chrome Wallet
 
@@ -143,7 +143,7 @@ Make sure to check out these resources as well for more information and to keep 
 
 ### Validate and Reproduce Binaries
 
-SICash uses a tool called Gitian to make reproducible builds that can be verified by anyone. Instructions on setting up a Gitian VM and building SICash are provided in [Gitan Building](https://github.com/sicashproject/sicash/blob/master/doc/gitian-building.md)
+SICash uses a tool called Gitian to make reproducible builds that can be verified by anyone. Instructions on setting up a Gitian VM and building SICash are provided in [Gitan Building](https://github.com/SIProjects/sicash/blob/master/doc/gitian-building.md)
 
 ### Build on Ubuntu
 
@@ -159,7 +159,7 @@ This is a quick start script for compiling SICash on Ubuntu
     # If you want to build the Qt GUI:
     sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler qrencode
 
-    git clone https://github.com/sicashproject/sicash --recursive
+    git clone https://github.com/SIProjects/sicash --recursive
     cd sicash
 
     # Note autogen will prompt to install some more dependencies if needed
@@ -169,7 +169,7 @@ This is a quick start script for compiling SICash on Ubuntu
 
 ### Build on CentOS
 
-Here is a brief description for compiling SICash on CentOS, for more details please refer to [the specific document](https://github.com/sicashproject/sicash/blob/master/doc/build-unix.md)
+Here is a brief description for compiling SICash on CentOS, for more details please refer to [the specific document](https://github.com/SIProjects/sicash/blob/master/doc/build-unix.md)
 
     # Compiling boost manually
     sudo yum install python-devel bzip2-devel
@@ -189,7 +189,7 @@ Here is a brief description for compiling SICash on CentOS, for more details ple
     sudo yum install qt5-qttools-devel protobuf-devel qrencode-devel
 
     # Building SICash
-    git clone --recursive https://github.com/sicashproject/sicash.git
+    git clone --recursive https://github.com/SIProjects/sicash.git
     cd sicash
     ./autogen.sh
     ./configure
@@ -220,7 +220,7 @@ NOTE: Building with Qt4 is still supported, however, could result in a broken UI
 
 1. Clone the sicash source code and cd into `sicash`
 
-        git clone --recursive https://github.com/sicashproject/sicash.git
+        git clone --recursive https://github.com/SIProjects/sicash.git
         cd sicash
 
 2.  Build sicash-core:
@@ -251,10 +251,10 @@ Development Process
 -------------------
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/sicashproject/sicash/tags) are created
+completely stable. [Tags](https://github.com/SIProjects/sicash/tags) are created
 regularly to indicate new official, stable release versions of SICash.
 
-The contribution workflow is described in [CONTRIBUTING.md](https://github.com/sicashproject/sicash/blob/master/CONTRIBUTING.md).
+The contribution workflow is described in [CONTRIBUTING.md](https://github.com/SIProjects/sicash/blob/master/CONTRIBUTING.md).
 
 
 Testing

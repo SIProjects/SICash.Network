@@ -46,7 +46,7 @@ from the root of the repository.
 
 1. Clone the SICash Core source code:
     ```shell
-    git clone --recursive https://github.com/sicashproject/sicash.git
+    git clone --recursive https://github.com/SIProjects/sicash.git
     cd sicash
     ```
 

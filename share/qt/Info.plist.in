@@ -38,7 +38,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.sicashproject.SICash-Qt</string>
+  <string>org.SIProjects.SICash-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
