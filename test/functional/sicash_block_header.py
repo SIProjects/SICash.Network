@@ -63,7 +63,7 @@ class SICashBlockHeaderTest(BitcoinTestFramework):
 
         coinbase = create_coinbase(node.getblockcount()+1)
         coinbase.rehash()
- 
+
         # A block that has an OP_CREATE tx, butwith an incorrect state root
         """
             pragma solidity ^0.4.11;
@@ -71,7 +71,7 @@ class SICashBlockHeaderTest(BitcoinTestFramework):
                 function() payable {}
             }
         """
-        tx_hex = node.createcontract("60606040523415600b57fe5b5b60398060196000396000f30060606040525b600b5b5b565b0000a165627a7a72305820693c4900c412f72a51f8c01a36d38d9038d822d953faf5a5b28e40ec6e1a25020029", 1000000, QTUM_MIN_GAS_PRICE_STR, spendable_addresses.pop(-1), False)['raw transaction']
+        tx_hex = node.createcontract("60606040523415600b57fe5b5b60398060196000396000f30060606040525b600b5b5b565b0000a165627a7a72305820693c4900c412f72a51f8c01a36d38d9038d822d953faf5a5b28e40ec6e1a25020029", 1000000, SICASH_MIN_GAS_PRICE_STR, spendable_addresses.pop(-1), False)['raw transaction']
         f = io.BytesIO(hex_str_to_bytes(tx_hex))
         tx = CTransaction()
         tx.deserialize(f)
@@ -110,7 +110,7 @@ class SICashBlockHeaderTest(BitcoinTestFramework):
 
 
         # A block with a tx, but without updated state hashes
-        tx_hex = node.sendtocontract(contract_address, "00", 1, 100000, QTUM_MIN_GAS_PRICE_STR, spendable_addresses.pop(-1), False)['raw transaction']
+        tx_hex = node.sendtocontract(contract_address, "00", 1, 100000, SICASH_MIN_GAS_PRICE_STR, spendable_addresses.pop(-1), False)['raw transaction']
         f = io.BytesIO(hex_str_to_bytes(tx_hex))
         tx = CTransaction()
         tx.deserialize(f)

@@ -33,9 +33,9 @@ class SICashIdenticalRefunds(BitcoinTestFramework):
         # This will result in the same amount of gas being spent and thus the same amount being refunded.
         sender_address = self.node.getnewaddress()
         self.node.sendtoaddress(sender_address, 1)
-        self.node.sendtocontract(contract_address, "00", 0, 1000000, QTUM_MIN_GAS_PRICE_STR, sender_address)
+        self.node.sendtocontract(contract_address, "00", 0, 1000000, SICASH_MIN_GAS_PRICE_STR, sender_address)
         self.node.sendtoaddress(sender_address, 1)
-        self.node.sendtocontract(contract_address, "00", 0, 1000000, QTUM_MIN_GAS_PRICE_STR, sender_address)
+        self.node.sendtocontract(contract_address, "00", 0, 1000000, SICASH_MIN_GAS_PRICE_STR, sender_address)
 
         # Check that all txs were accepted into the mempool.
         assert_equal(len(self.node.getrawmempool()), 4)
@@ -58,7 +58,7 @@ class SICashIdenticalRefunds(BitcoinTestFramework):
         manipulation_block.vtx[0].vout[-2].scriptPubKey = manipulation_block.vtx[0].vout[0].scriptPubKey
         manipulation_block.hashMerkleRoot = manipulation_block.calc_merkle_root()
         manipulation_block.solve()
-        
+
         # Invalidate the last block so that we can submit the manipulated block.
         self.node.invalidateblock(self.node.getbestblockhash())
 
@@ -72,6 +72,6 @@ class SICashIdenticalRefunds(BitcoinTestFramework):
 
         # Make sure that the block was not accepted.
         assert_equal(self.node.getblockcount(), block_count)
-        
+
 if __name__ == '__main__':
     SICashIdenticalRefunds().main()

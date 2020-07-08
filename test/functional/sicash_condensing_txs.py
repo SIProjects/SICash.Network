@@ -25,12 +25,12 @@ class CondensingTxsTest(BitcoinTestFramework):
     def setup_contracts(self):
         """
         pragma solidity ^0.4.0;
-        contract Sender1 { 
+        contract Sender1 {
             // Sender2 sender2;
             // Sender3 sender3;
             address public sender2;
             address public sender3;
-            
+
             function Sender1() {
             }
             function setSenders(address senderx, address sendery) public{
@@ -54,12 +54,12 @@ class CondensingTxsTest(BitcoinTestFramework):
             }
             function() payable { } //always payable
         }
-        contract Sender2{ 
+        contract Sender2{
             // Sender1 sender1;
             // Sender3 sender3;
             address public sender1;
             address public sender3;
-            
+
             function Sender2() {
             }
             function setSenders(address senderx, address sendery) public{
@@ -82,12 +82,12 @@ class CondensingTxsTest(BitcoinTestFramework):
             function() payable { } //always payable
         }
 
-        contract Sender3 { 
+        contract Sender3 {
             // Sender1 sender1;
             // Sender2 sender2;
             address public sender1;
             address public sender2;
-            
+
             function Sender3() {
             }
             function setSenders(address senderx, address sendery) public{
@@ -197,9 +197,9 @@ class CondensingTxsTest(BitcoinTestFramework):
 
         # We need the txfee to be higher than T5 so that T4 tx is prioritized over T5.
         # We set the gas such that the the tx will run but not immediately throw a out of gas exception
-        T4_raw = make_transaction(self.node, [make_vin(self.node, 3*COIN)], [make_op_call_output(2*COIN, b"\x04", 22000, CScriptNum(QTUM_MIN_GAS_PRICE), hex_str_to_bytes(self.share_abi), hex_str_to_bytes(self.sender2))])
+        T4_raw = make_transaction(self.node, [make_vin(self.node, 3*COIN)], [make_op_call_output(2*COIN, b"\x04", 22000, CScriptNum(SICASH_MIN_GAS_PRICE), hex_str_to_bytes(self.share_abi), hex_str_to_bytes(self.sender2))])
         T4_id = self.node.sendrawtransaction(T4_raw, 0)
-        T5_id = self.node.sendtocontract(self.sender2, self.withdrawAll_abi, 0, 1000000, QTUM_MIN_GAS_PRICE_STR, A1)['txid']
+        T5_id = self.node.sendtocontract(self.sender2, self.withdrawAll_abi, 0, 1000000, SICASH_MIN_GAS_PRICE_STR, A1)['txid']
         B4_id = self.node.generate(1)[0]
         B4 = self.node.getblock(B4_id)
 

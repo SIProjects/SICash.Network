@@ -1,5 +1,5 @@
-#ifndef QTUMDGP_H
-#define QTUMDGP_H
+#ifndef SICASHDGP_H
+#define SICASHDGP_H
 
 #include <sicash/sicashstate.h>
 #include <primitives/block.h>

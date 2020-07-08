@@ -1,5 +1,5 @@
-#ifndef QTUMUTILS_H
-#define QTUMUTILS_H
+#ifndef SICASHUTILS_H
+#define SICASHUTILS_H
 
 #include <libdevcore/Common.h>
 #include <libdevcore/FixedHash.h>

@@ -49,7 +49,7 @@ class SICashEVMGlobalsTest(BitcoinTestFramework):
             d76c09ad txgasprice()
             2c7622b0 txorigin()
         """
-        self.node.sendtocontract(self.contract_address, "cc5ea9ad", 1, 20000000, QTUM_MIN_GAS_PRICE/COIN, sender)
+        self.node.sendtocontract(self.contract_address, "cc5ea9ad", 1, 20000000, SICASH_MIN_GAS_PRICE/COIN, sender)
 
         if use_staking:
             for n in self.nodes:
@@ -63,7 +63,7 @@ class SICashEVMGlobalsTest(BitcoinTestFramework):
         else:
             blockhash = self.node.generate(1)[0]
             authorTxIndexAndVoutIndex = 0
-        
+
 
         block = self.node.getblock(blockhash)
         blocktxids = block['tx']
@@ -130,7 +130,7 @@ class SICashEVMGlobalsTest(BitcoinTestFramework):
 
         # tx.gasprice
         print('  tx.gasprice')
-        assert_equal(QTUM_MIN_GAS_PRICE, int(self.get_contract_call_output("d76c09ad"), 16))
+        assert_equal(SICASH_MIN_GAS_PRICE, int(self.get_contract_call_output("d76c09ad"), 16))
 
         # tx.origin
         print('  tx.origin')
@@ -173,7 +173,7 @@ class SICashEVMGlobalsTest(BitcoinTestFramework):
                 blockdifficulty  = block.difficulty;
 
                 blockgaslimit = block.gaslimit;
-                
+
                 blocknumber = block.number;
 
                 blocktimestamp = block.timestamp;
@@ -200,7 +200,7 @@ class SICashEVMGlobalsTest(BitcoinTestFramework):
 
         self.verify_evm_globals_test(use_staking=False)
         self.sync_all()
-        
+
         self.node.generate(257)
         self.sync_all()
 

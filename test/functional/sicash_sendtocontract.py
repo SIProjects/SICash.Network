@@ -16,7 +16,7 @@ class SendToContractTest(BitcoinTestFramework):
         self.setup_clean_chain = True
         self.num_nodes = 1
         self.extra_args = [['-txindex=1']]
- 
+
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
 
@@ -56,7 +56,7 @@ class SendToContractTest(BitcoinTestFramework):
         assert('sender' in ret)
         assert('hash160' in ret)
         self.node.generate(1)
-        
+
         ret = self.node.getaccountinfo(self.contract_address)
         assert_equal(ret['address'], self.contract_address)
         assert_equal(ret['balance'], 0)
@@ -72,7 +72,7 @@ class SendToContractTest(BitcoinTestFramework):
         assert('sender' in ret)
         assert('hash160' in ret)
         self.node.generate(1)
-        
+
         ret = self.node.getaccountinfo(self.contract_address)
         #print(ret)
         assert_equal(ret['address'], self.contract_address)
@@ -86,7 +86,7 @@ class SendToContractTest(BitcoinTestFramework):
         self.node.sendtoaddress("qabmqZk3re5b9UpUcznxDkCnCsnKdmPktT", 0.1)
         self.node.generate(1)
         # call setSenderAsOwner with 100 sicash
-        ret = self.node.sendtocontract(self.contract_address, "2bcf51b4", 100, 1000000, QTUM_MIN_GAS_PRICE_STR, "qabmqZk3re5b9UpUcznxDkCnCsnKdmPktT")
+        ret = self.node.sendtocontract(self.contract_address, "2bcf51b4", 100, 1000000, SICASH_MIN_GAS_PRICE_STR, "qabmqZk3re5b9UpUcznxDkCnCsnKdmPktT")
         assert('txid' in ret)
         assert('sender' in ret)
         assert('hash160' in ret)
@@ -104,7 +104,7 @@ class SendToContractTest(BitcoinTestFramework):
         self.node.sendtoaddress("qabmqZk3re5b9UpUcznxDkCnCsnKdmPktT", 0.1)
         self.node.generate(1)
         # call setSenderAsOwner with 100 sicash
-        ret = self.node.sendtocontract(self.contract_address, "2bcf51b4", 100, 1000000, QTUM_MIN_GAS_PRICE_STR, "qabmqZk3re5b9UpUcznxDkCnCsnKdmPktT", False)
+        ret = self.node.sendtocontract(self.contract_address, "2bcf51b4", 100, 1000000, SICASH_MIN_GAS_PRICE_STR, "qabmqZk3re5b9UpUcznxDkCnCsnKdmPktT", False)
         assert('raw transaction' in ret)
         assert(len(ret.keys()) == 1)
         decoded_tx = self.node.decoderawtransaction(ret['raw transaction'])
