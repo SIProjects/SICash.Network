@@ -1,7 +1,7 @@
 What is Qtum?
 -------------
 
-Qtum is a decentralized blockchain project built on Bitcoin's UTXO model, with support for Ethereum Virtual Machine based smart contracts, and secured by a proof of stake consensus model. It achieves this through the revolutionary Account Abstraction Layer which allows the EVM to communicate with Qtum's Bitcoin-like UTXO blockchain. For more general information about Qtum as well as links to join our community, go to https://qtum.org
+Qtum is a decentralized blockchain project built on Bitcoin's UTXO model, with support for Ethereum Virtual Machine based smart contracts, and secured by a proof of stake consensus model. It achieves this through the revolutionary Account Abstraction Layer which allows the EVM to communicate with Qtum's Bitcoin-like UTXO blockchain. For more general information about Qtum as well as links to join our community, go to https://sicash.org
 
 Welcome to the Qtum Ignition Main Network. This is the main network where the tokens hold value and should be guarded very carefully. If you are testing the network, or developing unstable software on Qtum, we highly recommend using either testnet or regtest mode. 
 
@@ -21,29 +21,29 @@ These are some resources that might be helpful in understanding Qtum.
 
 Basic usage resources:
 
-* [User guide](https://docs.qtum.site/en/)
-* [Qtum-Qt Wallet Tutorial](https://github.com/qtumproject/documents/tree/master/en/Qtum-Wallet-Tutorial#qtum-qt-wallet-tutorial)
-* [Qtum staking tutorial](https://github.com/qtumproject/documents/tree/master/en/How-to-Stake-with-Qtum)
-* [Qtum tutorial on Raspberry Pi](https://github.com/qtumproject/documents/tree/master/en/Qtum-on-Raspberry-Pi)
-* [Running Qtum on Amazon AWS using Qtum AMI](https://github.com/qtumproject/documents/tree/master/en/Qtum-AWS)
-* [Encrypting and unlocking wallet](https://github.com/qtumproject/documents/tree/master/en/Encrypt-and-Unlock-Qtum-Wallet)
-* [Testnet guide](https://github.com/qtumproject/documents/blob/master/en/Testnet-User-Guide.md)
-* [Block explorer](https://qtum.info), [Older explorer](https://explorer.qtum.org)
+* [User guide](https://docs.sicash.site/en/)
+* [Qtum-Qt Wallet Tutorial](https://github.com/sicashproject/documents/tree/master/en/Qtum-Wallet-Tutorial#sicash-qt-wallet-tutorial)
+* [Qtum staking tutorial](https://github.com/sicashproject/documents/tree/master/en/How-to-Stake-with-Qtum)
+* [Qtum tutorial on Raspberry Pi](https://github.com/sicashproject/documents/tree/master/en/Qtum-on-Raspberry-Pi)
+* [Running Qtum on Amazon AWS using Qtum AMI](https://github.com/sicashproject/documents/tree/master/en/Qtum-AWS)
+* [Encrypting and unlocking wallet](https://github.com/sicashproject/documents/tree/master/en/Encrypt-and-Unlock-Qtum-Wallet)
+* [Testnet guide](https://github.com/sicashproject/documents/blob/master/en/Testnet-User-Guide.md)
+* [Block explorer](https://sicash.info), [Older explorer](https://explorer.sicash.org)
 
 
 Development resources:
 
-* [Qtum Book - A Developer's Guide To QTUM](http://book.qtum.site/en/)
-* [Qtum contract usage](https://docs.qtum.site/en/QRC20-Token-Introduce.html)
-* [Deploying a custom token to Qtum](https://blog.qtum.org/qtum-custom-token-walkthrough-467d725fa27d)
-* [QtumJS document](https://qtumproject.github.io/qtumjs-doc/)
-* [Smart contract ICO example](http://book.qtum.site/en/part3/ico.htm)
-* [Early example faucet contract](http://earlz.net/view/2017/06/30/2144/the-qtum-sparknet-faucet)
+* [Qtum Book - A Developer's Guide To QTUM](http://book.sicash.site/en/)
+* [Qtum contract usage](https://docs.sicash.site/en/QRC20-Token-Introduce.html)
+* [Deploying a custom token to Qtum](https://blog.sicash.org/sicash-custom-token-walkthrough-467d725fa27d)
+* [QtumJS document](https://sicashproject.github.io/sicashjs-doc/)
+* [Smart contract ICO example](http://book.sicash.site/en/part3/ico.htm)
+* [Early example faucet contract](http://earlz.net/view/2017/06/30/2144/the-sicash-sparknet-faucet)
 
 General Info about Qtum:
 
-* [CIRCLERESEARCH Qtum Primer](https://www.circle.com/marketing/pdfs/research/circle-research-qtum.pdf)
-* [Qtum's PoS vs CASPER](https://www.reddit.com/r/Qtum/comments/788oa5/qtums_pos_vs_casper_and_the_nothingatstake_problem/)
+* [CIRCLERESEARCH Qtum Primer](https://www.circle.com/marketing/pdfs/research/circle-research-sicash.pdf)
+* [Qtum's PoS vs CASPER](https://www.reddit.com/r/Qtum/comments/788oa5/sicashs_pos_vs_casper_and_the_nothingatstake_problem/)
 * [Technical article explaining Qtum's PoS model in depth](http://earlz.net/view/2017/07/27/1904/the-missing-explanation-of-proof-of-stake-version)
 
 
@@ -51,17 +51,17 @@ Developer's Tools
 -----------------
 
 * Smart contract deployment tool
-  * https://github.com/qtumproject/solar
+  * https://github.com/sicashproject/solar
 * DApp JavaScript Library
-  * https://github.com/qtumproject/qtumjs
-* A toolkit for building qtum light wallets
-  * https://github.com/qtumproject/qtumjs-wallet
-* CORS qtumd RPC proxy for DApp
-  * https://github.com/qtumproject/qtumportal
-* Docker images for running qtum services
-  * https://github.com/qtumproject/qtum-docker
-* qtum.info API that powers the block explorer and the QTUM Web wallet
-  * https://github.com/qtumproject/qtuminfo-api#qtuminfo-api-documentation
+  * https://github.com/sicashproject/sicashjs
+* A toolkit for building sicash light wallets
+  * https://github.com/sicashproject/sicashjs-wallet
+* CORS sicashd RPC proxy for DApp
+  * https://github.com/sicashproject/sicashportal
+* Docker images for running sicash services
+  * https://github.com/sicashproject/sicash-docker
+* sicash.info API that powers the block explorer and the QTUM Web wallet
+  * https://github.com/sicashproject/sicashinfo-api#sicashinfo-api-documentation
 
 
 What is Qtum Core?
@@ -91,23 +91,23 @@ Qtum Core uses a full node model, and thus requires downloading the entire block
 
 A browser wallet that supports the Ledger hardware wallet, offline cold wallet, and restoration from mobile wallets.
 
-Web site https://qtumwallet.org
+Web site https://sicashwallet.org
 
-User documentation https://github.com/qtumproject/documents/tree/master/en/QTUM-WebWallet-usage
+User documentation https://github.com/sicashproject/documents/tree/master/en/QTUM-WebWallet-usage
 
 ### Qtum Electrum
 
 A light wallet that supports the Ledger and Trezor hardware wallets and is based on the well-known Electrum wallet software. 
 
-Download: https://github.com/qtumproject/qtum-electrum/releases
+Download: https://github.com/sicashproject/sicash-electrum/releases
 
 ### iOS and Android Wallets
 
 These wallets run on mobile devices and synchronize quickly. 
 
-Android Download: https://play.google.com/store/apps/details?id=org.qtum.newwallet
+Android Download: https://play.google.com/store/apps/details?id=org.sicash.newwallet
 
-iOS Download: https://github.com/qtumproject/qtum-ios (open source, deprecated)
+iOS Download: https://github.com/sicashproject/sicash-ios (open source, deprecated)
 
 ### Ledger Chrome Wallet
 
@@ -120,14 +120,14 @@ How to install: https://ledger.zendesk.com/hc/en-us/articles/115003776913-How-to
 
 Make sure to check out these resources as well for more information and to keep up to date with all the latest news about Qtum. At least 1 developer is always around, so if you're developing on Qtum and need help, we'd love to welcome you to our community.
 
-*	@Qtum on Twitter https://twitter.com/qtum
-* Qtum blog https://blog.qtum.org/
-*	Qtum Telegram Group https://t.me/qtumofficial, other languages available
+*	@Qtum on Twitter https://twitter.com/sicash
+* Qtum blog https://blog.sicash.org/
+*	Qtum Telegram Group https://t.me/sicashofficial, other languages available
 * Qtum Discord https://discordapp.com/invite/wRfmkQ9
 *	/r/Qtum on Reddit https://www.reddit.com/r/Qtum/
-*	Qtum.org https://qtum.org
+*	Qtum.org https://sicash.org
 *	Qtum on Facebook https://www.facebook.com/QtumOfficial/
-*	Qtum Forum https://forum.qtum.org
+*	Qtum Forum https://forum.sicash.org
 
 ### Qtum Smart Contract Limitations
 
@@ -143,7 +143,7 @@ Make sure to check out these resources as well for more information and to keep 
 
 ### Validate and Reproduce Binaries
 
-Qtum uses a tool called Gitian to make reproducible builds that can be verified by anyone. Instructions on setting up a Gitian VM and building Qtum are provided in [Gitan Building](https://github.com/qtumproject/qtum/blob/master/doc/gitian-building.md)
+Qtum uses a tool called Gitian to make reproducible builds that can be verified by anyone. Instructions on setting up a Gitian VM and building Qtum are provided in [Gitan Building](https://github.com/sicashproject/sicash/blob/master/doc/gitian-building.md)
 
 ### Build on Ubuntu
 
@@ -159,8 +159,8 @@ This is a quick start script for compiling Qtum on Ubuntu
     # If you want to build the Qt GUI:
     sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler qrencode
 
-    git clone https://github.com/qtumproject/qtum --recursive
-    cd qtum
+    git clone https://github.com/sicashproject/sicash --recursive
+    cd sicash
 
     # Note autogen will prompt to install some more dependencies if needed
     ./autogen.sh
@@ -169,7 +169,7 @@ This is a quick start script for compiling Qtum on Ubuntu
     
 ### Build on CentOS
 
-Here is a brief description for compiling Qtum on CentOS, for more details please refer to [the specific document](https://github.com/qtumproject/qtum/blob/master/doc/build-unix.md)
+Here is a brief description for compiling Qtum on CentOS, for more details please refer to [the specific document](https://github.com/sicashproject/sicash/blob/master/doc/build-unix.md)
 
     # Compiling boost manually
     sudo yum install python-devel bzip2-devel
@@ -189,8 +189,8 @@ Here is a brief description for compiling Qtum on CentOS, for more details pleas
     sudo yum install qt5-qttools-devel protobuf-devel qrencode-devel
     
     # Building Qtum
-    git clone --recursive https://github.com/qtumproject/qtum.git
-    cd qtum
+    git clone --recursive https://github.com/sicashproject/sicash.git
+    cd sicash
     ./autogen.sh
     ./configure
     make -j4
@@ -218,14 +218,14 @@ NOTE: Building with Qt4 is still supported, however, could result in a broken UI
 
 #### Build Qtum Core
 
-1. Clone the qtum source code and cd into `qtum`
+1. Clone the sicash source code and cd into `sicash`
 
-        git clone --recursive https://github.com/qtumproject/qtum.git
-        cd qtum
+        git clone --recursive https://github.com/sicashproject/sicash.git
+        cd sicash
 
-2.  Build qtum-core:
+2.  Build sicash-core:
 
-    Configure and build the headless qtum binaries as well as the GUI (if Qt is found).
+    Configure and build the headless sicash binaries as well as the GUI (if Qt is found).
 
     You can disable the GUI build by passing `--without-gui` to configure.
 
@@ -239,7 +239,7 @@ NOTE: Building with Qt4 is still supported, however, could result in a broken UI
 
 ### Run
 
-Then you can either run the command-line daemon using `src/qtumd` and `src/qtum-cli`, or you can run the Qt GUI using `src/qt/qtum-qt`
+Then you can either run the command-line daemon using `src/sicashd` and `src/sicash-cli`, or you can run the Qt GUI using `src/qt/sicash-qt`
 
 License
 -------
@@ -251,10 +251,10 @@ Development Process
 -------------------
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/qtumproject/qtum/tags) are created
+completely stable. [Tags](https://github.com/sicashproject/sicash/tags) are created
 regularly to indicate new official, stable release versions of Qtum.
 
-The contribution workflow is described in [CONTRIBUTING.md](https://github.com/qtumproject/qtum/blob/master/CONTRIBUTING.md).
+The contribution workflow is described in [CONTRIBUTING.md](https://github.com/sicashproject/sicash/blob/master/CONTRIBUTING.md).
 
 
 Testing

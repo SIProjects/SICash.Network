@@ -2,7 +2,7 @@
 #include <util/system.h>
 #include <validation.h>
 #include <chainparams.h>
-#include <qtum/qtumstate.h>
+#include <sicash/sicashstate.h>
 
 using namespace std;
 using namespace dev;
@@ -10,7 +10,7 @@ using namespace dev::eth;
 
 QtumState::QtumState(u256 const& _accountStartNonce, OverlayDB const& _db, const string& _path, BaseState _bs) :
         State(_accountStartNonce, _db, _bs) {
-            dbUTXO = QtumState::openDB(_path + "/qtumDB", sha3(rlp("")), WithExisting::Trust);
+            dbUTXO = QtumState::openDB(_path + "/sicashDB", sha3(rlp("")), WithExisting::Trust);
 	        stateUTXO = SecureTrieDB<Address, OverlayDB>(&dbUTXO);
 }
 
@@ -82,7 +82,7 @@ ResultExecute QtumState::execute(EnvInfo const& _envInfo, SealEngineFace const& 
                 printfErrorLog(res.excepted);
             }
 
-            qtum::commit(cacheUTXO, stateUTXO, m_cache);
+            sicash::commit(cacheUTXO, stateUTXO, m_cache);
             cacheUTXO.clear();
             bool removeEmptyAccounts = _envInfo.number() >= _sealEngine.chainParams().EIP158ForkBlock;
             commit(removeEmptyAccounts ? State::CommitBehaviour::RemoveEmptyAccounts : State::CommitBehaviour::KeepEmptyAccounts);
@@ -178,7 +178,7 @@ Vin* QtumState::vin(dev::Address const& _addr)
 //     if (_commitBehaviour == CommitBehaviour::RemoveEmptyAccounts)
 //         removeEmptyAccounts();
 
-//     qtum::commit(cacheUTXO, stateUTXO, m_cache);
+//     sicash::commit(cacheUTXO, stateUTXO, m_cache);
 //     cacheUTXO.clear();
         
 //     m_touched += dev::eth::commit(m_cache, m_state);

@@ -269,7 +269,7 @@
         <translation>지갑 암호화 완료</translation>
     </message>
     <message>
-        <source>Your wallet is now encrypted. Remember that encrypting your wallet cannot fully protect your qtums from being stolen by malware infecting your computer.</source>
+        <source>Your wallet is now encrypted. Remember that encrypting your wallet cannot fully protect your sicashs from being stolen by malware infecting your computer.</source>
         <translation>지갑이 암호화 되었습니다. 암호화된 지갑도 멀웨어 감염을 통한 해킹에서 완벽하게 안전하지 않다는 점을 유의해주세요.</translation>
     </message>
     <message>
@@ -355,8 +355,8 @@
         <translation type="unfinished">받기 </translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and qtum: URIs)</source>
-        <translation type="unfinished">지불 요청 (QR 코드 생성과 qtum: URI)</translation>
+        <source>Request payments (generates QR codes and sicash: URIs)</source>
+        <translation type="unfinished">지불 요청 (QR 코드 생성과 sicash: URI)</translation>
     </message>
     <message>
         <source>Smart &amp;Contracts</source>
@@ -535,8 +535,8 @@
         <translation type="unfinished">&amp;URI 열기</translation>
     </message>
     <message>
-        <source>Open a qtum: URI or payment request</source>
-        <translation type="unfinished">qtum: URI 또는 지불 요청 열기</translation>
+        <source>Open a sicash: URI or payment request</source>
+        <translation type="unfinished">sicash: URI 또는 지불 요청 열기</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -1265,7 +1265,7 @@
         <translation type="unfinished">컨트랙트의 바이트 코드</translation>
     </message>
     <message>
-        <source>The qtum address that will be used to create the contract.</source>
+        <source>The sicash address that will be used to create the contract.</source>
         <translation type="unfinished">컨트랙트 생성을 위한 Qtum주소</translation>
     </message>
     <message>
@@ -1528,11 +1528,11 @@
         <translation>서식</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the qtum network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the sicash network, as detailed below.</source>
         <translation>최근 거래 미반영으로 잔액이 정확하지 않을 수 있습니다. 해당 정보는 퀀텀 네트워크 동기화 후 수정될 예정입니다. 제세한 내용은 아래와 같습니다. </translation>
     </message>
     <message>
-        <source>Attempting to spend qtums that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <source>Attempting to spend sicashs that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
         <translation>네트워크는 미확인된 거래에 속한 QTUM 사용을 승인하지 않습니다 </translation>
     </message>
     <message>
@@ -2071,8 +2071,8 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation>지불 요청 에러</translation>
     </message>
     <message>
-        <source>Cannot start qtum: click-to-pay handler</source>
-        <translation>无法启动 qtum 协议的“
+        <source>Cannot start sicash: click-to-pay handler</source>
+        <translation>无法启动 sicash 协议的“
 一键支付”处理器</translation>
     </message>
     <message>
@@ -2080,8 +2080,8 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation>URI 처리</translation>
     </message>
     <message>
-        <source>&apos;qtum://&apos; is not a valid URI. Use &apos;qtum:&apos; instead.</source>
-        <translation type="vanished">‘qtum://’은 유효한 URI이 아닙니다. &apos;qtum:&apos;로 대체해주세요. </translation>
+        <source>&apos;sicash://&apos; is not a valid URI. Use &apos;sicash:&apos; instead.</source>
+        <translation type="vanished">‘sicash://’은 유효한 URI이 아닙니다. &apos;sicash:&apos;로 대체해주세요. </translation>
     </message>
     <message>
         <source>You are using a BIP70 URL which will be unsupported in the future.</source>
@@ -2566,8 +2566,8 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation type="vanished">탭 툴바</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and qtum: URIs)</source>
-        <translation type="vanished">지불 요청 (QR 코드 생성과 qtum: URI)</translation>
+        <source>Request payments (generates QR codes and sicash: URIs)</source>
+        <translation type="vanished">지불 요청 (QR 코드 생성과 sicash: URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -2578,8 +2578,8 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation type="vanished">사용했던 입금 주소와 라벨 리스트 표시</translation>
     </message>
     <message>
-        <source>Open a qtum: URI or payment request</source>
-        <translation type="vanished">qtum: URI 또는 지불 요청 열기</translation>
+        <source>Open a sicash: URI or payment request</source>
+        <translation type="vanished">sicash: URI 또는 지불 요청 열기</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -3503,7 +3503,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>더스트: </translation>
     </message>
     <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for qtum transactions than the network can process.</source>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for sicash transactions than the network can process.</source>
         <translation type="vanished">거래량이 블록 공간보다 작을 경우, 마이너, 노드는 최소 수수료 제한을 실행합니다. 최소 수수료로 지불할 수도 있지만 거래량이 퀀텀 네트워크의 처리 한도를 넘어선다면 해당 거래는 장시간 동안 승인을 받지 못할 수 있습니다. </translation>
     </message>
     <message>
@@ -3732,7 +3732,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>해당 항목 제거</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less qtums than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less sicashs than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation>거래 수수료가 송금 총액에서 차감됩니다. 받는이가 받을 금액은 입력하신 금액보다 적을 예정이고 여러 명이 받는다면 수수료는 균등하게 차감될 예정입니다. </translation>
     </message>
     <message>
@@ -3760,7 +3760,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>해당 주소에 라벨을 추가하여 사용했던 리스트에 추가해주세요. </translation>
     </message>
     <message>
-        <source>A message that was attached to the qtum: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Qtum network.</source>
+        <source>A message that was attached to the sicash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Qtum network.</source>
         <translation>퀀텀 URI에 첨부된 메시지는 참조를 위해 거래와 함께 저장됩니다. 주의: 메시지는 퀀텀 네트워크를 통해 전달되는 것은 아닙니다. </translation>
     </message>
     <message>
@@ -3862,7 +3862,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished">보낼 QTUM 개수. 디폴트는 0</translation>
     </message>
     <message>
-        <source>The qtum address that will be used as sender.</source>
+        <source>The sicash address that will be used as sender.</source>
         <translation type="unfinished">보낸 주소로 사용될 퀀텀 주소</translation>
     </message>
     <message>
@@ -4003,7 +4003,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>메시지 서명</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive qtums sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your addresses to prove you can receive sicashs sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation>소유하고 계신 주소로 메시지/협의에 대해 서명하여 해당 주소를 통해 QTUM을 받을 수 있음을 증명할 수 있습니다. 피싱 공격을 예방하기 위해 명확하지 않은 내용 또는 랜덤 메시지에 대한 서명은 삼가 하시고 메시지에 대해 충분히 동의할 경우에만 서명하세요. </translation>
     </message>
     <message>
@@ -5600,7 +5600,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
 </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file %s or %s</source>
         <translation type="vanished">MIT 소프트웨어 라이센스를 통해 배포합니다. 첨부된 %s 파일 또는 %s 를 확인하세요. </translation>

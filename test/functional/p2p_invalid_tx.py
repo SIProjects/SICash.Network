@@ -20,7 +20,7 @@ from test_framework.util import (
     wait_until,
 )
 from data import invalid_txs
-from test_framework.qtumconfig import *
+from test_framework.sicashconfig import *
 
 
 class InvalidTxRequestTest(BitcoinTestFramework):

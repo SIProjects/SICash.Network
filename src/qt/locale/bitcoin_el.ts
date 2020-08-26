@@ -319,7 +319,7 @@
     </message>
     <message>
         <source>Send coins to a Qtum address</source>
-        <translation>Στείλε νομίσματα σε μια διεύθυνση qtum</translation>
+        <translation>Στείλε νομίσματα σε μια διεύθυνση sicash</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -386,8 +386,8 @@
         <translation>Εργαλειοθήκη καρτελών</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and qtum: URIs)</source>
-        <translation>Αίτηση πληρωμών (δημιουργεί QR codes και διευθύνσεις qtum: )</translation>
+        <source>Request payments (generates QR codes and sicash: URIs)</source>
+        <translation>Αίτηση πληρωμών (δημιουργεί QR codes και διευθύνσεις sicash: )</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -398,8 +398,8 @@
         <translation>Προβολή της λίστας των χρησιμοποιημένων διευθύνσεων και ετικετών λήψεως</translation>
     </message>
     <message>
-        <source>Open a qtum: URI or payment request</source>
-        <translation>Άνοιγμα qtum: URI αίτησης πληρωμής</translation>
+        <source>Open a sicash: URI or payment request</source>
+        <translation>Άνοιγμα sicash: URI αίτησης πληρωμής</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -1077,8 +1077,8 @@
         <translation>Σφάλμα αίτησης πληρωμής</translation>
     </message>
     <message>
-        <source>Cannot start qtum: click-to-pay handler</source>
-        <translation>Δεν είναι δυνατή η εκκίνηση του qtum: χειριστής click-to-pay</translation>
+        <source>Cannot start sicash: click-to-pay handler</source>
+        <translation>Δεν είναι δυνατή η εκκίνηση του sicash: χειριστής click-to-pay</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1968,7 +1968,7 @@
     </message>
 </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     <message>
         <source>Corrupted block database detected</source>
         <translation>Εντοπίσθηκε διεφθαρμένη βάση δεδομένων των μπλοκ</translation>

@@ -4,8 +4,8 @@ from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import *
 from test_framework.script import *
 from test_framework.mininode import *
-from test_framework.qtum import *
-from test_framework.qtumconfig import *
+from test_framework.sicash import *
+from test_framework.sicashconfig import *
 
 class QtumNullSenderTest(BitcoinTestFramework):
     def set_test_params(self):

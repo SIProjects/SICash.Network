@@ -206,8 +206,8 @@
         <translation>Ички ойналар асбоблар панели</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and qtum: URIs)</source>
-        <translation>Тўловлар (QR кодлари ва qtum ёрдамида яратишлар: URI’лар) сўраш</translation>
+        <source>Request payments (generates QR codes and sicash: URIs)</source>
+        <translation>Тўловлар (QR кодлари ва sicash ёрдамида яратишлар: URI’лар) сўраш</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -218,7 +218,7 @@
         <translation>Фойдаланилган қабул қилинган манзиллар ва ёрлиқлар рўйхатини кўрсатиш</translation>
     </message>
     <message>
-        <source>Open a qtum: URI or payment request</source>
+        <source>Open a sicash: URI or payment request</source>
         <translation>Qtum’ни очиш: URI ёки тўлов сўрови</translation>
     </message>
     <message>
@@ -1208,7 +1208,7 @@
     </message>
     </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     <message>
         <source>Insufficient funds</source>
         <translation>Кам миқдор</translation>

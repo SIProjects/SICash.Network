@@ -1,11 +1,11 @@
-#include <qtum/qtumutils.h>
+#include <sicash/sicashutils.h>
 #include <libdevcore/CommonData.h>
 #include <pubkey.h>
 #include <util/convert.h>
 
 using namespace dev;
 
-bool qtumutils::btc_ecrecover(const dev::h256 &hash, const dev::u256 &v, const dev::h256 &r, const dev::h256 &s, dev::h256 &key)
+bool sicashutils::btc_ecrecover(const dev::h256 &hash, const dev::u256 &v, const dev::h256 &r, const dev::h256 &s, dev::h256 &key)
 {
     // Check input parameters
     if(v >= 256)

@@ -382,8 +382,8 @@
         <translation>Bar offer tabiau</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and qtum: URIs)</source>
-        <translation>Gofyn taliadau (creu côd QR a qtum: URIs)</translation>
+        <source>Request payments (generates QR codes and sicash: URIs)</source>
+        <translation>Gofyn taliadau (creu côd QR a sicash: URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -394,7 +394,7 @@
         <translation>Dangos rhestr o gyfeiriadau derbyn a labelau wedi eu defnyddio</translation>
     </message>
     <message>
-        <source>Open a qtum: URI or payment request</source>
+        <source>Open a sicash: URI or payment request</source>
         <translation>Agor Qtum: URI neu ofyn taliad</translation>
     </message>
     <message>
@@ -1064,6 +1064,6 @@
     </message>
     </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     </context>
 </TS>

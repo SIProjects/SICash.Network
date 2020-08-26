@@ -48,10 +48,10 @@ static const CFeeRate DEFAULT_MAX_RAW_TX_FEE_RATE{1 * COIN};
 
 static void TxToJSON(const CTransaction& tx, const uint256 hashBlock, UniValue& entry)
 {
-    // Call into TxToUniv() in qtum-common to decode the transaction hex.
+    // Call into TxToUniv() in sicash-common to decode the transaction hex.
     //
     // Blockchain contextual information (confirmations and blocktime) is not
-    // available to code in qtum-common, so we query them here and push the
+    // available to code in sicash-common, so we query them here and push the
     // data into the returned UniValue.
     TxToUniv(tx, uint256(), entry, true, RPCSerializationFlags());
 
@@ -277,7 +277,7 @@ static UniValue getrawtransaction(const JSONRPCRequest& request)
             "         \"reqSigs\" : n,            (numeric) The required sigs\n"
             "         \"type\" : \"pubkeyhash\",  (string) The type, eg 'pubkeyhash'\n"
             "         \"addresses\" : [           (json array of string)\n"
-            "           \"address\"        (string) qtum address\n"
+            "           \"address\"        (string) sicash address\n"
             "           ,...\n"
             "         ]\n"
             "       }\n"
@@ -354,7 +354,7 @@ static UniValue getrawtransaction(const JSONRPCRequest& request)
         return EncodeHexTx(*tx, RPCSerializationFlags());
     }
 
-    //////////////////////////////////////////////////////// // qtum
+    //////////////////////////////////////////////////////// // sicash
     int nHeight = 0;
     int nConfirmations = 0;
     int nBlockTime = 0;
@@ -550,7 +550,7 @@ static UniValue createrawtransaction(const JSONRPCRequest& request)
                         {
                             {"", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED, "",
                                 {
-                                    {"address", RPCArg::Type::AMOUNT, RPCArg::Optional::NO, "A key-value pair. The key (string) is the qtum address, the value (float or string) is the amount in " + CURRENCY_UNIT},
+                                    {"address", RPCArg::Type::AMOUNT, RPCArg::Optional::NO, "A key-value pair. The key (string) is the sicash address, the value (float or string) is the amount in " + CURRENCY_UNIT},
                                 },
                                 },
                             {"", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED, "",
@@ -565,7 +565,7 @@ static UniValue createrawtransaction(const JSONRPCRequest& request)
                                     {"amount", RPCArg::Type::AMOUNT,  /* default */ "0", "Value in QTUM to send with the call, should be a valid amount, default 0"},
                                     {"gasLimit", RPCArg::Type::NUM,  RPCArg::Optional::OMITTED, "The gas limit for the transaction"},
                                     {"gasPrice", RPCArg::Type::NUM,  RPCArg::Optional::OMITTED, "The gas price for the transaction"},
-                                    {"senderaddress", RPCArg::Type::STR_HEX, RPCArg::Optional::OMITTED, "The qtum address that will be used to create the contract."},
+                                    {"senderaddress", RPCArg::Type::STR_HEX, RPCArg::Optional::OMITTED, "The sicash address that will be used to create the contract."},
                                 },
                                 },
                              {"contract", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED, "(create contract)",
@@ -573,7 +573,7 @@ static UniValue createrawtransaction(const JSONRPCRequest& request)
                                      {"bytecode", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "contract bytcode."},
                                      {"gasLimit", RPCArg::Type::NUM,  RPCArg::Optional::OMITTED, "The gas limit for the transaction"},
                                      {"gasPrice", RPCArg::Type::NUM,  RPCArg::Optional::OMITTED, "The gas price for the transaction"},
-                                     {"senderaddress", RPCArg::Type::STR_HEX, RPCArg::Optional::OMITTED, "The qtum address that will be used to create the contract."},
+                                     {"senderaddress", RPCArg::Type::STR_HEX, RPCArg::Optional::OMITTED, "The sicash address that will be used to create the contract."},
                                  },
                                  },
                         },
@@ -664,7 +664,7 @@ static UniValue decoderawtransaction(const JSONRPCRequest& request)
             "         \"reqSigs\" : n,            (numeric) The required sigs\n"
             "         \"type\" : \"pubkeyhash\",  (string) The type, eg 'pubkeyhash'\n"
             "         \"addresses\" : [           (json array of string)\n"
-            "           \"Q2tvKAXCxZjSmdNbao16dKXC8tRWfcF5oc\"   (string) qtum address\n"
+            "           \"Q2tvKAXCxZjSmdNbao16dKXC8tRWfcF5oc\"   (string) sicash address\n"
             "           ,...\n"
             "         ]\n"
             "       }\n"
@@ -719,7 +719,7 @@ static UniValue decodescript(const JSONRPCRequest& request)
             "  \"type\":\"type\",        (string) The output type (e.g. "+GetAllOutputTypes()+")\n"
             "  \"reqSigs\": n,         (numeric) The required signatures\n"
             "  \"addresses\": [        (json array of string)\n"
-            "     \"address\"          (string) qtum address\n"
+            "     \"address\"          (string) sicash address\n"
             "     ,...\n"
             "  ],\n"
             "  \"p2sh\":\"str\"          (string) address of P2SH script wrapping this redeem script (not returned if the script is already a P2SH).\n"
@@ -1672,7 +1672,7 @@ UniValue createpsbt(const JSONRPCRequest& request)
                         {
                             {"", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED, "",
                                 {
-                                    {"address", RPCArg::Type::AMOUNT, RPCArg::Optional::NO, "A key-value pair. The key (string) is the qtum address, the value (float or string) is the amount in " + CURRENCY_UNIT},
+                                    {"address", RPCArg::Type::AMOUNT, RPCArg::Optional::NO, "A key-value pair. The key (string) is the sicash address, the value (float or string) is the amount in " + CURRENCY_UNIT},
                                 },
                                 },
                             {"", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED, "",

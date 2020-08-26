@@ -1,4 +1,4 @@
-#include <qtum/qtumdelegation.h>
+#include <sicash/sicashdelegation.h>
 #include <chainparams.h>
 #include <util/contractabi.h>
 #include <util/convert.h>

@@ -15,7 +15,7 @@ from test_framework.util import (
     disconnect_nodes,
     find_output,
 )
-from test_framework.qtum import convert_btc_bech32_address_to_qtum
+from test_framework.sicash import convert_btc_bech32_address_to_sicash
 
 import json
 import os
@@ -284,7 +284,7 @@ class PSBTTest(BitcoinTestFramework):
         for creator in creators:
             new_outputs = {}
             for k in creator['outputs']:
-                new_key = convert_btc_bech32_address_to_qtum(list(k.keys())[0])
+                new_key = convert_btc_bech32_address_to_sicash(list(k.keys())[0])
                 new_value = list(k.values())[0]
                 new_outputs[new_key] = new_value
             creator['outputs'] = new_outputs

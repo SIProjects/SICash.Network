@@ -7,8 +7,8 @@ from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import *
 from test_framework.script import *
 from test_framework.mininode import *
-from test_framework.qtum import *
-from test_framework.qtumconfig import *
+from test_framework.sicash import *
+from test_framework.sicashconfig import *
 import sys
 
 
@@ -50,7 +50,7 @@ class OpCallTest(BitcoinTestFramework):
         i = 0
         unspents = self.node.listunspent()
         while i < num_txs and len(unspents) > 0:
-            # Select as input a tx which has at least 5 qtum spendable
+            # Select as input a tx which has at least 5 sicash spendable
             for tx_i in range(len(unspents)):
                 if int(unspents[tx_i]['amount']*COIN) == 1000000*QTUM_MIN_GAS_PRICE and unspents[tx_i]['spendable']:
                     break

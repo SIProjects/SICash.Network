@@ -46,8 +46,8 @@ from the root of the repository.
 
 1. Clone the Qtum Core source code:
     ```shell
-    git clone --recursive https://github.com/qtumproject/qtum.git
-    cd qtum
+    git clone --recursive https://github.com/sicashproject/sicash.git
+    cd sicash
     ```
 
 2.  Build Qtum Core:
@@ -83,18 +83,18 @@ In this case there is no dependency on Berkeley DB 4.8.
 Mining is also possible in disable-wallet mode using the `getblocktemplate` RPC call.
 
 ## Running
-Qtum Core is now available at `./src/qtumd`
+Qtum Core is now available at `./src/sicashd`
 
 Before running, you may create an empty configuration file:
 ```shell
 mkdir -p "/Users/${USER}/Library/Application Support/Qtum"
 
-touch "/Users/${USER}/Library/Application Support/Qtum/qtum.conf"
+touch "/Users/${USER}/Library/Application Support/Qtum/sicash.conf"
 
-chmod 600 "/Users/${USER}/Library/Application Support/Qtum/qtum.conf"
+chmod 600 "/Users/${USER}/Library/Application Support/Qtum/sicash.conf"
 ```
 
-The first time you run qtumd, it will start downloading the blockchain. This process could
+The first time you run sicashd, it will start downloading the blockchain. This process could
 take many hours, or even days on slower than average systems.
 
 You can monitor the download process by looking at the debug.log file:
@@ -104,9 +104,9 @@ tail -f $HOME/Library/Application\ Support/Qtum/debug.log
 
 ## Other commands:
 ```shell
-./src/qtumd -daemon      # Starts the qtum daemon.
-./src/qtum-cli --help    # Outputs a list of command-line options.
-./src/qtum-cli help      # Outputs a list of RPC commands when the daemon is running.
+./src/sicashd -daemon      # Starts the sicash daemon.
+./src/sicash-cli --help    # Outputs a list of command-line options.
+./src/sicash-cli help      # Outputs a list of RPC commands when the daemon is running.
 ```
 
 ## Notes

@@ -24,7 +24,7 @@
 #include <wallet/walletutil.h>
 #include <consensus/params.h>
 #include <pos.h>
-#include <qtum/qtumdelegation.h>
+#include <sicash/sicashdelegation.h>
 
 #include <algorithm>
 #include <atomic>
@@ -1576,10 +1576,10 @@ public:
     /* Remove super staker entry from the wallet */
     bool RemoveSuperStakerEntry(const uint256& superStakerHash, bool fFlushOnClose=true);
 
-    /* Start staking qtums */
+    /* Start staking sicashs */
     void StartStake(CConnman* connman = CWallet::defaultConnman);
 
-    /* Stop staking qtums */
+    /* Stop staking sicashs */
     void StopStake();
 
     static CConnman* defaultConnman;

@@ -346,8 +346,8 @@
         <translation>說明 &amp;H</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and qtum: URIs)</source>
-        <translation>要求付款 (產生QR碼 qtum: URIs)</translation>
+        <source>Request payments (generates QR codes and sicash: URIs)</source>
+        <translation>要求付款 (產生QR碼 sicash: URIs)</translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -662,6 +662,6 @@
     </message>
     </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     </context>
 </TS>

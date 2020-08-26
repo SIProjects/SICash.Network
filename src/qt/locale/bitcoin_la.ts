@@ -804,7 +804,7 @@
     </message>
     </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     <message>
         <source>Corrupted block database detected</source>
         <translation>Corruptum databasum frustorum invenitur</translation>

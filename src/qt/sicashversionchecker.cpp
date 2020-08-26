@@ -1,4 +1,4 @@
-#include <qt/qtumversionchecker.h>
+#include <qt/sicashversionchecker.h>
 #include <clientversion.h>
 
 #include <QNetworkAccessManager>
@@ -8,7 +8,7 @@
 #include <QRegularExpression>
 #include <QRegularExpressionMatchIterator>
 
-#define paternVersion "qtum-([0-9]+\\.)?([0-9]+\\.)?([0-9]+)-"
+#define paternVersion "sicash-([0-9]+\\.)?([0-9]+\\.)?([0-9]+)-"
 
 QtumVersionChecker::QtumVersionChecker(QObject *parent) : QObject(parent)
 {

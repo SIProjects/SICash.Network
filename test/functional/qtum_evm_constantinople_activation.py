@@ -5,7 +5,7 @@ from test_framework.util import *
 from test_framework.script import *
 from test_framework.mininode import *
 from test_framework.address import *
-from test_framework.qtum import *
+from test_framework.sicash import *
 
 class QtumEVMConstantinopleActivationTest(BitcoinTestFramework):
     def set_test_params(self):

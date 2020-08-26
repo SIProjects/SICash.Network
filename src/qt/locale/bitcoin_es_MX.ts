@@ -391,9 +391,9 @@ Haga clic para habilitar la actividad de red nuevamente.</translation>
         <translation>Pestañas</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and qtum: URIs)</source>
+        <source>Request payments (generates QR codes and sicash: URIs)</source>
         <translation> 
-Solicitar pagos (genera códigos QR y qtum: URI)
+Solicitar pagos (genera códigos QR y sicash: URI)
  </translation>
     </message>
     <message>
@@ -879,7 +879,7 @@ Solicitar pagos (genera códigos QR y qtum: URI)
     </message>
     </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     <message>
         <source>Verifying blocks...</source>
         <translation>Verificando bloques...</translation>

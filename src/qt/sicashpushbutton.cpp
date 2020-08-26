@@ -1,4 +1,4 @@
-#include "qtumpushbutton.h"
+#include "sicashpushbutton.h"
 #include <QStylePainter>
 
 QtumPushButton::QtumPushButton(QWidget *parent):

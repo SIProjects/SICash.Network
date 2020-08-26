@@ -5,8 +5,8 @@ from test_framework.util import *
 from test_framework.script import *
 from test_framework.mininode import *
 from test_framework.address import *
-from test_framework.qtum import *
-from test_framework.qtumconfig import *
+from test_framework.sicash import *
+from test_framework.sicashconfig import *
 from test_framework.blocktools import *
 
 from test_framework.address import *

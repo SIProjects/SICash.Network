@@ -23,7 +23,7 @@ from test_framework.util import (
     connect_nodes,
     hex_str_to_bytes,
 )
-from test_framework.qtumconfig import COINBASE_MATURITY, INITIAL_BLOCK_REWARD
+from test_framework.sicashconfig import COINBASE_MATURITY, INITIAL_BLOCK_REWARD
 
 
 class multidict(dict):

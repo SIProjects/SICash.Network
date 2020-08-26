@@ -14,7 +14,7 @@ inline void initState(){
     boost::filesystem::create_directories(pathTemp);
     const std::string dirQtum = pathTemp.string();
     const dev::h256 hashDB(dev::sha3(dev::rlp("")));
-    globalState = std::unique_ptr<QtumState>(new QtumState(dev::u256(0), QtumState::openDB(dirQtum, hashDB, dev::WithExisting::Trust), dirQtum + "/qtumDB", dev::eth::BaseState::Empty));
+    globalState = std::unique_ptr<QtumState>(new QtumState(dev::u256(0), QtumState::openDB(dirQtum, hashDB, dev::WithExisting::Trust), dirQtum + "/sicashDB", dev::eth::BaseState::Empty));
 
     globalState->setRootUTXO(dev::sha3(dev::rlp(""))); // temp
 }
@@ -62,8 +62,8 @@ inline QtumTransaction createQtumTransaction(valtype data, dev::u256 value, dev:
 
 inline std::pair<std::vector<ResultExecute>, ByteCodeExecResult> executeBC(std::vector<QtumTransaction> txs){
     CBlock block(generateBlock());
-    QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
-    uint64_t blockGasLimit = qtumDGP.getBlockGasLimit(ChainActive().Tip()->nHeight + 1);
+    QtumDGP sicashDGP(globalState.get(), fGettingValuesDGP);
+    uint64_t blockGasLimit = sicashDGP.getBlockGasLimit(ChainActive().Tip()->nHeight + 1);
     ByteCodeExec exec(block, txs, blockGasLimit, ChainActive().Tip());
     exec.performByteCode();
     std::vector<ResultExecute> res = exec.getResult();
