@@ -1,9 +1,9 @@
-#ifndef QTUMVERSIONCHECKER_H
-#define QTUMVERSIONCHECKER_H
+#ifndef SICASHVERSIONCHECKER_H
+#define SICASHVERSIONCHECKER_H
 
 #include <QObject>
 
-#define QTUM_RELEASES "https://github.com/sicashproject/sicash/releases"
+#define SICASH_RELEASES "https://github.com/sicashproject/sicash/releases"
 
 class Version {
 
@@ -95,4 +95,4 @@ private:
     Version currentVersion;
 };
 
-#endif // QTUMVERSIONCHECKER_H
+#endif // SICASHVERSIONCHECKER_H

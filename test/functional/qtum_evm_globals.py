@@ -49,7 +49,7 @@ class QtumEVMGlobalsTest(BitcoinTestFramework):
             d76c09ad txgasprice()
             2c7622b0 txorigin()
         """
-        self.node.sendtocontract(self.contract_address, "cc5ea9ad", 1, 20000000, QTUM_MIN_GAS_PRICE/COIN, sender)
+        self.node.sendtocontract(self.contract_address, "cc5ea9ad", 1, 20000000, SICASH_MIN_GAS_PRICE/COIN, sender)
 
         if use_staking:
             for n in self.nodes:
@@ -130,7 +130,7 @@ class QtumEVMGlobalsTest(BitcoinTestFramework):
 
         # tx.gasprice
         print('  tx.gasprice')
-        assert_equal(QTUM_MIN_GAS_PRICE, int(self.get_contract_call_output("d76c09ad"), 16))
+        assert_equal(SICASH_MIN_GAS_PRICE, int(self.get_contract_call_output("d76c09ad"), 16))
 
         # tx.origin
         print('  tx.origin')

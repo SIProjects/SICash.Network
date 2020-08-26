@@ -170,19 +170,19 @@ class DGPState:
 
     def send_set_initial_admin(self, sender):
         self.node.sendtoaddress(sender, 1)
-        self.node.sendtocontract(self.contract_address, self.abiSetInitialAdmin, 0, 2000000, QTUM_MIN_GAS_PRICE_STR, sender)
+        self.node.sendtocontract(self.contract_address, self.abiSetInitialAdmin, 0, 2000000, SICASH_MIN_GAS_PRICE_STR, sender)
 
     def send_add_address_proposal(self, proposal_address, type1, sender):
         self.node.sendtoaddress(sender, 1)
-        self.node.sendtocontract(self.contract_address, self.abiAddAddressProposal + proposal_address.zfill(64) + hex(type1)[2:].zfill(64), 0, 2000000, QTUM_MIN_GAS_PRICE_STR, sender)
+        self.node.sendtocontract(self.contract_address, self.abiAddAddressProposal + proposal_address.zfill(64) + hex(type1)[2:].zfill(64), 0, 2000000, SICASH_MIN_GAS_PRICE_STR, sender)
 
     def send_remove_address_proposal(self, proposal_address, type1, sender):
         self.node.sendtoaddress(sender, 1)
-        self.node.sendtocontract(self.contract_address, self.abiRemoveAddressProposal + proposal_address.zfill(64) + hex(type1)[2:].zfill(64), 0, 2000000, QTUM_MIN_GAS_PRICE_STR, sender)
+        self.node.sendtocontract(self.contract_address, self.abiRemoveAddressProposal + proposal_address.zfill(64) + hex(type1)[2:].zfill(64), 0, 2000000, SICASH_MIN_GAS_PRICE_STR, sender)
 
     def send_change_value_proposal(self, uint_proposal, type1, sender):
         self.node.sendtoaddress(sender, 1)
-        self.node.sendtocontract(self.contract_address, self.abiChangeValueProposal + hex(uint_proposal)[2:].zfill(64) + hex(type1)[2:].zfill(64), 0, 2000000, QTUM_MIN_GAS_PRICE_STR, sender)
+        self.node.sendtocontract(self.contract_address, self.abiChangeValueProposal + hex(uint_proposal)[2:].zfill(64) + hex(type1)[2:].zfill(64), 0, 2000000, SICASH_MIN_GAS_PRICE_STR, sender)
 
     def assert_state(self):
         # This assertion is only to catch potential errors in the test code (if we forget to add a generate after an evm call)

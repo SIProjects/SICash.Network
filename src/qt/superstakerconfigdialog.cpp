@@ -72,7 +72,7 @@ void SuperStakerConfigDialog::setModel(WalletModel *_model)
         d->recommended = m_model->wallet().getSuperStakerRecommendedConfig();
     }
 
-    // update the display unit, to not use the default ("QTUM")
+    // update the display unit, to not use the default ("SICASH")
     updateDisplayUnit();
 }
 
