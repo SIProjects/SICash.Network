@@ -592,7 +592,7 @@
     </message>
     </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     <message>
         <source>Insufficient funds</source>
         <translation>Таны дансны үлдэгдэл хүрэлцэхгүй байна</translation>

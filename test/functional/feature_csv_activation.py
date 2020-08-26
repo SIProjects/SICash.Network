@@ -55,7 +55,7 @@ from test_framework.util import (
     hex_str_to_bytes,
     softfork_active,
 )
-from test_framework.qtumconfig import *
+from test_framework.sicashconfig import *
 
 BASE_RELATIVE_LOCKTIME = 10
 CSV_ACTIVATION_HEIGHT = 432

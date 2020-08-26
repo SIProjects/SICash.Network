@@ -40,9 +40,9 @@ OSX_PLIST=$(top_builddir)/share/qt/Info.plist #not installed
 OSX_QT_TRANSLATIONS = da,de,es,hu,ru,uk,zh_CN,zh_TW
 
 DIST_DOCS = $(wildcard doc/*.md) $(wildcard doc/release-notes/*.md)
-DIST_CONTRIB = $(top_srcdir)/contrib/qtum-cli.bash-completion \
-	       $(top_srcdir)/contrib/qtum-tx.bash-completion \
-	       $(top_srcdir)/contrib/qtumd.bash-completion \
+DIST_CONTRIB = $(top_srcdir)/contrib/sicash-cli.bash-completion \
+	       $(top_srcdir)/contrib/sicash-tx.bash-completion \
+	       $(top_srcdir)/contrib/sicashd.bash-completion \
 	       $(top_srcdir)/contrib/debian/copyright \
 	       $(top_srcdir)/contrib/init \
 	       $(top_srcdir)/contrib/install_db4.sh

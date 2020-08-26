@@ -2,7 +2,7 @@ from .address import *
 from .script import *
 from .mininode import *
 from .util import *
-from .qtumconfig import *
+from .sicashconfig import *
 from .blocktools import *
 from .key import *
 from .segwit_addr import *
@@ -55,7 +55,7 @@ def make_op_call_output(value, version, gas_limit, gas_price, data, contract):
     scriptPubKey += OP_CALL
     return CTxOut(value, scriptPubKey)
 
-def convert_btc_address_to_qtum(addr, main=False):
+def convert_btc_address_to_sicash(addr, main=False):
     version, hsh, checksum = base58_to_byte(addr, 25)
     if version == 111:
         return keyhash_to_p2pkh(binascii.unhexlify(hsh), main)
@@ -64,7 +64,7 @@ def convert_btc_address_to_qtum(addr, main=False):
         return scripthash_to_p2sh(binascii.unhexlify(hsh), main)
     assert(False)
 
-def convert_btc_bech32_address_to_qtum(addr, main=False):
+def convert_btc_bech32_address_to_sicash(addr, main=False):
     hdr, data = bech32_decode(addr)
     return bech32_encode('qcrt', data)
 

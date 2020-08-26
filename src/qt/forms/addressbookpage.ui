@@ -211,7 +211,7 @@
   <customwidget>
    <class>QtumPushButton</class>
    <extends>QPushButton</extends>
-   <header>qt/qtumpushbutton.h</header>
+   <header>qt/sicashpushbutton.h</header>
   </customwidget>
  </customwidgets>
  <resources>

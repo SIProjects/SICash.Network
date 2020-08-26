@@ -1,8 +1,8 @@
 #include <boost/test/unit_test.hpp>
-#include <qtumtests/test_utils.h>
+#include <sicashtests/test_utils.h>
 #include <script/standard.h>
 #include <chainparams.h>
-#include <qtum/qtumdelegation.h>
+#include <sicash/sicashdelegation.h>
 
 namespace DelegationTest{
 
@@ -115,8 +115,8 @@ BOOST_AUTO_TEST_CASE(checking_delegations_contract){
     // Set delegation contract address
     dev::Address contractAddress = createQtumAddress(txs[0].getHashWith(), txs[0].getNVout());
     UpdateDelegationsAddress(h160Touint(contractAddress));
-    QtumDelegation qtumDelegation;
-    BOOST_CHECK(qtumDelegation.ExistDelegationContract() == true);
+    QtumDelegation sicashDelegation;
+    BOOST_CHECK(sicashDelegation.ExistDelegationContract() == true);
 
     // Call add delegation
     std::vector<QtumTransaction> txsAdd;
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE(checking_delegations_contract){
     // Get delegation for address
     Delegation delegation;
     uint160 address(ParseHex(DELEGATE_ADDRESS_HEX));
-    bool contractRet = qtumDelegation.GetDelegation(address, delegation);
+    bool contractRet = sicashDelegation.GetDelegation(address, delegation);
     BOOST_CHECK(contractRet == true);
 
     // Verify delegation is valid
@@ -146,7 +146,7 @@ BOOST_AUTO_TEST_CASE(checking_delegations_contract){
 
     // Get delegation for address
     delegation = Delegation();
-    contractRet = qtumDelegation.GetDelegation(address, delegation);
+    contractRet = sicashDelegation.GetDelegation(address, delegation);
     BOOST_CHECK(contractRet == true);
 
     // Verify delegation is valid

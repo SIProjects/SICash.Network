@@ -21,7 +21,7 @@
 #include <rpc/server.h>
 #include <qt/navigationbar.h>
 #include <qt/titlebar.h>
-#include <qt/qtumversionchecker.h>
+#include <qt/sicashversionchecker.h>
 #include <qt/styleSheet.h>
 
 #ifdef ENABLE_WALLET
@@ -235,7 +235,7 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformSty
 
     modalOverlay = new ModalOverlay(this);
     modalBackupOverlay = new ModalOverlay(this, ModalOverlay::Backup);
-    qtumVersionChecker = new QtumVersionChecker(this);
+    sicashVersionChecker = new QtumVersionChecker(this);
 #ifdef ENABLE_WALLET
     if(enableWallet) {
         connect(walletFrame, &WalletFrame::requestedSyncWarningInfo, this, &BitcoinGUI::showModalOverlay);
@@ -299,7 +299,7 @@ void BitcoinGUI::createActions()
     sendCoinsMenuAction->setToolTip(sendCoinsMenuAction->statusTip());
 
     receiveCoinsAction = new QAction(platformStyle->MultiStatesIcon(":/icons/receive_from"), tr("&Receive"), this);
-    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and qtum: URIs)"));
+    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and sicash: URIs)"));
     receiveCoinsAction->setToolTip(receiveCoinsAction->statusTip());
     receiveCoinsAction->setCheckable(true);
     tabGroup->addAction(receiveCoinsAction);
@@ -424,7 +424,7 @@ void BitcoinGUI::createActions()
     usedReceivingAddressesAction->setStatusTip(tr("Show the list of used receiving addresses and labels"));
 
     openAction = new QAction(tr("Open &URI..."), this);
-    openAction->setStatusTip(tr("Open a qtum: URI or payment request"));
+    openAction->setStatusTip(tr("Open a sicash: URI or payment request"));
 
     m_open_wallet_action = new QAction(tr("Open Wallet"), this);
     m_open_wallet_action->setEnabled(false);
@@ -663,7 +663,7 @@ void BitcoinGUI::setClientModel(ClientModel *_clientModel)
     if(_clientModel)
     {
         // Check for updates
-        if(_clientModel->getOptionsModel()->getCheckForUpdates() && qtumVersionChecker->newVersionAvailable())
+        if(_clientModel->getOptionsModel()->getCheckForUpdates() && sicashVersionChecker->newVersionAvailable())
         {
             QString link = QString("<a href=%1>%2</a>").arg(QTUM_RELEASES, QTUM_RELEASES);
             QString message(tr("New version of Qtum wallet is available on the Qtum source code repository: <br /> %1. <br />It is recommended to download it and update this application").arg(link));

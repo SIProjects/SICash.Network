@@ -71,7 +71,7 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char * const BITCOIN_CONF_FILENAME = "qtum.conf";
+const char * const BITCOIN_CONF_FILENAME = "sicash.conf";
 
 ArgsManager gArgs;
 
@@ -700,7 +700,7 @@ fs::path GetDefaultDataDir()
     // Windows < Vista: C:\Documents and Settings\Username\Application Data\Qtum
     // Windows >= Vista: C:\Users\Username\AppData\Roaming\Qtum
     // Mac: ~/Library/Application Support/Qtum
-    // Unix: ~/.qtum
+    // Unix: ~/.sicash
 #ifdef WIN32
     // Windows
     return GetSpecialFolderPath(CSIDL_APPDATA) / "Qtum";
@@ -716,7 +716,7 @@ fs::path GetDefaultDataDir()
     return pathRet / "Library/Application Support/Qtum";
 #else
     // Unix
-    return pathRet / ".qtum";
+    return pathRet / ".sicash";
 #endif
 #endif
 }

@@ -8,7 +8,7 @@ from test_framework.util import *
 from test_framework.script import *
 from test_framework.mininode import *
 from test_framework.messages import COIN
-from test_framework.qtumconfig import *
+from test_framework.sicashconfig import *
 import sys
 
 class StateRootTest(BitcoinTestFramework):

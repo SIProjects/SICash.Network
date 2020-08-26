@@ -67,7 +67,7 @@
     </message>
     <message>
         <source>These are your Qtum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Detta är dina Qtum-adresser för att skicka betalningar. Kontrollera alltid belopp och mottagaradress innan du skickar qtum.</translation>
+        <translation>Detta är dina Qtum-adresser för att skicka betalningar. Kontrollera alltid belopp och mottagaradress innan du skickar sicash.</translation>
     </message>
     <message>
         <source>These are your  addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
@@ -189,8 +189,8 @@ Försök igen.</translation>
         <translation>Ange den gamla lösenfrasen och den nya lösenfrasen för plånboken.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your qtums from being stolen by malware infecting your computer.</source>
-        <translation>Kom ihåg att kryptering av din plånbok inte helt kan skydda dig från stöld av dina qtums om skadlig kod infekterat din dator.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect your sicashs from being stolen by malware infecting your computer.</source>
+        <translation>Kom ihåg att kryptering av din plånbok inte helt kan skydda dig från stöld av dina sicashs om skadlig kod infekterat din dator.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -364,7 +364,7 @@ Försök igen.</translation>
     </message>
     <message>
         <source>Send coins to a Qtum address</source>
-        <translation>Skicka qtum till en Qtum-adress</translation>
+        <translation>Skicka sicash till en Qtum-adress</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -431,8 +431,8 @@ Försök igen.</translation>
         <translation>Verktygsfält för flikar</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and qtum: URIs)</source>
-        <translation>Begär betalningar (skapar QR-koder och qtum: -URIer)</translation>
+        <source>Request payments (generates QR codes and sicash: URIs)</source>
+        <translation>Begär betalningar (skapar QR-koder och sicash: -URIer)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -443,8 +443,8 @@ Försök igen.</translation>
         <translation>Visa listan med använda mottagaradresser och etiketter</translation>
     </message>
     <message>
-        <source>Open a qtum: URI or payment request</source>
-        <translation>Öppna en qtum: URI eller betalningsbegäran</translation>
+        <source>Open a sicash: URI or payment request</source>
+        <translation>Öppna en sicash: URI eller betalningsbegäran</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -999,12 +999,12 @@ Försök igen.</translation>
         <translation>Formulär</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the qtum network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the sicash network, as detailed below.</source>
         <translation>Nyligen gjorda transaktioner visas inte korrekt och därför kan din plånboks saldo visas felaktigt. Denna information kommer att visas korrekt så snart din plånbok har synkroniserats med Qtum-nätverket enligt informationen nedan.</translation>
     </message>
     <message>
-        <source>Attempting to spend qtums that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>Att försöka spendera qtum som påverkas av transaktioner som ännu inte visas kommer inte accepteras av nätverket.</translation>
+        <source>Attempting to spend sicashs that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation>Att försöka spendera sicash som påverkas av transaktioner som ännu inte visas kommer inte accepteras av nätverket.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1438,16 +1438,16 @@ Försök igen.</translation>
         <translation>Fel vid betalningsbegäran</translation>
     </message>
     <message>
-        <source>Cannot start qtum: click-to-pay handler</source>
-        <translation>Kan inte starta qtum: klicka-och-betala hanteraren</translation>
+        <source>Cannot start sicash: click-to-pay handler</source>
+        <translation>Kan inte starta sicash: klicka-och-betala hanteraren</translation>
     </message>
     <message>
         <source>URI handling</source>
         <translation>URI-hantering</translation>
     </message>
     <message>
-        <source>'qtum://' is not a valid URI. Use 'qtum:' instead.</source>
-        <translation>'qtum://' är inte en accepterad URI. Använd 'qtum:' istället.</translation>
+        <source>'sicash://' is not a valid URI. Use 'sicash:' instead.</source>
+        <translation>'sicash://' är inte en accepterad URI. Använd 'sicash:' istället.</translation>
     </message>
     <message>
         <source>You are using a BIP70 URL which will be unsupported in the future.</source>
@@ -2298,8 +2298,8 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Damm:</translation>
     </message>
     <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for qtum transactions than the network can process.</source>
-        <translation>När transaktionsvolymen är mindre än utrymmet i blocken kan både brytardatorer och relänoder kräva en minimiavgift. Det är okej att bara betala denna minimiavgift, men du ska vara medveten om att det kan leda till att en transaktion aldrig bekräftas så fort efterfrågan på qtumtransaktioner är större än vad nätverket kan hantera.</translation>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for sicash transactions than the network can process.</source>
+        <translation>När transaktionsvolymen är mindre än utrymmet i blocken kan både brytardatorer och relänoder kräva en minimiavgift. Det är okej att bara betala denna minimiavgift, men du ska vara medveten om att det kan leda till att en transaktion aldrig bekräftas så fort efterfrågan på sicashtransaktioner är större än vad nätverket kan hantera.</translation>
     </message>
     <message>
         <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
@@ -2509,8 +2509,8 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Ta bort denna post</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less qtums than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>Avgiften dras från beloppet som skickas. Mottagaren kommer att ta emot mindre qtum än du angivit i beloppsfältet. Om flera mottagare väljs kommer avgiften att fördelas jämt.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less sicashs than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation>Avgiften dras från beloppet som skickas. Mottagaren kommer att ta emot mindre sicash än du angivit i beloppsfältet. Om flera mottagare väljs kommer avgiften att fördelas jämt.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -2537,8 +2537,8 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Ange en etikett för denna adress för att lägga till den i listan med använda adresser</translation>
     </message>
     <message>
-        <source>A message that was attached to the qtum: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Qtum network.</source>
-        <translation>Ett meddelande som bifogades qtum: -URIn och som sparas med transaktionen som referens. Obs: Meddelandet sänds inte över Qtum-nätverket.</translation>
+        <source>A message that was attached to the sicash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Qtum network.</source>
+        <translation>Ett meddelande som bifogades sicash: -URIn och som sparas med transaktionen som referens. Obs: Meddelandet sänds inte över Qtum-nätverket.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2582,8 +2582,8 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>&amp;Signera meddelande</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive qtums sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>Du kan signera meddelanden/avtal med dina adresser för att bevisa att du kan ta emot qtum som skickats till dem. Var försiktig så du inte signerar något oklart eller konstigt, eftersom phishing-angrepp kan försöka få dig att signera över din identitet till dem. Signera endast väldetaljerade meddelanden som du godkänner.</translation>
+        <source>You can sign messages/agreements with your addresses to prove you can receive sicashs sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>Du kan signera meddelanden/avtal med dina adresser för att bevisa att du kan ta emot sicash som skickats till dem. Var försiktig så du inte signerar något oklart eller konstigt, eftersom phishing-angrepp kan försöka få dig att signera över din identitet till dem. Signera endast väldetaljerade meddelanden som du godkänner.</translation>
     </message>
     <message>
         <source>The Qtum address to sign the message with</source>
@@ -3273,7 +3273,7 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
     </message>
 </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file %s or %s</source>
         <translation>Distribuerad under MIT mjukvarulicens, se den bifogade filen %s eller %s</translation>
@@ -3718,7 +3718,7 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
     </message>
     <message>
         <source>Insufficient funds</source>
-        <translation>Otillräckligt med qtums</translation>
+        <translation>Otillräckligt med sicashs</translation>
     </message>
     <message>
         <source>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use -upgradewallet=169900 or -upgradewallet with no version specified.</source>

@@ -4,7 +4,7 @@ from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import *
 from test_framework.script import *
 from test_framework.mininode import *
-from test_framework.qtum import *
+from test_framework.sicash import *
 from test_framework.address import *
 from test_framework.blocktools import *
 import time
@@ -33,7 +33,7 @@ class QtumSpendOpCallTest(BitcoinTestFramework):
         first_contract_address = self.nodes[0].createcontract(contract_bytecode)['address']
         self.nodes[0].generate(1)
 
-        # Send 100000 qtum to the contract
+        # Send 100000 sicash to the contract
         self.nodes[0].sendtocontract(first_contract_address, "00", 100000)['txid']
         blockhash = self.nodes[0].generate(1)[0]
         prev_block = self.nodes[0].getblock(blockhash)

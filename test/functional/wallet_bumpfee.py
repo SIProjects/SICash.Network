@@ -26,7 +26,7 @@ from test_framework.util import (
     connect_nodes,
     hex_str_to_bytes,
 )
-from test_framework.qtumconfig import COINBASE_MATURITY
+from test_framework.sicashconfig import COINBASE_MATURITY
 
 WALLET_PASSPHRASE = "test"
 WALLET_PASSPHRASE_TIMEOUT = 3600

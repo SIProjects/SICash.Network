@@ -350,12 +350,12 @@
         <translation>Vahelehe tööriistariba</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and qtum: URIs)</source>
-        <translation>Loo maksepäring (genereerib QR koodid ja qtumi: URId)</translation>
+        <source>Request payments (generates QR codes and sicash: URIs)</source>
+        <translation>Loo maksepäring (genereerib QR koodid ja sicashi: URId)</translation>
     </message>
     <message>
-        <source>Open a qtum: URI or payment request</source>
-        <translation>Ava qtumi: URI või maksepäring</translation>
+        <source>Open a sicash: URI or payment request</source>
+        <translation>Ava sicashi: URI või maksepäring</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -1922,7 +1922,7 @@
     </message>
     </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     <message>
         <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
         <translation>See on test-versioon - kasutamine omal riisikol - ära kasuta mining'uks ega kaupmeeste programmides</translation>

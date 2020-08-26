@@ -10,7 +10,7 @@ from test_framework.util import (
     assert_approx,
     assert_equal,
 )
-from test_framework.qtumconfig import COINBASE_MATURITY
+from test_framework.sicashconfig import COINBASE_MATURITY
 
 class WalletGroupTest(BitcoinTestFramework):
     def set_test_params(self):

@@ -1,5 +1,5 @@
 #include <boost/test/unit_test.hpp>
-#include <qtumtests/test_utils.h>
+#include <sicashtests/test_utils.h>
 #include <script/standard.h>
 #include <chainparams.h>
 

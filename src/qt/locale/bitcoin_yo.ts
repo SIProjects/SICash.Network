@@ -204,6 +204,6 @@
     <name>WalletView</name>
     </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     </context>
 </TS>

@@ -43,11 +43,11 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>Izvēlies adresi uz kuru sūtīt qtums</translation>
+        <translation>Izvēlies adresi uz kuru sūtīt sicashs</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>Izvēlies adresi ar kuru saņemt qtums</translation>
+        <translation>Izvēlies adresi ar kuru saņemt sicashs</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -266,12 +266,12 @@
         <translation>Ciļņu rīkjosla</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and qtum: URIs)</source>
-        <translation>Pieprasīt maksājumus (izveido QR kodu un qtum: URIs)</translation>
+        <source>Request payments (generates QR codes and sicash: URIs)</source>
+        <translation>Pieprasīt maksājumus (izveido QR kodu un sicash: URIs)</translation>
     </message>
     <message>
-        <source>Open a qtum: URI or payment request</source>
-        <translation>Atvērt qtum URI vai maksājuma pieprasījumu</translation>
+        <source>Open a sicash: URI or payment request</source>
+        <translation>Atvērt sicash URI vai maksājuma pieprasījumu</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -544,7 +544,7 @@
     </message>
     <message>
         <source>Enable coin &amp;control features</source>
-        <translation>Ieslēgt qtum &amp;kontroles funkcijas</translation>
+        <translation>Ieslēgt sicash &amp;kontroles funkcijas</translation>
     </message>
     <message>
         <source>&amp;Spend unconfirmed change</source>
@@ -1224,7 +1224,7 @@
     </message>
     </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     <message>
         <source>Error loading block database</source>
         <translation>Kļūda ielādējot bloku datubāzi</translation>

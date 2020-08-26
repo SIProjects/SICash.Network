@@ -4,8 +4,8 @@ from test_framework.test_framework import BitcoinTestFramework
 from test_framework.messages import *
 from test_framework.script import *
 from test_framework.mininode import *
-from test_framework.qtum import *
-from test_framework.qtumconfig import *
+from test_framework.sicash import *
+from test_framework.sicashconfig import *
 from test_framework.util import *
 import pprint
 pp = pprint.PrettyPrinter()
@@ -200,10 +200,10 @@ class QtumSimpleDelegationContractTest(BitcoinTestFramework):
 
 
     """
-        - Check that it is not possible to use an input with less value than 100 qtum as the first input to the coinstake.
-        - Check that 100 qtum is just enough for the first input to the coinstake.
+        - Check that it is not possible to use an input with less value than 100 sicash as the first input to the coinstake.
+        - Check that 100 sicash is just enough for the first input to the coinstake.
     """
-    def nas_staker_must_be_100_qtum_test(self):
+    def nas_staker_must_be_100_sicash_test(self):
         staker_prevouts = collect_prevouts(self.staker, min_confirmations=COINBASE_MATURITY, amount=20000)
         prevout = staker_prevouts[0]
         tx = CTransaction()
@@ -566,8 +566,8 @@ class QtumSimpleDelegationContractTest(BitcoinTestFramework):
         self.staker_must_be_the_delegated_staker_test()
         self.sync_all()
 
-        print("nas_staker_must_be_100_qtum_test")
-        self.nas_staker_must_be_100_qtum_test()
+        print("nas_staker_must_be_100_sicash_test")
+        self.nas_staker_must_be_100_sicash_test()
         self.sync_all()
         
         print("invalid_op_return_coinstake_output_test")

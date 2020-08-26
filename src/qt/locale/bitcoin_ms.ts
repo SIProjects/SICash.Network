@@ -365,7 +365,7 @@ Alihkan fail data ke dalam tab semasa</translation>
     </message>
     <message>
         <source>Sign messages with your Qtum addresses to prove you own them</source>
-        <translation>sahkan mesej bersama alamat qtum anda untuk menunjukkan alamat ini anda punya</translation>
+        <translation>sahkan mesej bersama alamat sicash anda untuk menunjukkan alamat ini anda punya</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Qtum addresses</source>
@@ -389,8 +389,8 @@ Alihkan fail data ke dalam tab semasa</translation>
 </translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and qtum: URIs)</source>
-        <translation>Request payments (generates QR codes and qtum: URIs)
+        <source>Request payments (generates QR codes and sicash: URIs)</source>
+        <translation>Request payments (generates QR codes and sicash: URIs)
 </translation>
     </message>
     <message>
@@ -645,7 +645,7 @@ Alihkan fail data ke dalam tab semasa</translation>
     </message>
     </context>
 <context>
-    <name>qtum-core</name>
+    <name>sicash-core</name>
     <message>
         <source>Loading wallet...</source>
         <translation>Sedang baca wallet...</translation>

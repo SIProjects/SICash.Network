@@ -13,7 +13,7 @@ from test_framework.util import (
     connect_nodes,
     assert_raises_rpc_error
 )
-from test_framework.qtumconfig import COINBASE_MATURITY
+from test_framework.sicashconfig import COINBASE_MATURITY
 
 
 class WalletHDTest(BitcoinTestFramework):

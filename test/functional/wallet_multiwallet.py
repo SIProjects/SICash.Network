@@ -16,7 +16,7 @@ from test_framework.util import (
     assert_equal,
     assert_raises_rpc_error,
 )
-from test_framework.qtumconfig import COINBASE_MATURITY, INITIAL_BLOCK_REWARD
+from test_framework.sicashconfig import COINBASE_MATURITY, INITIAL_BLOCK_REWARD
 
 FEATURE_LATEST = 169900
 

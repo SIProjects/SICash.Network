@@ -48,7 +48,7 @@ SplitUTXOPage::SplitUTXOPage(QWidget *parent, Mode mode) :
         break;
     }
 
-    ui->labelAddress->setToolTip(tr("The qtum address to split utxos."));
+    ui->labelAddress->setToolTip(tr("The sicash address to split utxos."));
     ui->labelMinValue->setToolTip(tr("Select utxo which value is smaller than value (minimum 0.1 COIN)."));
     ui->labelMaxValue->setToolTip(tr("Select utxo which value is greater than value (minimum 0.1 COIN)."));
     ui->labelMaxOutputs->setToolTip(tr("Maximum outputs to create"));

@@ -214,65 +214,65 @@ BASE_SCRIPTS = [
     # Don't append tests at the end to avoid merge conflicts
     # Put them in a random line within the section that fits their approximate run-time
 
-    # qtum
-    'qtum_dgp.py',
-    'qtum_pos.py',
-    'qtum_opcall.py',
-    'qtum_opcreate.py',
-    'qtum_8mb_block.py',
-    'qtum_gas_limit.py',
-    'qtum_searchlog.py',
-    'qtum_pos_segwit.py',
-    'qtum_state_root.py',
-    'qtum_evm_globals.py',
-    'qtum_null_sender.py',
-    'qtum_waitforlogs.py',
-    'qtum_block_header.py',
-    'qtum_callcontract.py',
-    'qtum_spend_op_call.py',
-    'qtum_condensing_txs.py',
-    'qtum_createcontract.py',
-    'qtum_sendtocontract.py',
-    'qtum_identical_refunds.py',
-    'qtum_create_eth_op_code.py',
-    'qtum_gas_limit_overflow.py',
-    'qtum_call_empty_contract.py',
-    'qtum_dgp_block_size_sync.py',
-    'qtum_pos_conflicting_txs.py',
-    'qtum_globals_state_changer.py',
-    'qtum_no_exec_call_disabled.py',
-    'qtum_soft_block_gas_limits.py',
-    'qtum_dgp_block_size_restart.py',
-    'qtum_searchlog_restart_node.py',
-    'qtum_immature_coinstake_spend.py',
-    'qtum_transaction_prioritization.py',
-    'qtum_assign_mpos_fees_to_gas_refund.py',
-    'qtum_ignore_mpos_participant_reward.py',
-    'qtum_evm_constantinople_activation.py',
-    'qtum_many_value_refunds_from_same_tx.py',
-    'qtum_combined_outputs_exceed_gas_limit.py',
-    'qtum_dgp_gas_price_lingering_mempool_tx.py',
-    'qtum_dgp_gas_schedule.py',
-    'qtum_header_spam.py',
-    'qtum_divergence_dos.py',
-    'qtum_prioritize_create_over_call.py',
-    'qtum_callcontract_timestamp.py',
-    'qtum_transaction_receipt_origin_contract_address.py',
-    'qtum_block_number_corruption.py',
-    'qtum_duplicate_stake.py',
-    'qtum_rpc_bitcore.py',
-    'qtum_faulty_header_chain.py',
-    'qtum_signrawsender.py',
-    'qtum_op_sender.py',
-    'qtum_evm_revert.py',
-    'qtum_evm_create2.py',
-    'qtum_evm_staticcall.py',
-    'qtum_evm_constantinople_precompiles.py',
-    'qtum_evm_constantinople_opcodes.py',
-    'qtum_block_index_cleanup.py',
-    'qtum_pod.py',
-    'qtum_simple_delegation_contract.py',
-    'qtum_delegation_contract.py'
+    # sicash
+    'sicash_dgp.py',
+    'sicash_pos.py',
+    'sicash_opcall.py',
+    'sicash_opcreate.py',
+    'sicash_8mb_block.py',
+    'sicash_gas_limit.py',
+    'sicash_searchlog.py',
+    'sicash_pos_segwit.py',
+    'sicash_state_root.py',
+    'sicash_evm_globals.py',
+    'sicash_null_sender.py',
+    'sicash_waitforlogs.py',
+    'sicash_block_header.py',
+    'sicash_callcontract.py',
+    'sicash_spend_op_call.py',
+    'sicash_condensing_txs.py',
+    'sicash_createcontract.py',
+    'sicash_sendtocontract.py',
+    'sicash_identical_refunds.py',
+    'sicash_create_eth_op_code.py',
+    'sicash_gas_limit_overflow.py',
+    'sicash_call_empty_contract.py',
+    'sicash_dgp_block_size_sync.py',
+    'sicash_pos_conflicting_txs.py',
+    'sicash_globals_state_changer.py',
+    'sicash_no_exec_call_disabled.py',
+    'sicash_soft_block_gas_limits.py',
+    'sicash_dgp_block_size_restart.py',
+    'sicash_searchlog_restart_node.py',
+    'sicash_immature_coinstake_spend.py',
+    'sicash_transaction_prioritization.py',
+    'sicash_assign_mpos_fees_to_gas_refund.py',
+    'sicash_ignore_mpos_participant_reward.py',
+    'sicash_evm_constantinople_activation.py',
+    'sicash_many_value_refunds_from_same_tx.py',
+    'sicash_combined_outputs_exceed_gas_limit.py',
+    'sicash_dgp_gas_price_lingering_mempool_tx.py',
+    'sicash_dgp_gas_schedule.py',
+    'sicash_header_spam.py',
+    'sicash_divergence_dos.py',
+    'sicash_prioritize_create_over_call.py',
+    'sicash_callcontract_timestamp.py',
+    'sicash_transaction_receipt_origin_contract_address.py',
+    'sicash_block_number_corruption.py',
+    'sicash_duplicate_stake.py',
+    'sicash_rpc_bitcore.py',
+    'sicash_faulty_header_chain.py',
+    'sicash_signrawsender.py',
+    'sicash_op_sender.py',
+    'sicash_evm_revert.py',
+    'sicash_evm_create2.py',
+    'sicash_evm_staticcall.py',
+    'sicash_evm_constantinople_precompiles.py',
+    'sicash_evm_constantinople_opcodes.py',
+    'sicash_block_index_cleanup.py',
+    'sicash_pod.py',
+    'sicash_simple_delegation_contract.py',
+    'sicash_delegation_contract.py'
 ]
 
 # Place EXTENDED_SCRIPTS first since it has the 3 longest running tests
@@ -424,7 +424,7 @@ def run_tests(*, test_list, src_dir, build_dir, tmpdir, jobs=1, enable_coverage=
     # Warn if bitcoind is already running
     # pidof might fail or return an empty string if bitcoind is not running
     try:
-        if subprocess.check_output(["pidof", "qtumd"]) not in [b'']:
+        if subprocess.check_output(["pidof", "sicashd"]) not in [b'']:
             print("%sWARNING!%s There is already a bitcoind process running on this system. Tests may fail unexpectedly due to resource contention!" % (BOLD[1], BOLD[0]))
     except (OSError, subprocess.SubprocessError):
         pass
@@ -663,7 +663,7 @@ class TestResult():
 def check_script_prefixes():
     """Check that test scripts start with one of the allowed name prefixes."""
 
-    good_prefixes_re = re.compile("(example|feature|interface|mempool|mining|p2p|rpc|wallet|tool|qtum)_")
+    good_prefixes_re = re.compile("(example|feature|interface|mempool|mining|p2p|rpc|wallet|tool|sicash)_")
     bad_script_names = [script for script in ALL_SCRIPTS if good_prefixes_re.match(script) is None]
 
     if bad_script_names:

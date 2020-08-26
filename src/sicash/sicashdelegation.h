@@ -86,7 +86,7 @@ public:
 };
 
 /**
- * @brief The QtumDelegation class Communicate with the qtum delegation contract
+ * @brief The QtumDelegation class Communicate with the sicash delegation contract
  */
 class QtumDelegation {
     

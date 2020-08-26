@@ -1,6 +1,6 @@
 #include <boost/test/unit_test.hpp>
 #include <test/setup_common.h>
-#include <qtumtests/test_utils.h>
+#include <sicashtests/test_utils.h>
 
 const dev::u256 GASLIMIT = dev::u256(500000);
 const dev::Address SENDERADDRESS = dev::Address("0101010101010101010101010101010101010101");
