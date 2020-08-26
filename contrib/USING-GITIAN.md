@@ -28,7 +28,7 @@ Ensure that the ./gitian-builder directory is up to date.
     git pull
     popd
 
-### Build and sign Qtum for Linux, Windows, and OS X:
+### Build and sign SICash for Linux, Windows, and OS X:
 
   ```sicash/contrib/gitian-build.sh --build --signer signer version``` or 
   ```sicash/contrib/gitian-build.sh --build --kvm --signer signer version```

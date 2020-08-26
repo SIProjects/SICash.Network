@@ -1399,7 +1399,7 @@ public:
     }
 
     std::shared_ptr<CWallet> m_wallet;
-    QtumDelegation m_sicashDelegation;
+    SICashDelegation m_sicashDelegation;
 };
 
 class WalletClientImpl : public ChainClient

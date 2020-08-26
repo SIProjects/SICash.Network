@@ -145,10 +145,10 @@
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>SICashGUI</name>
     <message>
-        <source>Send coins to a Qtum address</source>
-        <translation>ផ្ញើកាក់ទៅកាន់ អាសយដ្ឋាន Qtum មួយ</translation>
+        <source>Send coins to a SICash address</source>
+        <translation>ផ្ញើកាក់ទៅកាន់ អាសយដ្ឋាន SICash មួយ</translation>
     </message>
     </context>
 <context>

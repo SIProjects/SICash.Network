@@ -122,7 +122,7 @@ def wif_to_ECKey(wif):
 
 HASHTYPES = [SIGHASH_ALL, SIGHASH_SINGLE, SIGHASH_NONE, SIGHASH_ANYONECANPAY]
 
-class QtumOpSenderTest(BitcoinTestFramework):
+class SICashOpSenderTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2
@@ -488,4 +488,4 @@ class QtumOpSenderTest(BitcoinTestFramework):
 
 
 if __name__ == '__main__':
-    QtumOpSenderTest().main()
+    SICashOpSenderTest().main()

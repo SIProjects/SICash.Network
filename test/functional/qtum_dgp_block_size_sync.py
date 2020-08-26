@@ -12,7 +12,7 @@ import io
 """
 Note, these tests do not test the functionality of the DGP template contract itself, for tests for the DGP template, see sicash-dgp.py
 """
-class QtumDGPBlockSizeSyncTest(BitcoinTestFramework):
+class SICashDGPBlockSizeSyncTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 8
@@ -146,4 +146,4 @@ class QtumDGPBlockSizeSyncTest(BitcoinTestFramework):
         self.sync_all()
 
 if __name__ == '__main__':
-    QtumDGPBlockSizeSyncTest().main()
+    SICashDGPBlockSizeSyncTest().main()

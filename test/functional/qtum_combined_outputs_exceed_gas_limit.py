@@ -8,7 +8,7 @@ from test_framework.sicash import *
 from test_framework.address import *
 import time
 
-class QtumCombinedOutputsExceedGasLimitTest(BitcoinTestFramework):
+class SICashCombinedOutputsExceedGasLimitTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
@@ -48,4 +48,4 @@ class QtumCombinedOutputsExceedGasLimitTest(BitcoinTestFramework):
         assert_equal(self.node.getblockcount(), block_count+2)
 
 if __name__ == '__main__':
-    QtumCombinedOutputsExceedGasLimitTest().main()
+    SICashCombinedOutputsExceedGasLimitTest().main()

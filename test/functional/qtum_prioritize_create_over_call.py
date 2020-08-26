@@ -10,7 +10,7 @@ import sys
 import random
 import time
 
-class QtumPrioritizeCreateOverCallTest(BitcoinTestFramework):
+class SICashPrioritizeCreateOverCallTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
@@ -67,4 +67,4 @@ class QtumPrioritizeCreateOverCallTest(BitcoinTestFramework):
         assert_equal(self.node.listcontracts()[self.contract_address], 1)
 
 if __name__ == '__main__':
-    QtumPrioritizeCreateOverCallTest().main()
+    SICashPrioritizeCreateOverCallTest().main()

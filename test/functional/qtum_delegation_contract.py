@@ -11,7 +11,7 @@ import pprint
 pp = pprint.PrettyPrinter()
 
 
-class QtumSimpleDelegationContractTest(BitcoinTestFramework):
+class SICashSimpleDelegationContractTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 5
@@ -587,4 +587,4 @@ class QtumSimpleDelegationContractTest(BitcoinTestFramework):
         self.sync_all()
 
 if __name__ == '__main__':
-    QtumSimpleDelegationContractTest().main()
+    SICashSimpleDelegationContractTest().main()

@@ -7,7 +7,7 @@ from test_framework.mininode import *
 from test_framework.address import *
 from test_framework.sicash import *
 
-class QtumDivergenceDosTest(BitcoinTestFramework):
+class SICashDivergenceDosTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
@@ -101,4 +101,4 @@ class QtumDivergenceDosTest(BitcoinTestFramework):
         self.too_many_txs_test()
          
 if __name__ == '__main__':
-    QtumDivergenceDosTest().main()
+    SICashDivergenceDosTest().main()

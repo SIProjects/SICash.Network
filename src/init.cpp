@@ -706,7 +706,7 @@ void DeleteBlockChainData()
     // Delete block chain data paths
     fs::remove_all(GetDataDir() / "chainstate");
     fs::remove_all(GetBlocksDir());
-    fs::remove_all(GetDataDir() / "stateQtum");
+    fs::remove_all(GetDataDir() / "stateSICash");
     fs::remove(GetDataDir() / "banlist.dat");
     fs::remove(GetDataDir() / FEE_ESTIMATES_FILENAME);
     fs::remove(GetDataDir() / "mempool.dat");
@@ -1788,12 +1788,12 @@ bool AppInitMain(InitInterfaces& interfaces)
                 }
 
                 dev::eth::NoProof::init();
-                fs::path sicashStateDir = GetDataDir() / "stateQtum";
+                fs::path sicashStateDir = GetDataDir() / "stateSICash";
                 bool fStatus = fs::exists(sicashStateDir);
-                const std::string dirQtum(sicashStateDir.string());
+                const std::string dirSICash(sicashStateDir.string());
                 const dev::h256 hashDB(dev::sha3(dev::rlp("")));
-                dev::eth::BaseState existsQtumstate = fStatus ? dev::eth::BaseState::PreExisting : dev::eth::BaseState::Empty;
-                globalState = std::unique_ptr<QtumState>(new QtumState(dev::u256(0), QtumState::openDB(dirQtum, hashDB, dev::WithExisting::Trust), dirQtum, existsQtumstate));
+                dev::eth::BaseState existsSICashstate = fStatus ? dev::eth::BaseState::PreExisting : dev::eth::BaseState::Empty;
+                globalState = std::unique_ptr<SICashState>(new SICashState(dev::u256(0), SICashState::openDB(dirSICash, hashDB, dev::WithExisting::Trust), dirSICash, existsSICashstate));
                 dev::eth::ChainParams cp(chainparams.EVMGenesisInfo());
                 globalSealEngine = std::unique_ptr<dev::eth::SealEngineFace>(cp.createSealEngine());
 
@@ -1851,8 +1851,8 @@ bool AppInitMain(InitInterfaces& interfaces)
             try {
                 LOCK(cs_main);
 
-                QtumDGP sicashDGP(globalState.get(), fGettingValuesDGP);
-                globalSealEngine->setQtumSchedule(sicashDGP.getGasSchedule(::ChainActive().Height() + (::ChainActive().Height()+1 >= chainparams.GetConsensus().QIP7Height ? 0 : 1) ));
+                SICashDGP sicashDGP(globalState.get(), fGettingValuesDGP);
+                globalSealEngine->setSICashSchedule(sicashDGP.getGasSchedule(::ChainActive().Height() + (::ChainActive().Height()+1 >= chainparams.GetConsensus().QIP7Height ? 0 : 1) ));
 
                 if (!is_coinsview_empty) {
                     uiInterface.InitMessage(_("Verifying blocks...").translated);

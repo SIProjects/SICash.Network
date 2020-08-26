@@ -8,7 +8,7 @@ from test_framework.sicash import *
 from test_framework.address import *
 
 
-class QtumCreateEthOpCodeTest(BitcoinTestFramework):
+class SICashCreateEthOpCodeTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
@@ -183,4 +183,4 @@ class QtumCreateEthOpCodeTest(BitcoinTestFramework):
         self.check_suicide_test()
 
 if __name__ == '__main__':
-    QtumCreateEthOpCodeTest().main()
+    SICashCreateEthOpCodeTest().main()

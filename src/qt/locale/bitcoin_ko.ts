@@ -147,11 +147,11 @@
         <translation>받는 주소</translation>
     </message>
     <message>
-        <source>These are your Qtum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your SICash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>송금이 가능한 SICASH 주소입니다. 송금 전에 반드시 주소와 금액이 정확한지 확인해주세요. </translation>
     </message>
     <message>
-        <source>These are your Qtum addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your SICash addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>SICASH을 받을 수 있는 주소입니다. 거래 마다 새로운 주소를 사용할 것을 권장 드립니다. </translation>
     </message>
     <message>
@@ -331,7 +331,7 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <source>A fatal error occurred. Qtum can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. SICash can no longer continue safely and will quit.</source>
         <translation type="unfinished">심각한 에러가 발생하여 클라이언트가 안전하게 실행될 수 없어 종료될 예정입니다. </translation>
     </message>
     <message>
@@ -347,7 +347,7 @@
         <translation type="unfinished">보내기</translation>
     </message>
     <message>
-        <source>Send coins to a Qtum address</source>
+        <source>Send coins to a SICash address</source>
         <translation type="unfinished">SICASH 주소로 SICASH 코인 보내기</translation>
     </message>
     <message>
@@ -495,7 +495,7 @@
         <translation type="unfinished">메시지 서명</translation>
     </message>
     <message>
-        <source>Sign messages with your Qtum addresses to prove you own them</source>
+        <source>Sign messages with your SICash addresses to prove you own them</source>
         <translation type="unfinished">소유하고 있는 SICASH 주소의 키로 메시지 서명을 하여 해당 SICASH 주소의 소유권을 증명하세요. </translation>
     </message>
     <message>
@@ -503,7 +503,7 @@
         <translation type="unfinished">메시지 검증</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Qtum addresses</source>
+        <source>Verify messages to ensure they were signed with specified SICash addresses</source>
         <translation type="unfinished">메시지 검증. 메시지에 특정 퀀텀 주소의 서명이 있는지 확인 </translation>
     </message>
     <message>
@@ -559,7 +559,7 @@
         <translation type="unfinished">커멘드 라인 옵션</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Qtum command-line options</source>
+        <source>Show the %1 help message to get a list with possible SICash command-line options</source>
         <translation type="unfinished">%1 도움 정보 표시로 사용 가능한 커멘드 라인 옵션 리스트 불러오기</translation>
     </message>
     <message>
@@ -615,8 +615,8 @@
         <translation type="unfinished">지갑：</translation>
     </message>
     <message>
-        <source>New version of Qtum wallet is available on the Qtum source code repository: &lt;br /&gt; %1. &lt;br /&gt;It is recommended to download it and update this application</source>
-        <translation type="unfinished">최신 버전의 Qtum 지갑은 Qtum 소스코드 레포지토리 &lt;br /&gt; %1. &lt;br /&gt;에서 받을 수 있습니다. 다운로드 및 업데이트를 권장 드립니다. </translation>
+        <source>New version of SICash wallet is available on the SICash source code repository: &lt;br /&gt; %1. &lt;br /&gt;It is recommended to download it and update this application</source>
+        <translation type="unfinished">최신 버전의 SICash 지갑은 SICash 소스코드 레포지토리 &lt;br /&gt; %1. &lt;br /&gt;에서 받을 수 있습니다. 다운로드 및 업데이트를 권장 드립니다. </translation>
     </message>
     <message>
         <source>Check for updates</source>
@@ -627,7 +627,7 @@
         <translation type="unfinished">%1 클라이언트</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Qtum network</source>
+        <source>%n active connection(s) to SICash network</source>
         <translation type="unfinished">
             <numerusform>SICASH네트워크에 대한 활성화된 연결은 %n 개입니다.</numerusform>
         </translation>
@@ -695,7 +695,7 @@
         <translation type="unfinished">해당 지점 이후 거래 내역이 없습니다. </translation>
     </message>
     <message>
-        <source>Qtum</source>
+        <source>SICash</source>
         <translation type="unfinished">SICASH</translation>
     </message>
     <message>
@@ -1266,7 +1266,7 @@
     </message>
     <message>
         <source>The sicash address that will be used to create the contract.</source>
-        <translation type="unfinished">컨트랙트 생성을 위한 Qtum주소</translation>
+        <translation type="unfinished">컨트랙트 생성을 위한 SICash주소</translation>
     </message>
     <message>
         <source>The Gas Price is too high, are you sure you want to possibly spend a max of %1 for this transaction?</source>
@@ -1336,7 +1336,7 @@
         <translation>송금주소 편집</translation>
     </message>
     <message>
-        <source>The entered address &quot;%1&quot; is not a valid Qtum address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid SICash address.</source>
         <translation>입력한 주소 %1는 유효한 SICASH 주소가 아닙니다. </translation>
     </message>
     <message>
@@ -1477,7 +1477,7 @@
         <translation>사용자 지정 데이터 디렉터리 사용</translation>
     </message>
     <message>
-        <source>Qtum</source>
+        <source>SICash</source>
         <translation>SICASH</translation>
     </message>
     <message>
@@ -1489,7 +1489,7 @@
         <translation>해당 디렉토리에 약 %1 GB의 데이터를 저장할 예정입니다. </translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Qtum block chain.</source>
+        <source>%1 will download and store a copy of the SICash block chain.</source>
         <translation>%1이 SICASH 블록체인을 다운로드 및 저장할 예정입니다. </translation>
     </message>
     <message>
@@ -1731,7 +1731,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation>승인 대기 중인 잔액 사용</translation>
     </message>
     <message>
-        <source>Automatically open the Qtum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the SICash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation type="vanished">라우터에서 자동으로 퀀텀 클라이언트 실행하기. 해당 기능은 라우터에 UPnP 옵션이 활성화되어 있을 경우에만 유효합니다. </translation>
     </message>
     <message>
@@ -1747,7 +1747,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation>연결 유입 허용</translation>
     </message>
     <message>
-        <source>Connect to the Qtum network through a SOCKS5 proxy.</source>
+        <source>Connect to the SICash network through a SOCKS5 proxy.</source>
         <translation type="vanished">SOCKS5 프록시를 통해 SICASH 네트워크 연결</translation>
     </message>
     <message>
@@ -1783,7 +1783,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Qtum network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <source>Connect to the SICash network through a separate SOCKS5 proxy for Tor hidden services.</source>
         <translation type="vanished">Tor 히든 서비스에서 별도의 SOCKS5 프록시를 통해 퀀텀 네트워크 연결</translation>
     </message>
     <message>
@@ -1946,7 +1946,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation>서식</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Qtum network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the SICash network after a connection is established, but this process has not completed yet.</source>
         <translation>현재 표시된 내용은 지난 정보일 수 있습니다. 퀀텀 네트워크에 연결 후 동기화를 실행하지만 아직 완료되진 않았습니다. </translation>
     </message>
     <message>
@@ -2100,7 +2100,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation>무효한 송금 주소 %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Qtum address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid SICash address or malformed URI parameters.</source>
         <translation>URI 주소를 분석할 수 없습니다. 무효한 퀀텀 주소 또는 URI 파라미터 서식 오류일 수 있습니다. </translation>
     </message>
     <message>
@@ -2206,7 +2206,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation>금액</translation>
     </message>
     <message>
-        <source>Enter a Qtum address (e.g. %1)</source>
+        <source>Enter a SICash address (e.g. %1)</source>
         <translation>SICASH 주소를 입력해주세요 (예시, %1)</translation>
     </message>
     <message>
@@ -2392,7 +2392,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>SICashGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation type="vanished">메시지 서명</translation>
@@ -2494,7 +2494,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation type="vanished">프록시 &lt;b&gt;활성화&lt;/b&gt;：%1</translation>
     </message>
     <message>
-        <source>Send coins to a Qtum address</source>
+        <source>Send coins to a SICash address</source>
         <translation type="vanished">SICASH 주소로 SICASH 코인 보내기</translation>
     </message>
     <message>
@@ -2518,7 +2518,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation type="vanished">메시지 검증</translation>
     </message>
     <message>
-        <source>Qtum</source>
+        <source>SICash</source>
         <translation type="vanished">SICASH</translation>
     </message>
     <message>
@@ -2542,11 +2542,11 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation type="vanished">지갑 프라이빗 키 암호화</translation>
     </message>
     <message>
-        <source>Sign messages with your Qtum addresses to prove you own them</source>
+        <source>Sign messages with your SICash addresses to prove you own them</source>
         <translation type="vanished">소유하고 있는 SICASH 주소의 키로 메시지 서명을 하여 해당 SICASH 주소의 소유권을 증명하세요. </translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Qtum addresses</source>
+        <source>Verify messages to ensure they were signed with specified SICash addresses</source>
         <translation type="vanished">메시지 검증. 메시지에 특정 퀀텀 주소의 서명이 있는지 확인 </translation>
     </message>
     <message>
@@ -2586,7 +2586,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation type="vanished">커멘드 라인 옵션</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Qtum network</source>
+        <source>%n active connection(s) to SICash network</source>
         <translation type="vanished">
             <numerusform>SICASH네트워크에 대한 활성화된 연결은 %n 개입니다.</numerusform>
         </translation>
@@ -2658,7 +2658,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation type="vanished">지갑 닫기</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Qtum command-line options</source>
+        <source>Show the %1 help message to get a list with possible SICash command-line options</source>
         <translation type="vanished">%1 도움 정보 표시로 사용 가능한 커멘드 라인 옵션 리스트 불러오기</translation>
     </message>
     <message>
@@ -2770,7 +2770,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation type="vanished">지갑이 &lt;b&gt;암호화&lt;/b&gt;되었고 현재는 &lt;b&gt;락업&lt;/b&gt;상태입니다.</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Qtum can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. SICash can no longer continue safely and will quit.</source>
         <translation type="vanished">심각한 에러가 발생하여 클라이언트가 안전하게 실행될 수 없어 종료될 예정입니다. </translation>
     </message>
 </context>
@@ -3108,7 +3108,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation>메시지</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Qtum network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the SICash network.</source>
         <translation>지불 요청에 메시지를 추가할 수 있습니다. 지불 요청 확인 시 메시지 확인이 가능합니다. 주의: 메시지는 퀀텀 네트워크를 통해 전달되는 것은 아닙니다. </translation>
     </message>
     <message>
@@ -3653,7 +3653,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         </translation>
     </message>
     <message>
-        <source>Warning: Invalid Qtum address</source>
+        <source>Warning: Invalid SICash address</source>
         <translation>경고: 무효한 SICASH 주소</translation>
     </message>
     <message>
@@ -3712,7 +3712,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>정상적인 지불입니다. </translation>
     </message>
     <message>
-        <source>The Qtum address to send the payment to</source>
+        <source>The SICash address to send the payment to</source>
         <translation>지불 목적 주소</translation>
     </message>
     <message>
@@ -3760,7 +3760,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>해당 주소에 라벨을 추가하여 사용했던 리스트에 추가해주세요. </translation>
     </message>
     <message>
-        <source>A message that was attached to the sicash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Qtum network.</source>
+        <source>A message that was attached to the sicash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the SICash network.</source>
         <translation>퀀텀 URI에 첨부된 메시지는 참조를 위해 거래와 함께 저장됩니다. 주의: 메시지는 퀀텀 네트워크를 통해 전달되는 것은 아닙니다. </translation>
     </message>
     <message>
@@ -4007,7 +4007,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>소유하고 계신 주소로 메시지/협의에 대해 서명하여 해당 주소를 통해 SICASH을 받을 수 있음을 증명할 수 있습니다. 피싱 공격을 예방하기 위해 명확하지 않은 내용 또는 랜덤 메시지에 대한 서명은 삼가 하시고 메시지에 대해 충분히 동의할 경우에만 서명하세요. </translation>
     </message>
     <message>
-        <source>The Qtum address to sign the message with</source>
+        <source>The SICash address to sign the message with</source>
         <translation>메시지 서명에 사용된 퀀텀 주소</translation>
     </message>
     <message>
@@ -4039,7 +4039,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>시스템 클립보드에 해당 서명 복사</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Qtum address</source>
+        <source>Sign the message to prove you own this SICash address</source>
         <translation>메시지 서명을 통해 퀀텀 주소의 소유권을 증명하세요</translation>
     </message>
     <message>
@@ -4063,11 +4063,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>받는이의 주소와 메시지 (띄어쓰기, 빈칸, 부호 등이 정확한지 확인해주세요)를 입력하고 서명하여 아래 메시지를 검증하세요. 미들맨의 공격을 예방하기 위해 서명된 메시지 외에는 읽지 않을 것을 권장 드립니다. 받는이가 서명한 주소라는 것만 증명할 수 있고 그 외에 어떤 거래도 증명할 수 없다는 것을 유의해주시길 바랍니다. </translation>
     </message>
     <message>
-        <source>The Qtum address the message was signed with</source>
+        <source>The SICash address the message was signed with</source>
         <translation>메시지 서명에 사용된 퀀텀 주소</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Qtum address</source>
+        <source>Verify the message to ensure it was signed with the specified SICash address</source>
         <translation>메시지 검증을 통해 지정된 퀀텀 주소를 통해 서명한 것을 확인하세요. </translation>
     </message>
     <message>
@@ -5089,8 +5089,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Qtum Core</source>
-        <translation type="unfinished">Qtum Core</translation>
+        <source>SICash Core</source>
+        <translation type="unfinished">SICash Core</translation>
     </message>
     <message>
         <source>The %s developers</source>
@@ -5630,8 +5630,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="vanished">HTTP 서비스를 활성화하지 못했습니다. 디버그 로그에서 더 많은 정보를 확인하세요. </translation>
     </message>
     <message>
-        <source>Qtum Core</source>
-        <translation type="vanished">Qtum Core</translation>
+        <source>SICash Core</source>
+        <translation type="vanished">SICash Core</translation>
     </message>
     <message>
         <source>The %s developers</source>

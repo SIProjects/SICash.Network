@@ -66,8 +66,8 @@
         <translation>Fogadási cím</translation>
     </message>
     <message>
-        <source>These are your Qtum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Ezek a Qtum címeid kifizetések küldéséhez. Mindíg ellenőrizd az összeget és a fogadó címet mielőtt coinokat küldenél.</translation>
+        <source>These are your SICash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Ezek a SICash címeid kifizetések küldéséhez. Mindíg ellenőrizd az összeget és a fogadó címet mielőtt coinokat küldenél.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -248,7 +248,7 @@
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>SICashGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Üzenet aláírása...</translation>
@@ -358,8 +358,8 @@
         <translation>Proxy  &lt;b&gt;aktív&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Qtum address</source>
-        <translation>Qtum küldése megadott címre</translation>
+        <source>Send coins to a SICash address</source>
+        <translation>SICash küldése megadott címre</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -402,12 +402,12 @@
         <translation>A tárcádhoz tartozó privát kulcsok titkosítása</translation>
     </message>
     <message>
-        <source>Sign messages with your Qtum addresses to prove you own them</source>
-        <translation>Üzenetek aláírása a Qtum-címmeiddel, amivel bizonyítod, hogy a cím a sajátod</translation>
+        <source>Sign messages with your SICash addresses to prove you own them</source>
+        <translation>Üzenetek aláírása a SICash-címmeiddel, amivel bizonyítod, hogy a cím a sajátod</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Qtum addresses</source>
-        <translation>Üzenetek ellenőrzése, hogy valóban a megjelölt Qtum-címekkel vannak-e aláírva</translation>
+        <source>Verify messages to ensure they were signed with specified SICash addresses</source>
+        <translation>Üzenetek ellenőrzése, hogy valóban a megjelölt SICash-címekkel vannak-e aláírva</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -446,8 +446,8 @@
         <translation>Paran&amp;cssor kapcsolók</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Qtum network</source>
-        <translation><numerusform>%n aktív kapcsolat a Qtum hálózathoz</numerusform><numerusform>%n aktív kapcsolat a Qtum hálózathoz</numerusform></translation>
+        <source>%n active connection(s) to SICash network</source>
+        <translation><numerusform>%n aktív kapcsolat a SICash hálózathoz</numerusform><numerusform>%n aktív kapcsolat a SICash hálózathoz</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -514,8 +514,8 @@
         <translation>Tárca bezárása</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Qtum command-line options</source>
-        <translation>A %1 súgó megjelenítése a Qtum lehetséges parancssori kapcsolóinak listájával</translation>
+        <source>Show the %1 help message to get a list with possible SICash command-line options</source>
+        <translation>A %1 súgó megjelenítése a SICash lehetséges parancssori kapcsolóinak listájával</translation>
     </message>
     <message>
         <source>default wallet</source>
@@ -621,8 +621,8 @@
         <translation>A tárca &lt;b&gt;titkosítva&lt;/b&gt; és jelenleg &lt;b&gt;bezárva&lt;/b&gt;.</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Qtum can no longer continue safely and will quit.</source>
-        <translation>Végzetes hiba történt. A Qtum működése nem biztonságos és hamarosan leáll.</translation>
+        <source>A fatal error occurred. SICash can no longer continue safely and will quit.</source>
+        <translation>Végzetes hiba történt. A SICash működése nem biztonságos és hamarosan leáll.</translation>
     </message>
 </context>
 <context>
@@ -857,8 +857,8 @@
         <translation>Küldő cím szerkesztése</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Qtum address.</source>
-        <translation>A megadott "%1" cím nem egy érvényes Qtum-cím.</translation>
+        <source>The entered address "%1" is not a valid SICash address.</source>
+        <translation>A megadott "%1" cím nem egy érvényes SICash-cím.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -950,8 +950,8 @@
         <translation>Saját adatkönyvtár használata:</translation>
     </message>
     <message>
-        <source>Qtum</source>
-        <translation>Qtum</translation>
+        <source>SICash</source>
+        <translation>SICash</translation>
     </message>
     <message>
         <source>Discard blocks after verification, except most recent %1 GB (prune)</source>
@@ -966,8 +966,8 @@
         <translation>Hozzávetőlegesen %1 GB adatot fogunk ebben a könyvtárban tárolni.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Qtum block chain.</source>
-        <translation>%1 le fog töltődni és a Qtum blokk lánc egy másolatát fogja tárolni.</translation>
+        <source>%1 will download and store a copy of the SICash block chain.</source>
+        <translation>%1 le fog töltődni és a SICash blokk lánc egy másolatát fogja tárolni.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
@@ -1190,8 +1190,8 @@
         <translation>&amp;Költése a a jóváhagyatlan visszajárónak</translation>
     </message>
     <message>
-        <source>Automatically open the Qtum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>A Qtum-kliens portjának automatikus megnyitása a routeren. Ez csak akkor működik, ha a routered támogatja az UPnP-t és az engedélyezve is van rajta.</translation>
+        <source>Automatically open the SICash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>A SICash-kliens portjának automatikus megnyitása a routeren. Ez csak akkor működik, ha a routered támogatja az UPnP-t és az engedélyezve is van rajta.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1206,8 +1206,8 @@
         <translation>Bejövő kapcsolatok engedélyezése.</translation>
     </message>
     <message>
-        <source>Connect to the Qtum network through a SOCKS5 proxy.</source>
-        <translation>Csatlakozás a Qtum hálózatához SOCKS5 proxyn keresztül</translation>
+        <source>Connect to the SICash network through a SOCKS5 proxy.</source>
+        <translation>Csatlakozás a SICash hálózatához SOCKS5 proxyn keresztül</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1242,8 +1242,8 @@
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Qtum network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Csatlakozás a Qtum hálózathoz külön SOCKS5 proxy használatával a Tor rejtett szolgáltatásainak eléréséhez.</translation>
+        <source>Connect to the SICash network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Csatlakozás a SICash hálózathoz külön SOCKS5 proxy használatával a Tor rejtett szolgáltatásainak eléréséhez.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1349,8 +1349,8 @@
         <translation>Űrlap</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Qtum network after a connection is established, but this process has not completed yet.</source>
-        <translation>A kijelzett információ lehet, hogy elavult. A kapcsolat létrehozatalát követően tárcája automatikusan szinkronba kerül a Qtum hálózattal, de ez a folyamat még nem fejeződött be.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the SICash network after a connection is established, but this process has not completed yet.</source>
+        <translation>A kijelzett információ lehet, hogy elavult. A kapcsolat létrehozatalát követően tárcája automatikusan szinkronba kerül a SICash hálózattal, de ez a folyamat még nem fejeződött be.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1440,8 +1440,8 @@
         <translation>Érvénytelen fizetési cím %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Qtum address or malformed URI parameters.</source>
-        <translation>Nem sikerült az URI elemzése! Ezt okozhatja érvénytelen Qtum cím, vagy rossz URI paraméterezés.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid SICash address or malformed URI parameters.</source>
+        <translation>Nem sikerült az URI elemzése! Ezt okozhatja érvénytelen SICash cím, vagy rossz URI paraméterezés.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1538,8 +1538,8 @@
         <translation>Összeg</translation>
     </message>
     <message>
-        <source>Enter a Qtum address (e.g. %1)</source>
-        <translation>Ad meg egy Qtum címet (pl: %1)</translation>
+        <source>Enter a SICash address (e.g. %1)</source>
+        <translation>Ad meg egy SICash címet (pl: %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1975,8 +1975,8 @@
         <translation>&amp;Üzenet:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Qtum network.</source>
-        <translation>Egy opcionális üzenet csatolása a fizetési kérelemhez, amely megjelenik a kérelem megnyitásakor. Megjegyzés: Az üzenet nem lesz elküldve a fizetséggel a Qtum hálózaton keresztül.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the SICash network.</source>
+        <translation>Egy opcionális üzenet csatolása a fizetési kérelemhez, amely megjelenik a kérelem megnyitásakor. Megjegyzés: Az üzenet nem lesz elküldve a fizetséggel a SICash hálózaton keresztül.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -2344,8 +2344,8 @@
         <translation>A fizetési kérelem lejárt.</translation>
     </message>
     <message>
-        <source>Warning: Invalid Qtum address</source>
-        <translation>Figyelmeztetés: Érvénytelen Qtum cím</translation>
+        <source>Warning: Invalid SICash address</source>
+        <translation>Figyelmeztetés: Érvénytelen SICash cím</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2387,8 +2387,8 @@
         <translation>Ez normál fizetés.</translation>
     </message>
     <message>
-        <source>The Qtum address to send the payment to</source>
-        <translation>Erre a Qtum címre küldje az összeget</translation>
+        <source>The SICash address to send the payment to</source>
+        <translation>Erre a SICash címre küldje az összeget</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2472,8 +2472,8 @@
         <translation>Üzenet aláírása...</translation>
     </message>
     <message>
-        <source>The Qtum address to sign the message with</source>
-        <translation>Qtum cím, amivel alá kívánja írni az üzenetet</translation>
+        <source>The SICash address to sign the message with</source>
+        <translation>SICash cím, amivel alá kívánja írni az üzenetet</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2504,7 +2504,7 @@
         <translation>A jelenleg kiválasztott aláírás másolása a rendszer-vágólapra</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Qtum address</source>
+        <source>Sign the message to prove you own this SICash address</source>
         <translation>Üzenet</translation>
     </message>
     <message>
@@ -2520,12 +2520,12 @@
         <translation>Üzenet ellenőrzése</translation>
     </message>
     <message>
-        <source>The Qtum address the message was signed with</source>
-        <translation>Qtum cím, amivel aláírta az üzenetet</translation>
+        <source>The SICash address the message was signed with</source>
+        <translation>SICash cím, amivel aláírta az üzenetet</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Qtum address</source>
-        <translation>Ellenőrizze az üzenetet, hogy valóban a megjelölt Qtum címmel van-e aláírva</translation>
+        <source>Verify the message to ensure it was signed with the specified SICash address</source>
+        <translation>Ellenőrizze az üzenetet, hogy valóban a megjelölt SICash címmel van-e aláírva</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>

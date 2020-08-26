@@ -9,7 +9,7 @@ from test_framework.script import *
 from test_framework.mininode import *
 import sys
 
-class QtumRPCSearchlogsTest(BitcoinTestFramework):
+class SICashRPCSearchlogsTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
@@ -84,4 +84,4 @@ class QtumRPCSearchlogsTest(BitcoinTestFramework):
 
 
 if __name__ == '__main__':
-    QtumRPCSearchlogsTest().main()
+    SICashRPCSearchlogsTest().main()

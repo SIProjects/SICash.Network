@@ -309,7 +309,7 @@ UniValue executionResultToJSON(const dev::eth::ExecutionResult& exRes)
     return result;
 }
 
-UniValue transactionReceiptToJSON(const QtumTransactionReceipt& txRec)
+UniValue transactionReceiptToJSON(const SICashTransactionReceipt& txRec)
 {
     UniValue result(UniValue::VOBJ);
     result.pushKV("stateRoot", txRec.stateRoot().hex());
@@ -1960,7 +1960,7 @@ UniValue getdelegationinfoforaddress(const JSONRPCRequest& request)
     }
 
     // Get delegation for an address
-    QtumDelegation sicashDelegation;
+    SICashDelegation sicashDelegation;
     Delegation delegation;
     uint160 address = uint160(*pkhash);
     if(!sicashDelegation.GetDelegation(address, delegation)) {
@@ -2038,7 +2038,7 @@ UniValue getdelegationsforstaker(const JSONRPCRequest& request)
     }
 
     // Get delegations for staker
-    QtumDelegation sicashDelegation;
+    SICashDelegation sicashDelegation;
     std::vector<DelegationEvent> events;
     uint160 address = uint160(*pkhash);
     DelegationsStakerFilter filter(address);

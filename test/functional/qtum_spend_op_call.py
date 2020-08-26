@@ -10,7 +10,7 @@ from test_framework.blocktools import *
 import time
 import io
 
-class QtumSpendOpCallTest(BitcoinTestFramework):
+class SICashSpendOpCallTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
@@ -58,4 +58,4 @@ class QtumSpendOpCallTest(BitcoinTestFramework):
         assert_equal(self.nodes[0].getblockcount(), block_count)
 
 if __name__ == '__main__':
-    QtumSpendOpCallTest().main()
+    SICashSpendOpCallTest().main()

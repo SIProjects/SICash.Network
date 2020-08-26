@@ -15,7 +15,7 @@ import pprint
 
 pp = pprint.PrettyPrinter()
 
-class QtumEVMRevertTest(BitcoinTestFramework):
+class SICashEVMRevertTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
@@ -141,4 +141,4 @@ class QtumEVMRevertTest(BitcoinTestFramework):
         
 
 if __name__ == '__main__':
-    QtumEVMRevertTest().main()
+    SICashEVMRevertTest().main()

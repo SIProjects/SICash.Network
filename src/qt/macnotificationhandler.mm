@@ -13,7 +13,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"org.sicash.Qtum-Qt";
+        return @"org.sicash.SICash-Qt";
     } else {
         return [self __bundleIdentifier];
     }

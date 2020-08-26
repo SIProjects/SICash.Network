@@ -9,7 +9,7 @@ from test_framework.blocktools import *
 import time
 import io
 
-class QtumIdenticalRefunds(BitcoinTestFramework):
+class SICashIdenticalRefunds(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
@@ -74,4 +74,4 @@ class QtumIdenticalRefunds(BitcoinTestFramework):
         assert_equal(self.node.getblockcount(), block_count)
         
 if __name__ == '__main__':
-    QtumIdenticalRefunds().main()
+    SICashIdenticalRefunds().main()

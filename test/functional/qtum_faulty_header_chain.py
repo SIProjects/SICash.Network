@@ -13,7 +13,7 @@ import time
 import io
 
 
-class QtumHeaderSpamTest(BitcoinTestFramework):
+class SICashHeaderSpamTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2
@@ -133,4 +133,4 @@ class QtumHeaderSpamTest(BitcoinTestFramework):
         
 
 if __name__ == '__main__':
-    QtumHeaderSpamTest().main()
+    SICashHeaderSpamTest().main()

@@ -8,23 +8,23 @@ using namespace std;
 using namespace dev;
 using namespace dev::eth;
 
-QtumState::QtumState(u256 const& _accountStartNonce, OverlayDB const& _db, const string& _path, BaseState _bs) :
+SICashState::SICashState(u256 const& _accountStartNonce, OverlayDB const& _db, const string& _path, BaseState _bs) :
         State(_accountStartNonce, _db, _bs) {
-            dbUTXO = QtumState::openDB(_path + "/sicashDB", sha3(rlp("")), WithExisting::Trust);
+            dbUTXO = SICashState::openDB(_path + "/sicashDB", sha3(rlp("")), WithExisting::Trust);
 	        stateUTXO = SecureTrieDB<Address, OverlayDB>(&dbUTXO);
 }
 
-QtumState::QtumState() : dev::eth::State(dev::Invalid256, dev::OverlayDB(), dev::eth::BaseState::PreExisting) {
+SICashState::SICashState() : dev::eth::State(dev::Invalid256, dev::OverlayDB(), dev::eth::BaseState::PreExisting) {
     dbUTXO = OverlayDB();
     stateUTXO = SecureTrieDB<Address, OverlayDB>(&dbUTXO);
 }
 
-ResultExecute QtumState::execute(EnvInfo const& _envInfo, SealEngineFace const& _sealEngine, QtumTransaction const& _t, Permanence _p, OnOpFunc const& _onOp){
+ResultExecute SICashState::execute(EnvInfo const& _envInfo, SealEngineFace const& _sealEngine, SICashTransaction const& _t, Permanence _p, OnOpFunc const& _onOp){
 
     assert(_t.getVersion().toRaw() == VersionVM::GetEVMDefault().toRaw());
 
     addBalance(_t.sender(), _t.value() + (_t.gas() * _t.gasPrice()));
-    newAddress = _t.isCreation() ? createQtumAddress(_t.getHashWith(), _t.getNVout()) : dev::Address();
+    newAddress = _t.isCreation() ? createSICashAddress(_t.getHashWith(), _t.getNVout()) : dev::Address();
 
     _sealEngine.deleteAddresses.insert({_t.sender(), _envInfo.author()});
 
@@ -122,13 +122,13 @@ ResultExecute QtumState::execute(EnvInfo const& _envInfo, SealEngineFace const& 
             refund.vout.push_back(CTxOut(CAmount(_t.value().convert_to<uint64_t>()), script));
         }
         //make sure to use empty transaction if no vouts made
-        return ResultExecute{ex, QtumTransactionReceipt(oldStateRoot, oldUTXORoot, gas, e.logs()), refund.vout.empty() ? CTransaction() : CTransaction(refund)};
+        return ResultExecute{ex, SICashTransactionReceipt(oldStateRoot, oldUTXORoot, gas, e.logs()), refund.vout.empty() ? CTransaction() : CTransaction(refund)};
     }else{
-        return ResultExecute{res, QtumTransactionReceipt(rootHash(), rootHashUTXO(), startGasUsed + e.gasUsed(), e.logs()), tx ? *tx : CTransaction()};
+        return ResultExecute{res, SICashTransactionReceipt(rootHash(), rootHashUTXO(), startGasUsed + e.gasUsed(), e.logs()), tx ? *tx : CTransaction()};
     }
 }
 
-std::unordered_map<dev::Address, Vin> QtumState::vins() const // temp
+std::unordered_map<dev::Address, Vin> SICashState::vins() const // temp
 {
     std::unordered_map<dev::Address, Vin> ret;
     for (auto& i: cacheUTXO)
@@ -142,19 +142,19 @@ std::unordered_map<dev::Address, Vin> QtumState::vins() const // temp
     return ret;
 }
 
-void QtumState::transferBalance(dev::Address const& _from, dev::Address const& _to, dev::u256 const& _value) {
+void SICashState::transferBalance(dev::Address const& _from, dev::Address const& _to, dev::u256 const& _value) {
     subBalance(_from, _value);
     addBalance(_to, _value);
     if (_value > 0)
         transfers.push_back({_from, _to, _value});
 }
 
-Vin const* QtumState::vin(dev::Address const& _a) const
+Vin const* SICashState::vin(dev::Address const& _a) const
 {
-    return const_cast<QtumState*>(this)->vin(_a);
+    return const_cast<SICashState*>(this)->vin(_a);
 }
 
-Vin* QtumState::vin(dev::Address const& _addr)
+Vin* SICashState::vin(dev::Address const& _addr)
 {
     auto it = cacheUTXO.find(_addr);
     if (it == cacheUTXO.end()){
@@ -173,7 +173,7 @@ Vin* QtumState::vin(dev::Address const& _addr)
     return &it->second;
 }
 
-// void QtumState::commit(CommitBehaviour _commitBehaviour)
+// void SICashState::commit(CommitBehaviour _commitBehaviour)
 // {
 //     if (_commitBehaviour == CommitBehaviour::RemoveEmptyAccounts)
 //         removeEmptyAccounts();
@@ -187,7 +187,7 @@ Vin* QtumState::vin(dev::Address const& _addr)
 //     m_unchangedCacheEntries.clear();
 // }
 
-void QtumState::kill(dev::Address _addr)
+void SICashState::kill(dev::Address _addr)
 {
     // If the account is not in the db, nothing to kill.
     if (auto a = account(_addr))
@@ -196,7 +196,7 @@ void QtumState::kill(dev::Address _addr)
         v->alive = 0;
 }
 
-void QtumState::addBalance(dev::Address const& _id, dev::u256 const& _amount)
+void SICashState::addBalance(dev::Address const& _id, dev::u256 const& _amount)
 {
     if (dev::eth::Account* a = account(_id))
     {
@@ -227,7 +227,7 @@ void QtumState::addBalance(dev::Address const& _id, dev::u256 const& _amount)
         m_changeLog.emplace_back(dev::eth::Change::Balance, _id, _amount);
 }
 
-void QtumState::deleteAccounts(std::set<dev::Address>& addrs){
+void SICashState::deleteAccounts(std::set<dev::Address>& addrs){
     for(dev::Address addr : addrs){
         dev::eth::Account* acc = const_cast<dev::eth::Account*>(account(addr));
         if(acc)
@@ -238,7 +238,7 @@ void QtumState::deleteAccounts(std::set<dev::Address>& addrs){
     }
 }
 
-void QtumState::updateUTXO(const std::unordered_map<dev::Address, Vin>& vins){
+void SICashState::updateUTXO(const std::unordered_map<dev::Address, Vin>& vins){
     for(auto& v : vins){
         Vin* vi = const_cast<Vin*>(vin(v.first));
 
@@ -253,13 +253,13 @@ void QtumState::updateUTXO(const std::unordered_map<dev::Address, Vin>& vins){
     }
 }
 
-void QtumState::printfErrorLog(const dev::eth::TransactionException er){
+void SICashState::printfErrorLog(const dev::eth::TransactionException er){
     std::stringstream ss;
     ss << er;
     clog(dev::VerbosityWarning, "exec") << "VM exception:" << ss.str();
 }
 
-void QtumState::validateTransfersWithChangeLog(){
+void SICashState::validateTransfersWithChangeLog(){
 	ChangeLog tmpChangeLog = m_changeLog;
 	std::vector<TransferInfo> validatedTransfers;
 
@@ -286,11 +286,11 @@ void QtumState::validateTransfersWithChangeLog(){
 	transfers=validatedTransfers;
 }
 
-void QtumState::deployDelegationsContract(){
+void SICashState::deployDelegationsContract(){
     dev::Address delegationsAddress = uintToh160(Params().GetConsensus().delegationsAddress);
-    if(!QtumState::addressInUse(delegationsAddress)){
-        QtumState::createContract(delegationsAddress);
-        QtumState::setCode(delegationsAddress, bytes{fromHex(DELEGATIONS_CONTRACT_CODE)});
+    if(!SICashState::addressInUse(delegationsAddress)){
+        SICashState::createContract(delegationsAddress);
+        SICashState::setCode(delegationsAddress, bytes{fromHex(DELEGATIONS_CONTRACT_CODE)});
         commit(CommitBehaviour::RemoveEmptyAccounts);
         db().commit();
     }

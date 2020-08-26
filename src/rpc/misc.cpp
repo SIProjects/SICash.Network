@@ -96,7 +96,7 @@ UniValue getdgpinfo(const JSONRPCRequest& request)
 
     LOCK(cs_main);
 
-    QtumDGP sicashDGP(globalState.get());
+    SICashDGP sicashDGP(globalState.get());
 
     UniValue obj(UniValue::VOBJ);
     obj.pushKV("maxblocksize", (uint64_t)sicashDGP.getBlockSize(::ChainActive().Height()));

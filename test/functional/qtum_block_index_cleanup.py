@@ -11,7 +11,7 @@ from test_framework.sicash import *
 from test_framework.sicashconfig import *
 import sys
 
-class QtumBlockIndexCleanupTest(BitcoinTestFramework):
+class SICashBlockIndexCleanupTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 4
@@ -134,4 +134,4 @@ class QtumBlockIndexCleanupTest(BitcoinTestFramework):
             assert_equal(self.node.getchaintips(), n.getchaintips())
 
 if __name__ == '__main__':
-    QtumBlockIndexCleanupTest().main()
+    SICashBlockIndexCleanupTest().main()

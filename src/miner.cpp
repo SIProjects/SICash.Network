@@ -215,8 +215,8 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     }
 
     //////////////////////////////////////////////////////// sicash
-    QtumDGP sicashDGP(globalState.get(), fGettingValuesDGP);
-    globalSealEngine->setQtumSchedule(sicashDGP.getGasSchedule(nHeight));
+    SICashDGP sicashDGP(globalState.get(), fGettingValuesDGP);
+    globalSealEngine->setSICashSchedule(sicashDGP.getGasSchedule(nHeight));
     uint32_t blockSizeDGP = sicashDGP.getBlockSize(nHeight);
     minGasPrice = sicashDGP.getMinGasPrice(nHeight);
     if(gArgs.IsArgSet("-staker-min-tx-gas-price")) {
@@ -445,17 +445,17 @@ bool BlockAssembler::AttemptToAddContractToBlock(CTxMemPool::txiter iter, uint64
     uint64_t nBlockSigOpsCost = this->nBlockSigOpsCost;
 
     unsigned int contractflags = GetContractScriptFlags(nHeight, chainparams.GetConsensus());
-    QtumTxConverter convert(iter->GetTx(), NULL, &pblock->vtx, contractflags);
+    SICashTxConverter convert(iter->GetTx(), NULL, &pblock->vtx, contractflags);
 
-    ExtractQtumTX resultConverter;
-    if(!convert.extractionQtumTransactions(resultConverter)){
+    ExtractSICashTX resultConverter;
+    if(!convert.extractionSICashTransactions(resultConverter)){
         //this check already happens when accepting txs into mempool
         //therefore, this can only be triggered by using raw transactions on the staker itself
         return false;
     }
-    std::vector<QtumTransaction> sicashTransactions = resultConverter.first;
+    std::vector<SICashTransaction> sicashTransactions = resultConverter.first;
     dev::u256 txGas = 0;
-    for(QtumTransaction sicashTransaction : sicashTransactions){
+    for(SICashTransaction sicashTransaction : sicashTransactions){
         txGas += sicashTransaction.gas();
         if(txGas > txGasLimit) {
             // Limit the tx gas limit by the soft limit if such a limit has been specified.
@@ -988,7 +988,7 @@ public:
 
 private:
     CWallet *pwallet;
-    QtumDelegation sicashDelegations;
+    SICashDelegation sicashDelegations;
     int32_t cacheHeight;
     int32_t nCheckpointSpan;
     std::map<uint160, Delegation> cacheDelegationsStaker;
@@ -1095,7 +1095,7 @@ public:
                 {
                     Delegation delegation;
                     uint160 address = item.first;
-                    if(sicashDelegations.GetDelegation(address, delegation) && QtumDelegation::VerifyDelegation(address, delegation))
+                    if(sicashDelegations.GetDelegation(address, delegation) && SICashDelegation::VerifyDelegation(address, delegation))
                     {
                         cacheMyDelegations[address] = delegation;
                     }
@@ -1111,7 +1111,7 @@ public:
 private:
 
     CWallet *pwallet;
-    QtumDelegation sicashDelegations;
+    SICashDelegation sicashDelegations;
     int32_t cacheHeight;
     int32_t nCheckpointSpan;
     std::map<uint160, Delegation> cacheMyDelegations;
@@ -1322,7 +1322,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
     }
 }
 
-void StakeQtums(bool fStake, CWallet *pwallet, CConnman* connman, boost::thread_group*& stakeThread)
+void StakeSICashs(bool fStake, CWallet *pwallet, CConnman* connman, boost::thread_group*& stakeThread)
 {
     if (stakeThread != nullptr)
     {

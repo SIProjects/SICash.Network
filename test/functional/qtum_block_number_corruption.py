@@ -7,7 +7,7 @@ from test_framework.mininode import *
 from test_framework.address import *
 from test_framework.sicash import *
 
-class QtumBlockNumberCorruptionTest(BitcoinTestFramework):
+class SICashBlockNumberCorruptionTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
@@ -38,4 +38,4 @@ class QtumBlockNumberCorruptionTest(BitcoinTestFramework):
 
 
 if __name__ == '__main__':
-    QtumBlockNumberCorruptionTest().main()
+    SICashBlockNumberCorruptionTest().main()

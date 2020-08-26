@@ -8,7 +8,7 @@ from test_framework.script import *
 from test_framework.address import *
 import time
 
-class QtumPODTest(BitcoinTestFramework):
+class SICashPODTest(BitcoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
         self.setup_clean_chain = True
@@ -101,4 +101,4 @@ class QtumPODTest(BitcoinTestFramework):
         assert_equal(self.staker.getbestblockhash(), block.hash)
 
 if __name__ == '__main__':
-    QtumPODTest().main()
+    SICashPODTest().main()

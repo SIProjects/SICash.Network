@@ -12,7 +12,7 @@ from test_framework.blocktools import *
 """
 Note, these tests do not test the functionality of the DGP template contract itself, for tests for the DGP template, see sicash-dgp.py
 """
-class QtumDGPGasPriceLingeringMempoolTxTest(BitcoinTestFramework):
+class SICashDGPGasPriceLingeringMempoolTxTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2
@@ -81,4 +81,4 @@ class QtumDGPGasPriceLingeringMempoolTxTest(BitcoinTestFramework):
 
 
 if __name__ == '__main__':
-    QtumDGPGasPriceLingeringMempoolTxTest().main()
+    SICashDGPGasPriceLingeringMempoolTxTest().main()
