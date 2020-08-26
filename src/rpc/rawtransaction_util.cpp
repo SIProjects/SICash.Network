@@ -116,7 +116,7 @@ CMutableTransaction ConstructTransaction(const UniValue& inputs_in, const UniVal
 
             // Get dgp gas limit and gas price
             LOCK(cs_main);
-            QtumDGP sicashDGP(globalState.get(), fGettingValuesDGP);
+            SICashDGP sicashDGP(globalState.get(), fGettingValuesDGP);
             uint64_t blockGasLimit = sicashDGP.getBlockGasLimit(::ChainActive().Height());
             uint64_t minGasPrice = CAmount(sicashDGP.getMinGasPrice(::ChainActive().Height()));
             CAmount nGasPrice = (minGasPrice>DEFAULT_GAS_PRICE)?minGasPrice:DEFAULT_GAS_PRICE;
@@ -159,7 +159,7 @@ CMutableTransaction ConstructTransaction(const UniValue& inputs_in, const UniVal
             if (Contract.exists("senderAddress")){
                 senderAddress = DecodeDestination(Contract["senderAddress"].get_str());
                 if (!IsValidDestination(senderAddress))
-                    throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Qtum address to send from");
+                    throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid SICash address to send from");
                 if (!IsValidContractSenderAddress(senderAddress))
                     throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid contract sender address. Only P2PK and P2PKH allowed");
                 else
@@ -227,7 +227,7 @@ CMutableTransaction ConstructTransaction(const UniValue& inputs_in, const UniVal
         } else {
             CTxDestination destination = DecodeDestination(name_);
             if (!IsValidDestination(destination)) {
-                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Qtum address: ") + name_);
+                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid SICash address: ") + name_);
             }
 
             if (!destinations.insert(destination).second) {

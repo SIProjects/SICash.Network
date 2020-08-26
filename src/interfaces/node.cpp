@@ -272,7 +272,7 @@ public:
     {
         LOCK(::cs_main);
 
-        QtumDGP sicashDGP(globalState.get(), fGettingValuesDGP);
+        SICashDGP sicashDGP(globalState.get(), fGettingValuesDGP);
         blockGasLimit = sicashDGP.getBlockGasLimit(::ChainActive().Height());
         minGasPrice = CAmount(sicashDGP.getMinGasPrice(::ChainActive().Height()));
         nGasPrice = (minGasPrice>DEFAULT_GAS_PRICE)?minGasPrice:DEFAULT_GAS_PRICE;

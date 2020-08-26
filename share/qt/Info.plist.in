@@ -29,16 +29,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Qtum-Qt</string>
+  <string>SICash-Qt</string>
 
   <key>CFBundleName</key>
-  <string>Qtum-Qt</string>
+  <string>SICash-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.sicashproject.Qtum-Qt</string>
+  <string>org.sicashproject.SICash-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -46,7 +46,7 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>org.sicash.QtumPayment</string>
+      <string>org.sicash.SICashPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
         <string>sicash</string>
@@ -60,7 +60,7 @@
       <key>UTTypeIdentifier</key>
       <string>org.sicash.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>Qtum payment request</string>
+      <string>SICash payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>

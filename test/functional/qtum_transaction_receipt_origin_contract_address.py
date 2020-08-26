@@ -12,7 +12,7 @@ def waitforlogs(node, contract_address):
     node.result = logs
 
 
-class QtumTransactionReceiptOriginContractAddressTest(BitcoinTestFramework):
+class SICashTransactionReceiptOriginContractAddressTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
@@ -86,4 +86,4 @@ class QtumTransactionReceiptOriginContractAddressTest(BitcoinTestFramework):
 
 
 if __name__ == '__main__':
-    QtumTransactionReceiptOriginContractAddressTest().main()
+    SICashTransactionReceiptOriginContractAddressTest().main()

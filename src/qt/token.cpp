@@ -77,9 +77,9 @@ struct TokenData
     {}
 };
 
-bool ToHash160(const std::string& strQtumAddress, std::string& strHash160)
+bool ToHash160(const std::string& strSICashAddress, std::string& strHash160)
 {
-    CTxDestination sicashAddress = DecodeDestination(strQtumAddress);
+    CTxDestination sicashAddress = DecodeDestination(strSICashAddress);
     if(!IsValidDestination(sicashAddress))
         return false;
     const PKHash * keyid = boost::get<PKHash>(&sicashAddress);
@@ -91,13 +91,13 @@ bool ToHash160(const std::string& strQtumAddress, std::string& strHash160)
     return true;
 }
 
-bool ToQtumAddress(const std::string& strHash160, std::string& strQtumAddress)
+bool ToSICashAddress(const std::string& strHash160, std::string& strSICashAddress)
 {
     uint160 key(ParseHex(strHash160.c_str()));
     PKHash keyid(key);
     CTxDestination sicashAddress = keyid;
     if(IsValidDestination(sicashAddress)){
-        strQtumAddress = EncodeDestination(sicashAddress);
+        strSICashAddress = EncodeDestination(sicashAddress);
         return true;
     }
     return false;
@@ -641,9 +641,9 @@ bool Token::execEvents(int64_t fromBlock, int64_t toBlock, int func, std::vector
             TokenEvent tokenEvent;
             tokenEvent.address = variantMap.value("contractAddress").toString().toStdString();
             tokenEvent.sender = topicsList[1].toString().toStdString().substr(24);
-            ToQtumAddress(tokenEvent.sender, tokenEvent.sender);
+            ToSICashAddress(tokenEvent.sender, tokenEvent.sender);
             tokenEvent.receiver = topicsList[2].toString().toStdString().substr(24);
-            ToQtumAddress(tokenEvent.receiver, tokenEvent.receiver);
+            ToSICashAddress(tokenEvent.receiver, tokenEvent.receiver);
             tokenEvent.blockHash = uint256S(variantMap.value("blockHash").toString().toStdString());
             tokenEvent.blockNumber = variantMap.value("blockNumber").toLongLong();
             tokenEvent.transactionHash = uint256S(variantMap.value("transactionHash").toString().toStdString());

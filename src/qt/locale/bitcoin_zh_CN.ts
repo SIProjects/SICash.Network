@@ -147,11 +147,11 @@
         <translation>收款地址</translation>
     </message>
     <message>
-        <source>These are your Qtum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your SICash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>您可以给这些SICASH地址付款。在付款之前，务必要检查金额和收款地址是否正确。</translation>
     </message>
     <message>
-        <source>These are your Qtum addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
+        <source>These are your SICash addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
         <translation>您可以用这些SICASH地址收款。使用“接收”标签页中的"创建新收款地址"按钮创建新地址。</translation>
     </message>
     <message>
@@ -343,7 +343,7 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <source>A fatal error occurred. Qtum can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. SICash can no longer continue safely and will quit.</source>
         <translation type="unfinished">发生严重错误。客户端无法安全地继续运行，即将退出。</translation>
     </message>
     <message>
@@ -359,7 +359,7 @@
         <translation type="unfinished">发送(&amp;S)</translation>
     </message>
     <message>
-        <source>Send coins to a Qtum address</source>
+        <source>Send coins to a SICash address</source>
         <translation type="unfinished">向一个SICASH地址发送SICASH</translation>
     </message>
     <message>
@@ -507,7 +507,7 @@
         <translation type="unfinished">消息签名(&amp;M)...</translation>
     </message>
     <message>
-        <source>Sign messages with your Qtum addresses to prove you own them</source>
+        <source>Sign messages with your SICash addresses to prove you own them</source>
         <translation type="unfinished">用SICASH地址关联的私钥为消息签名，以证明您拥有这个SICASH地址</translation>
     </message>
     <message>
@@ -515,7 +515,7 @@
         <translation type="unfinished">验证消息(&amp;V)...</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Qtum addresses</source>
+        <source>Verify messages to ensure they were signed with specified SICash addresses</source>
         <translation type="unfinished">校验消息，确保该消息是由指定的SICASH地址所有者签名的</translation>
     </message>
     <message>
@@ -571,7 +571,7 @@
         <translation type="unfinished">命令行选项(&amp;C)</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Qtum command-line options</source>
+        <source>Show the %1 help message to get a list with possible SICash command-line options</source>
         <translation type="unfinished">显示 %1 帮助信息，获取可用命令行选项列表</translation>
     </message>
     <message>
@@ -627,8 +627,8 @@
         <translation type="unfinished">钱包：</translation>
     </message>
     <message>
-        <source>New version of Qtum wallet is available on the Qtum source code repository: &lt;br /&gt; %1. &lt;br /&gt;It is recommended to download it and update this application</source>
-        <translation type="unfinished">可以通过Qtum源代码仓库获得新版Qtum钱包。建议下载并升级应用。</translation>
+        <source>New version of SICash wallet is available on the SICash source code repository: &lt;br /&gt; %1. &lt;br /&gt;It is recommended to download it and update this application</source>
+        <translation type="unfinished">可以通过SICash源代码仓库获得新版SICash钱包。建议下载并升级应用。</translation>
     </message>
     <message>
         <source>Check for updates</source>
@@ -639,7 +639,7 @@
         <translation type="unfinished">%1 客户端</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Qtum network</source>
+        <source>%n active connection(s) to SICash network</source>
         <translation type="unfinished">
             <numerusform>%n 条到SICASH网络的活动连接</numerusform>
         </translation>
@@ -707,7 +707,7 @@
         <translation type="unfinished">在此之后的交易尚未可见</translation>
     </message>
     <message>
-        <source>Qtum</source>
+        <source>SICash</source>
         <translation type="unfinished">SICASH</translation>
     </message>
     <message>
@@ -1282,7 +1282,7 @@
     </message>
     <message>
         <source>The sicash address that will be used to create the contract.</source>
-        <translation type="unfinished">用于创造合约的Qtum地址</translation>
+        <translation type="unfinished">用于创造合约的SICash地址</translation>
     </message>
     <message>
         <source>The Gas Price is too high, are you sure you want to possibly spend a max of %1 for this transaction?</source>
@@ -1352,7 +1352,7 @@
         <translation>编辑付款地址</translation>
     </message>
     <message>
-        <source>The entered address &quot;%1&quot; is not a valid Qtum address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid SICash address.</source>
         <translation>输入的地址 %1 并不是有效的SICASH地址。</translation>
     </message>
     <message>
@@ -1493,7 +1493,7 @@
         <translation>使用自定义的数据目录：</translation>
     </message>
     <message>
-        <source>Qtum</source>
+        <source>SICash</source>
         <translation>SICASH</translation>
     </message>
     <message>
@@ -1505,7 +1505,7 @@
         <translation>会在此目录中存储约 %1 GB 的数据。</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Qtum block chain.</source>
+        <source>%1 will download and store a copy of the SICash block chain.</source>
         <translation>%1 将会下载并存储SICASH区块链。</translation>
     </message>
     <message>
@@ -1747,7 +1747,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation>动用尚未确认的找零资金(&amp;S)</translation>
     </message>
     <message>
-        <source>Automatically open the Qtum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the SICash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation type="vanished">自动在路由器中打开SICASH端口。只有当您的路由器开启了 UPnP 选项时此功能才有效。</translation>
     </message>
     <message>
@@ -1763,7 +1763,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation>允许流入连接(&amp;G)</translation>
     </message>
     <message>
-        <source>Connect to the Qtum network through a SOCKS5 proxy.</source>
+        <source>Connect to the SICash network through a SOCKS5 proxy.</source>
         <translation type="vanished">通过 SOCKS5 代理连接SICASH网络。</translation>
     </message>
     <message>
@@ -1799,7 +1799,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Qtum network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <source>Connect to the SICash network through a separate SOCKS5 proxy for Tor hidden services.</source>
         <translation type="vanished">在 Tor 匿名网络下通过不同的 SOCKS5 代理连接SICASH网络</translation>
     </message>
     <message>
@@ -1962,7 +1962,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation>表单</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Qtum network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the SICash network after a connection is established, but this process has not completed yet.</source>
         <translation>现在显示的消息可能是过期的。在连接上SICASH网络节点后，您的钱包将自动与网络同步，但是这个过程还没有完成。</translation>
     </message>
     <message>
@@ -2116,7 +2116,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation>无效的付款地址 %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Qtum address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid SICash address or malformed URI parameters.</source>
         <translation>无法解析 URI 地址！可能是因为SICASH地址无效，或是 URI 参数格式错误。</translation>
     </message>
     <message>
@@ -2222,7 +2222,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation>金额</translation>
     </message>
     <message>
-        <source>Enter a Qtum address (e.g. %1)</source>
+        <source>Enter a SICash address (e.g. %1)</source>
         <translation>请输入一个SICASH地址 (例如 %1)</translation>
     </message>
     <message>
@@ -2408,7 +2408,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>SICashGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation type="vanished">消息签名(&amp;M)...</translation>
@@ -2510,7 +2510,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation type="vanished">代理已被&lt;b&gt;启用&lt;/b&gt;：%1</translation>
     </message>
     <message>
-        <source>Send coins to a Qtum address</source>
+        <source>Send coins to a SICash address</source>
         <translation type="vanished">向一个SICASH地址发送SICASH</translation>
     </message>
     <message>
@@ -2534,7 +2534,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation type="vanished">验证消息(&amp;V)...</translation>
     </message>
     <message>
-        <source>Qtum</source>
+        <source>SICash</source>
         <translation type="vanished">SICASH</translation>
     </message>
     <message>
@@ -2558,11 +2558,11 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation type="vanished">对钱包中的私钥加密</translation>
     </message>
     <message>
-        <source>Sign messages with your Qtum addresses to prove you own them</source>
+        <source>Sign messages with your SICash addresses to prove you own them</source>
         <translation type="vanished">用SICASH地址关联的私钥为消息签名，以证明您拥有这个SICASH地址</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Qtum addresses</source>
+        <source>Verify messages to ensure they were signed with specified SICash addresses</source>
         <translation type="vanished">校验消息，确保该消息是由指定的SICASH地址所有者签名的</translation>
     </message>
     <message>
@@ -2602,7 +2602,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation type="vanished">命令行选项(&amp;C)</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Qtum network</source>
+        <source>%n active connection(s) to SICash network</source>
         <translation type="vanished">
             <numerusform>%n 条到SICASH网络的活动连接</numerusform>
         </translation>
@@ -2674,7 +2674,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation type="vanished">关闭钱包</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Qtum command-line options</source>
+        <source>Show the %1 help message to get a list with possible SICash command-line options</source>
         <translation type="vanished">显示 %1 帮助信息，获取可用命令行选项列表</translation>
     </message>
     <message>
@@ -2786,7 +2786,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation type="vanished">钱包已被&lt;b&gt;加密&lt;/b&gt;，当前为&lt;b&gt;锁定&lt;/b&gt;状态</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Qtum can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. SICash can no longer continue safely and will quit.</source>
         <translation type="vanished">发生严重错误。客户端无法安全地继续运行，即将退出。</translation>
     </message>
 </context>
@@ -3124,7 +3124,7 @@ Please make sure to keep an updated antivirus and operating system. We can not r
         <translation>消息(&amp;M)：</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Qtum network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the SICash network.</source>
         <translation>可在付款请求上备注一条信息，在打开付款请求时可以看到。注意：该消息不是通过SICASH网络传送。</translation>
     </message>
     <message>
@@ -3669,7 +3669,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         </translation>
     </message>
     <message>
-        <source>Warning: Invalid Qtum address</source>
+        <source>Warning: Invalid SICash address</source>
         <translation>警告: SICASH地址无效</translation>
     </message>
     <message>
@@ -3728,7 +3728,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>这是笔正常的支付。</translation>
     </message>
     <message>
-        <source>The Qtum address to send the payment to</source>
+        <source>The SICash address to send the payment to</source>
         <translation>付款目的地址</translation>
     </message>
     <message>
@@ -3776,7 +3776,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>请为此地址输入一个标签以将它加入用过的地址列表</translation>
     </message>
     <message>
-        <source>A message that was attached to the sicash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Qtum network.</source>
+        <source>A message that was attached to the sicash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the SICash network.</source>
         <translation>sicash:URI 附带的备注信息，将会和交易一起存储，备查。 注意：该消息不会通过SICASH网络传输。</translation>
     </message>
     <message>
@@ -4023,7 +4023,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>您可以用你的地址对消息/协议进行签名，以证明您可以接收发送到该地址的SICASH。注意不要对任何模棱两可或者随机的消息进行签名，以免遭受钓鱼式攻击。请确保消息内容准确的表达了您的真实意愿。</translation>
     </message>
     <message>
-        <source>The Qtum address to sign the message with</source>
+        <source>The SICash address to sign the message with</source>
         <translation>用来对消息签名的地址</translation>
     </message>
     <message>
@@ -4055,7 +4055,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>复制当前签名至剪切板</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Qtum address</source>
+        <source>Sign the message to prove you own this SICash address</source>
         <translation>签名消息，证明这个地址属于您。</translation>
     </message>
     <message>
@@ -4079,11 +4079,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>请在下面输入接收者地址、消息（确保换行符、空格符、制表符等完全相同）和签名以验证消息。请仔细核对签名信息，以提防中间人攻击。请注意，这只是证明接收方签名的地址，它不能证明任何交易！</translation>
     </message>
     <message>
-        <source>The Qtum address the message was signed with</source>
+        <source>The SICash address the message was signed with</source>
         <translation>消息使用的签名地址</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Qtum address</source>
+        <source>Verify the message to ensure it was signed with the specified SICash address</source>
         <translation>验证消息，确保消息是由指定的SICASH地址签名过的。</translation>
     </message>
     <message>
@@ -5105,8 +5105,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Qtum Core</source>
-        <translation type="unfinished">Qtum Core</translation>
+        <source>SICash Core</source>
+        <translation type="unfinished">SICash Core</translation>
     </message>
     <message>
         <source>The %s developers</source>
@@ -5646,8 +5646,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="vanished">无法启动HTTP服务，查看日志获取更多信息</translation>
     </message>
     <message>
-        <source>Qtum Core</source>
-        <translation type="vanished">Qtum Core</translation>
+        <source>SICash Core</source>
+        <translation type="vanished">SICash Core</translation>
     </message>
     <message>
         <source>The %s developers</source>

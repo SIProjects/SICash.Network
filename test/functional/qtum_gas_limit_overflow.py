@@ -11,7 +11,7 @@ import random
 import time
 import io
 
-class QtumGasLimitOverflowTest(BitcoinTestFramework):
+class SICashGasLimitOverflowTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
@@ -34,4 +34,4 @@ class QtumGasLimitOverflowTest(BitcoinTestFramework):
         self.node.generate(1)
 
 if __name__ == '__main__':
-    QtumGasLimitOverflowTest().main()
+    SICashGasLimitOverflowTest().main()

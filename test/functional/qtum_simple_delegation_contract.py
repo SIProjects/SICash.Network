@@ -8,7 +8,7 @@ from test_framework.sicash import *
 from test_framework.sicashconfig import *
 from test_framework.util import *
 
-class QtumSimpleDelegationContractTest(BitcoinTestFramework):
+class SICashSimpleDelegationContractTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2
@@ -55,4 +55,4 @@ class QtumSimpleDelegationContractTest(BitcoinTestFramework):
 
 
 if __name__ == '__main__':
-    QtumSimpleDelegationContractTest().main()
+    SICashSimpleDelegationContractTest().main()

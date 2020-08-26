@@ -9,7 +9,7 @@ from test_framework.script import *
 from test_framework.mininode import *
 import sys
 
-class QtumCallContractStateNotRevertedTest(BitcoinTestFramework):
+class SICashCallContractStateNotRevertedTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2
@@ -35,4 +35,4 @@ class QtumCallContractStateNotRevertedTest(BitcoinTestFramework):
 
 
 if __name__ == '__main__':
-    QtumCallContractStateNotRevertedTest().main()
+    SICashCallContractStateNotRevertedTest().main()

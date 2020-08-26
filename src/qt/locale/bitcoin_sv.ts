@@ -66,12 +66,12 @@
         <translation>Mottagaradresser</translation>
     </message>
     <message>
-        <source>These are your Qtum addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Detta är dina Qtum-adresser för att skicka betalningar. Kontrollera alltid belopp och mottagaradress innan du skickar sicash.</translation>
+        <source>These are your SICash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Detta är dina SICash-adresser för att skicka betalningar. Kontrollera alltid belopp och mottagaradress innan du skickar sicash.</translation>
     </message>
     <message>
         <source>These are your  addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>Detta är dina Qtumadresser för att ta emot betalningar. Använd knappen 'Skapa ny mottagaradress' på fliken ta emot för att skapa nya adresser .</translation>
+        <translation>Detta är dina SICashadresser för att ta emot betalningar. Använd knappen 'Skapa ny mottagaradress' på fliken ta emot för att skapa nya adresser .</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -253,7 +253,7 @@ Försök igen.</translation>
     </message>
 </context>
 <context>
-    <name>QtumGUI</name>
+    <name>SICashGUI</name>
     <message>
         <source>Sign &amp;message...</source>
         <translation>Signera &amp;meddelande...</translation>
@@ -363,8 +363,8 @@ Försök igen.</translation>
         <translation>Proxy är &lt;b&gt; aktiverad &lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Qtum address</source>
-        <translation>Skicka sicash till en Qtum-adress</translation>
+        <source>Send coins to a SICash address</source>
+        <translation>Skicka sicash till en SICash-adress</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -407,12 +407,12 @@ Försök igen.</translation>
         <translation>Kryptera de privata nycklar som tillhör din plånbok</translation>
     </message>
     <message>
-        <source>Sign messages with your Qtum addresses to prove you own them</source>
-        <translation>Signera meddelanden med dina Qtum-adresser för att bevisa att du äger dem</translation>
+        <source>Sign messages with your SICash addresses to prove you own them</source>
+        <translation>Signera meddelanden med dina SICash-adresser för att bevisa att du äger dem</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Qtum addresses</source>
-        <translation>Verifiera meddelanden för att vara säker på att de signerades med angivna Qtum-adresser</translation>
+        <source>Verify messages to ensure they were signed with specified SICash addresses</source>
+        <translation>Verifiera meddelanden för att vara säker på att de signerades med angivna SICash-adresser</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -451,8 +451,8 @@ Försök igen.</translation>
         <translation>&amp;Kommandoradsalternativ</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Qtum network</source>
-        <translation><numerusform>%n aktiva anslutningar till Qtum-nätverket.</numerusform><numerusform>%n aktiva anslutningar till Qtum-nätverket.</numerusform></translation>
+        <source>%n active connection(s) to SICash network</source>
+        <translation><numerusform>%n aktiva anslutningar till SICash-nätverket.</numerusform><numerusform>%n aktiva anslutningar till SICash-nätverket.</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -519,8 +519,8 @@ Försök igen.</translation>
         <translation>Stäng plånboken</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Qtum command-line options</source>
-        <translation>Visa %1 hjälpmeddelande för att få en lista med möjliga Qtum kommandoradsalternativ.</translation>
+        <source>Show the %1 help message to get a list with possible SICash command-line options</source>
+        <translation>Visa %1 hjälpmeddelande för att få en lista med möjliga SICash kommandoradsalternativ.</translation>
     </message>
     <message>
         <source>default wallet</source>
@@ -631,8 +631,8 @@ Försök igen.</translation>
         <translation>Denna plånbok är &lt;b&gt;krypterad&lt;/b&gt; och för närvarande &lt;b&gt;låst&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Qtum can no longer continue safely and will quit.</source>
-        <translation>Ett kritiskt fel uppstod. Qtum kan inte fortsätta att köra säkert och kommer att avslutas.</translation>
+        <source>A fatal error occurred. SICash can no longer continue safely and will quit.</source>
+        <translation>Ett kritiskt fel uppstod. SICash kan inte fortsätta att köra säkert och kommer att avslutas.</translation>
     </message>
 </context>
 <context>
@@ -855,8 +855,8 @@ Försök igen.</translation>
         <translation>Redigera avsändaradress</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Qtum address.</source>
-        <translation>Den angivna adressen "%1" är inte en giltig Qtum-adress.</translation>
+        <source>The entered address "%1" is not a valid SICash address.</source>
+        <translation>Den angivna adressen "%1" är inte en giltig SICash-adress.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -952,8 +952,8 @@ Försök igen.</translation>
         <translation>Använd en anpassad datakatalog:</translation>
     </message>
     <message>
-        <source>Qtum</source>
-        <translation>Qtum</translation>
+        <source>SICash</source>
+        <translation>SICash</translation>
     </message>
     <message>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
@@ -964,8 +964,8 @@ Försök igen.</translation>
         <translation>Ungefär %1 GB data kommer att lagras i den här katalogen.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Qtum block chain.</source>
-        <translation>%1 kommer att ladda ner och lagra en kopia av Qtums blockkedja.</translation>
+        <source>%1 will download and store a copy of the SICash block chain.</source>
+        <translation>%1 kommer att ladda ner och lagra en kopia av SICashs blockkedja.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
@@ -1000,7 +1000,7 @@ Försök igen.</translation>
     </message>
     <message>
         <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the sicash network, as detailed below.</source>
-        <translation>Nyligen gjorda transaktioner visas inte korrekt och därför kan din plånboks saldo visas felaktigt. Denna information kommer att visas korrekt så snart din plånbok har synkroniserats med Qtum-nätverket enligt informationen nedan.</translation>
+        <translation>Nyligen gjorda transaktioner visas inte korrekt och därför kan din plånboks saldo visas felaktigt. Denna information kommer att visas korrekt så snart din plånbok har synkroniserats med SICash-nätverket enligt informationen nedan.</translation>
     </message>
     <message>
         <source>Attempting to spend sicashs that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
@@ -1200,8 +1200,8 @@ Försök igen.</translation>
         <translation>&amp;Spendera obekräftad växel</translation>
     </message>
     <message>
-        <source>Automatically open the Qtum client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Öppna automatiskt Qtum-klientens port på routern. Detta fungerar endast om din router stödjer UPnP och det är är aktiverat.</translation>
+        <source>Automatically open the SICash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Öppna automatiskt SICash-klientens port på routern. Detta fungerar endast om din router stödjer UPnP och det är är aktiverat.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1216,8 +1216,8 @@ Försök igen.</translation>
         <translation>Tillåt inkommande anslutningar</translation>
     </message>
     <message>
-        <source>Connect to the Qtum network through a SOCKS5 proxy.</source>
-        <translation>Anslut till Qtum-nätverket genom en SOCKS5-proxy.</translation>
+        <source>Connect to the SICash network through a SOCKS5 proxy.</source>
+        <translation>Anslut till SICash-nätverket genom en SOCKS5-proxy.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1252,8 +1252,8 @@ Försök igen.</translation>
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Qtum network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Anslut till Qtum-nätverket genom en separat SOCKS5-proxy för dolda tjänster i Tor.</translation>
+        <source>Connect to the SICash network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Anslut till SICash-nätverket genom en separat SOCKS5-proxy för dolda tjänster i Tor.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1363,8 +1363,8 @@ Försök igen.</translation>
         <translation>Formulär</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Qtum network after a connection is established, but this process has not completed yet.</source>
-        <translation>Den visade informationen kan vara inaktuell. Plånboken synkroniseras automatiskt med Qtum-nätverket efter att anslutningen är upprättad, men denna process har inte slutförts ännu.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the SICash network after a connection is established, but this process has not completed yet.</source>
+        <translation>Den visade informationen kan vara inaktuell. Plånboken synkroniseras automatiskt med SICash-nätverket efter att anslutningen är upprättad, men denna process har inte slutförts ännu.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1466,8 +1466,8 @@ Försök igen.</translation>
         <translation>Ogiltig betalningsadress %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Qtum address or malformed URI parameters.</source>
-        <translation>URI kan inte parsas! Detta kan orsakas av en ogiltig Qtum-adress eller felaktiga URI-parametrar.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid SICash address or malformed URI parameters.</source>
+        <translation>URI kan inte parsas! Detta kan orsakas av en ogiltig SICash-adress eller felaktiga URI-parametrar.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1568,8 +1568,8 @@ Försök igen.</translation>
         <translation>Belopp</translation>
     </message>
     <message>
-        <source>Enter a Qtum address (e.g. %1)</source>
-        <translation>Ange en Qtum-adress (t.ex. %1)</translation>
+        <source>Enter a SICash address (e.g. %1)</source>
+        <translation>Ange en SICash-adress (t.ex. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2025,8 +2025,8 @@ Försök igen.</translation>
         <translation>&amp;Meddelande:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Qtum network.</source>
-        <translation>Ett valfritt meddelande att bifoga betalningsbegäran, vilket visas när begäran öppnas. Obs: Meddelandet kommer inte att sändas med betalningen över Qtum-nätverket.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the SICash network.</source>
+        <translation>Ett valfritt meddelande att bifoga betalningsbegäran, vilket visas när begäran öppnas. Obs: Meddelandet kommer inte att sändas med betalningen över SICash-nätverket.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -2446,8 +2446,8 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation><numerusform>Uppskattas till att påbörja bekräftelse inom %n block.</numerusform><numerusform>Uppskattas till att påbörja bekräftelse inom %n block.</numerusform></translation>
     </message>
     <message>
-        <source>Warning: Invalid Qtum address</source>
-        <translation>Varning: Ogiltig Qtum-adress</translation>
+        <source>Warning: Invalid SICash address</source>
+        <translation>Varning: Ogiltig SICash-adress</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2489,8 +2489,8 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Detta är en normal betalning.</translation>
     </message>
     <message>
-        <source>The Qtum address to send the payment to</source>
-        <translation>Qtum-adress att sända betalning till</translation>
+        <source>The SICash address to send the payment to</source>
+        <translation>SICash-adress att sända betalning till</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2537,8 +2537,8 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Ange en etikett för denna adress för att lägga till den i listan med använda adresser</translation>
     </message>
     <message>
-        <source>A message that was attached to the sicash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Qtum network.</source>
-        <translation>Ett meddelande som bifogades sicash: -URIn och som sparas med transaktionen som referens. Obs: Meddelandet sänds inte över Qtum-nätverket.</translation>
+        <source>A message that was attached to the sicash: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the SICash network.</source>
+        <translation>Ett meddelande som bifogades sicash: -URIn och som sparas med transaktionen som referens. Obs: Meddelandet sänds inte över SICash-nätverket.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2586,8 +2586,8 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Du kan signera meddelanden/avtal med dina adresser för att bevisa att du kan ta emot sicash som skickats till dem. Var försiktig så du inte signerar något oklart eller konstigt, eftersom phishing-angrepp kan försöka få dig att signera över din identitet till dem. Signera endast väldetaljerade meddelanden som du godkänner.</translation>
     </message>
     <message>
-        <source>The Qtum address to sign the message with</source>
-        <translation>Qtum-adress att signera meddelandet med</translation>
+        <source>The SICash address to sign the message with</source>
+        <translation>SICash-adress att signera meddelandet med</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2618,8 +2618,8 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Kopiera signaturen till systemets Urklipp</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Qtum address</source>
-        <translation>Signera meddelandet för att bevisa att du äger denna Qtum-adress</translation>
+        <source>Sign the message to prove you own this SICash address</source>
+        <translation>Signera meddelandet för att bevisa att du äger denna SICash-adress</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2642,12 +2642,12 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
         <translation>Ange mottagarens adress, meddelande (kopiera radbrytningar, mellanslag, TAB-tecken, osv. exakt) och signatur nedan, för att verifiera meddelandet. Undvik att läsa in mera information i signaturen än vad som stod i själva det signerade meddelandet, för att undvika ett man-in-the-middle-angrepp. Notera att detta endast bevisar att den signerande parten tar emot med adressen, det bevisar inte vem som skickat transaktionen!</translation>
     </message>
     <message>
-        <source>The Qtum address the message was signed with</source>
-        <translation>Qtum-adress som meddelandet signerades med</translation>
+        <source>The SICash address the message was signed with</source>
+        <translation>SICash-adress som meddelandet signerades med</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Qtum address</source>
-        <translation>Verifiera meddelandet för att vara säker på att det signerades med angiven Qtum-adress</translation>
+        <source>Verify the message to ensure it was signed with the specified SICash address</source>
+        <translation>Verifiera meddelandet för att vara säker på att det signerades med angiven SICash-adress</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -3190,7 +3190,7 @@ Notera: Då avgiften beräknas per byte kommer en avgift på 50 satoshi tas ut f
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
-        <translation>Skicka Qtums</translation>
+        <translation>Skicka SICashs</translation>
     </message>
     <message>
         <source>Fee bump error</source>

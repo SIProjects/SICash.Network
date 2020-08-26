@@ -12,7 +12,7 @@ import io
 """
 Note, these tests do not test the functionality of the DGP template contract itself, for tests for the DGP template, see sicash-dgp.py
 """
-class QtumDGPGasSchedule(BitcoinTestFramework):
+class SICashDGPGasSchedule(BitcoinTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
@@ -118,4 +118,4 @@ class QtumDGPGasSchedule(BitcoinTestFramework):
             self.sync_all()
 
 if __name__ == '__main__':
-    QtumDGPGasSchedule().main()
+    SICashDGPGasSchedule().main()

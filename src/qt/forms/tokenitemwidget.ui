@@ -177,14 +177,14 @@
              </spacer>
             </item>
             <item>
-             <widget class="QtumPushButton" name="buttonSend">
+             <widget class="SICashPushButton" name="buttonSend">
               <property name="text">
                <string>Send</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QtumPushButton" name="buttonReceive">
+             <widget class="SICashPushButton" name="buttonReceive">
               <property name="text">
                <string>Receive</string>
               </property>
@@ -240,7 +240,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QtumPushButton</class>
+   <class>SICashPushButton</class>
    <extends>QPushButton</extends>
    <header>qt/sicashpushbutton.h</header>
   </customwidget>

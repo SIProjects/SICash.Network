@@ -16,8 +16,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Qtum"
-            VALUE "FileDescription",    "sicashd (Qtum node with a JSON-RPC server)"
+            VALUE "CompanyName",        "SICash"
+            VALUE "FileDescription",    "sicashd (SICash node with a JSON-RPC server)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "sicashd"
             VALUE "LegalCopyright",     COPYRIGHT_STR

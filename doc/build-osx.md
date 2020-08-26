@@ -42,17 +42,17 @@ from the root of the repository.
 
 **Note**: You only need Berkeley DB if the wallet is enabled (see [*Disable-wallet mode*](/doc/build-osx.md#disable-wallet-mode)).
 
-## Build Qtum Core
+## Build SICash Core
 
-1. Clone the Qtum Core source code:
+1. Clone the SICash Core source code:
     ```shell
     git clone --recursive https://github.com/sicashproject/sicash.git
     cd sicash
     ```
 
-2.  Build Qtum Core:
+2.  Build SICash Core:
 
-    Configure and build the headless Qtum Core binaries as well as the GUI (if Qt is found).
+    Configure and build the headless SICash Core binaries as well as the GUI (if Qt is found).
 
     You can disable the GUI build by passing `--without-gui` to configure.
     ```shell
@@ -83,15 +83,15 @@ In this case there is no dependency on Berkeley DB 4.8.
 Mining is also possible in disable-wallet mode using the `getblocktemplate` RPC call.
 
 ## Running
-Qtum Core is now available at `./src/sicashd`
+SICash Core is now available at `./src/sicashd`
 
 Before running, you may create an empty configuration file:
 ```shell
-mkdir -p "/Users/${USER}/Library/Application Support/Qtum"
+mkdir -p "/Users/${USER}/Library/Application Support/SICash"
 
-touch "/Users/${USER}/Library/Application Support/Qtum/sicash.conf"
+touch "/Users/${USER}/Library/Application Support/SICash/sicash.conf"
 
-chmod 600 "/Users/${USER}/Library/Application Support/Qtum/sicash.conf"
+chmod 600 "/Users/${USER}/Library/Application Support/SICash/sicash.conf"
 ```
 
 The first time you run sicashd, it will start downloading the blockchain. This process could
@@ -99,7 +99,7 @@ take many hours, or even days on slower than average systems.
 
 You can monitor the download process by looking at the debug.log file:
 ```shell
-tail -f $HOME/Library/Application\ Support/Qtum/debug.log
+tail -f $HOME/Library/Application\ Support/SICash/debug.log
 ```
 
 ## Other commands:

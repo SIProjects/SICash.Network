@@ -8,7 +8,7 @@ from test_framework.sicash import *
 from test_framework.address import *
 import time
 
-class QtumManyValueRefundsFromSameTxTest(BitcoinTestFramework):
+class SICashManyValueRefundsFromSameTxTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
@@ -42,4 +42,4 @@ class QtumManyValueRefundsFromSameTxTest(BitcoinTestFramework):
         assert_equal(self.node.getblockcount(), block_count+1)
 
 if __name__ == '__main__':
-    QtumManyValueRefundsFromSameTxTest().main()
+    SICashManyValueRefundsFromSameTxTest().main()

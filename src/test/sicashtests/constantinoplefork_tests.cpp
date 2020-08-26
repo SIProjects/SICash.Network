@@ -132,26 +132,26 @@ BOOST_AUTO_TEST_CASE(checking_returndata_opcode_after_fork){
     dev::h256 hashTx(HASHTX);
 
     // Create contracts
-    std::vector<QtumTransaction> txs;
-    txs.push_back(createQtumTransaction(CODE[0], 0, GASLIMIT, dev::u256(1), hashTx, dev::Address()));
-    txs.push_back(createQtumTransaction(CODE[1], 0, GASLIMIT, dev::u256(1), ++hashTx, dev::Address()));
+    std::vector<SICashTransaction> txs;
+    txs.push_back(createSICashTransaction(CODE[0], 0, GASLIMIT, dev::u256(1), hashTx, dev::Address()));
+    txs.push_back(createSICashTransaction(CODE[1], 0, GASLIMIT, dev::u256(1), ++hashTx, dev::Address()));
     executeBC(txs);
 
     // Call upgrade to
-    dev::Address proxy = createQtumAddress(txs[0].getHashWith(), txs[0].getNVout());
-    std::vector<QtumTransaction> txsCall;
-    txsCall.push_back(createQtumTransaction(CODE[2], 0, GASLIMIT, dev::u256(1), ++hashTx, proxy));
+    dev::Address proxy = createSICashAddress(txs[0].getHashWith(), txs[0].getNVout());
+    std::vector<SICashTransaction> txsCall;
+    txsCall.push_back(createSICashTransaction(CODE[2], 0, GASLIMIT, dev::u256(1), ++hashTx, proxy));
     executeBC(txsCall);
 
     // Call mint
-    std::vector<QtumTransaction> txsMint;
-    txsMint.push_back(createQtumTransaction(CODE[3], 0, GASLIMIT, dev::u256(1), ++hashTx, proxy));
+    std::vector<SICashTransaction> txsMint;
+    txsMint.push_back(createSICashTransaction(CODE[3], 0, GASLIMIT, dev::u256(1), ++hashTx, proxy));
     auto result = executeBC(txsMint);
     BOOST_CHECK(result.first[0].execRes.excepted == dev::eth::TransactionException::None);
 
     // Call balance of
-    std::vector<QtumTransaction> txsbalance;
-    txsbalance.push_back(createQtumTransaction(ParseHex("70a082310000000000000000000000000101010101010101010101010101010101010101"), 0, GASLIMIT, dev::u256(1), ++hashTx, proxy));
+    std::vector<SICashTransaction> txsbalance;
+    txsbalance.push_back(createSICashTransaction(ParseHex("70a082310000000000000000000000000101010101010101010101010101010101010101"), 0, GASLIMIT, dev::u256(1), ++hashTx, proxy));
     result = executeBC(txsbalance);
     BOOST_CHECK(dev::h256(result.first[0].execRes.output) == dev::h256(0x0000000000000000000000000000000000000000000000000000000000000020));
 }
@@ -164,20 +164,20 @@ BOOST_AUTO_TEST_CASE(checking_returndata_opcode_before_fork){
     dev::h256 hashTx(HASHTX);
 
     // Create contracts
-    std::vector<QtumTransaction> txs;
-    txs.push_back(createQtumTransaction(CODE[0], 0, GASLIMIT, dev::u256(1), hashTx, dev::Address()));
-    txs.push_back(createQtumTransaction(CODE[1], 0, GASLIMIT, dev::u256(1), ++hashTx, dev::Address()));
+    std::vector<SICashTransaction> txs;
+    txs.push_back(createSICashTransaction(CODE[0], 0, GASLIMIT, dev::u256(1), hashTx, dev::Address()));
+    txs.push_back(createSICashTransaction(CODE[1], 0, GASLIMIT, dev::u256(1), ++hashTx, dev::Address()));
     executeBC(txs);
 
     // Call upgrade to
-    dev::Address proxy = createQtumAddress(txs[0].getHashWith(), txs[0].getNVout());
-    std::vector<QtumTransaction> txsCall;
-    txsCall.push_back(createQtumTransaction(CODE[2], 0, GASLIMIT, dev::u256(1), ++hashTx, proxy));
+    dev::Address proxy = createSICashAddress(txs[0].getHashWith(), txs[0].getNVout());
+    std::vector<SICashTransaction> txsCall;
+    txsCall.push_back(createSICashTransaction(CODE[2], 0, GASLIMIT, dev::u256(1), ++hashTx, proxy));
     executeBC(txsCall);
 
     // Call mint
-    std::vector<QtumTransaction> txsMint;
-    txsMint.push_back(createQtumTransaction(CODE[3], 0, GASLIMIT, dev::u256(1), ++hashTx, proxy));
+    std::vector<SICashTransaction> txsMint;
+    txsMint.push_back(createSICashTransaction(CODE[3], 0, GASLIMIT, dev::u256(1), ++hashTx, proxy));
     auto result = executeBC(txsMint);
     BOOST_CHECK(result.first[0].execRes.excepted == dev::eth::TransactionException::BadInstruction);
 }
@@ -190,14 +190,14 @@ BOOST_AUTO_TEST_CASE(checking_constantinople_after_fork){
     dev::h256 hashTx(HASHTX);
 
     // Create contract
-    std::vector<QtumTransaction> txs;
-    txs.push_back(createQtumTransaction(CODE[4], 0, GASLIMIT, dev::u256(1), hashTx, dev::Address()));
+    std::vector<SICashTransaction> txs;
+    txs.push_back(createSICashTransaction(CODE[4], 0, GASLIMIT, dev::u256(1), hashTx, dev::Address()));
     executeBC(txs);
 
     // Call is it constantinople
-    dev::Address proxy = createQtumAddress(txs[0].getHashWith(), txs[0].getNVout());
-    std::vector<QtumTransaction> txIsItConstantinople;
-    txIsItConstantinople.push_back(createQtumTransaction(CODE[5], 0, GASLIMIT, dev::u256(1), ++hashTx, proxy));
+    dev::Address proxy = createSICashAddress(txs[0].getHashWith(), txs[0].getNVout());
+    std::vector<SICashTransaction> txIsItConstantinople;
+    txIsItConstantinople.push_back(createSICashTransaction(CODE[5], 0, GASLIMIT, dev::u256(1), ++hashTx, proxy));
     auto result = executeBC(txIsItConstantinople);
     BOOST_CHECK(dev::h256(result.first[0].execRes.output) == dev::h256(0x0000000000000000000000000000000000000000000000000000000000000001));
 }
@@ -210,14 +210,14 @@ BOOST_AUTO_TEST_CASE(checking_constantinople_before_fork){
     dev::h256 hashTx(HASHTX);
 
     // Create contract
-    std::vector<QtumTransaction> txs;
-    txs.push_back(createQtumTransaction(CODE[4], 0, GASLIMIT, dev::u256(1), hashTx, dev::Address()));
+    std::vector<SICashTransaction> txs;
+    txs.push_back(createSICashTransaction(CODE[4], 0, GASLIMIT, dev::u256(1), hashTx, dev::Address()));
     executeBC(txs);
 
     // Call is it constantinople
-    dev::Address proxy = createQtumAddress(txs[0].getHashWith(), txs[0].getNVout());
-    std::vector<QtumTransaction> txIsItConstantinople;
-    txIsItConstantinople.push_back(createQtumTransaction(CODE[5], 0, GASLIMIT, dev::u256(1), ++hashTx, proxy));
+    dev::Address proxy = createSICashAddress(txs[0].getHashWith(), txs[0].getNVout());
+    std::vector<SICashTransaction> txIsItConstantinople;
+    txIsItConstantinople.push_back(createSICashTransaction(CODE[5], 0, GASLIMIT, dev::u256(1), ++hashTx, proxy));
     auto result = executeBC(txIsItConstantinople);
     BOOST_CHECK(dev::h256(result.first[0].execRes.output) == dev::h256(0x0000000000000000000000000000000000000000000000000000000000000000));
 }
