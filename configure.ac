@@ -317,7 +317,7 @@ if test x$use_sanitizers != x; then
     ]],[[]])])
 fi
 
-CPPFLAGS="$CPPFLAGS -DQTUM_BUILD"
+CPPFLAGS="$CPPFLAGS -DSICASH_BUILD"
 
 ERROR_CXXFLAGS=
 if test "x$enable_werror" = "xyes"; then

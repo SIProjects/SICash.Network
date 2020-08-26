@@ -1,5 +1,5 @@
-#ifndef QTUMDELEGATION_H
-#define QTUMDELEGATION_H
+#ifndef SICASHDELEGATION_H
+#define SICASHDELEGATION_H
 #include <string>
 #include <vector>
 #include <map>

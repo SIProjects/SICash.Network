@@ -33,7 +33,7 @@ Basic usage resources:
 
 Development resources:
 
-* [Qtum Book - A Developer's Guide To QTUM](http://book.sicash.site/en/)
+* [Qtum Book - A Developer's Guide To SICASH](http://book.sicash.site/en/)
 * [Qtum contract usage](https://docs.sicash.site/en/QRC20-Token-Introduce.html)
 * [Deploying a custom token to Qtum](https://blog.sicash.org/sicash-custom-token-walkthrough-467d725fa27d)
 * [QtumJS document](https://sicashproject.github.io/sicashjs-doc/)
@@ -60,7 +60,7 @@ Developer's Tools
   * https://github.com/sicashproject/sicashportal
 * Docker images for running sicash services
   * https://github.com/sicashproject/sicash-docker
-* sicash.info API that powers the block explorer and the QTUM Web wallet
+* sicash.info API that powers the block explorer and the SICASH Web wallet
   * https://github.com/sicashproject/sicashinfo-api#sicashinfo-api-documentation
 
 
@@ -71,7 +71,7 @@ Qtum Core is our primary mainnet wallet. It implements a full node and is capabl
 
 Qtum Core currently implements the following:
 
-* Sending/Receiving QTUM coins
+* Sending/Receiving SICASH coins
 * Sending/Receiving QRC20 tokens on the Qtum network
 * Staking and creating blocks for the Qtum network
 * Creating and interacting with smart contracts
@@ -93,7 +93,7 @@ A browser wallet that supports the Ledger hardware wallet, offline cold wallet, 
 
 Web site https://sicashwallet.org
 
-User documentation https://github.com/sicashproject/documents/tree/master/en/QTUM-WebWallet-usage
+User documentation https://github.com/sicashproject/documents/tree/master/en/SICASH-WebWallet-usage
 
 ### Qtum Electrum
 
