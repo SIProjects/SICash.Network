@@ -240,6 +240,15 @@ bool CheckProofOfStake(CBlockIndex* pindexPrev, CValidationState& state, const C
         }
     }
 
+    // Check Foundation
+    if (tx.vout[2].scriptPubKey != GetFoundationScript(Params().GetConsensus())) {
+        return state.Invalid(ValidationInvalidReason::TX_MISSING_FOUNDATION, false, REJECT_INVALID, "stake-tx-missing-foundation", strprintf("CheckProofOfStake() : Stake is missing the foundation output"));
+    }
+
+    if (tx.vout[3].scriptPubKey != GetCareScript(Params().GetConsensus())) {
+        return state.Invalid(ValidationInvalidReason::TX_MISSING_CARE, false, REJECT_INVALID, "stake-tx-missing-care", strprintf("CheckProofOfStake() : Stake prevout is missing the care output"));
+    }
+
     // Check stake and block prevout
     if(!checkDelegation && txin.prevout != headerPrevout)
         return state.Invalid(ValidationInvalidReason::BLOCK_INVALID_HEADER, false, REJECT_INVALID, "stake-prevout-diff-block-prevout", strprintf("CheckProofOfStake() : Stake prevout %s is different then block prevout %s", txin.prevout.hash.ToString(), headerPrevout.hash.ToString()));

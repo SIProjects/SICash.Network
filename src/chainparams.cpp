@@ -8,6 +8,7 @@
 #include <chainparamsseeds.h>
 #include <consensus/merkle.h>
 #include <consensus/consensus.h>
+#include <key_io.h>
 #include <tinyformat.h>
 #include <util/system.h>
 #include <util/strencodings.h>
@@ -73,7 +74,7 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = 985500; // sicash halving every 4 years
+        consensus.nSubsidyHalvingInterval = 2628000; // sicash halving every 5 years
         consensus.BIP16Exception = uint256S("0x000075aef83cf2853580f8ae8ce6f8c3096cfa21d98334d6e3f95e5582ed986c");
         consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256S("0x000075aef83cf2853580f8ae8ce6f8c3096cfa21d98334d6e3f95e5582ed986c");
@@ -82,17 +83,17 @@ public:
         consensus.CSVHeight = 6048; // 000000000000000004a1b34462cb8aeebd5799177f7a29cf28f2d1961716b5b5
         consensus.SegwitHeight = 6048; // 0000000000000000001c8018d9cb3b742ef25114f27563e3fc4a1902167f9893
         consensus.MinBIP9WarningHeight = 8064; // segwit activation height + miner confirmation window
-        consensus.QIP5Height = 466600;
-        consensus.QIP6Height = 466600;
-        consensus.QIP7Height = 466600;
-        consensus.QIP9Height = 466600;
+        consensus.QIP5Height = 0;
+        consensus.QIP6Height = 0;
+        consensus.QIP7Height = 0;
+        consensus.QIP9Height = 0;
         consensus.nOfflineStakeHeight = 680000;
         consensus.powLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.QIP9PosLimit = uint256S("0000000000001fffffffffffffffffffffffffffffffffffffffffffffffffff"); // The new POS-limit activated after QIP9
-        consensus.nPowTargetTimespan = 16 * 60; // 16 minutes
-        consensus.nPowTargetTimespanV2 = 4000;
-        consensus.nPowTargetSpacing = 2 * 64;
+        consensus.nPowTargetTimespan = 3600; // 1 hour
+        consensus.nPowTargetTimespanV2 = 3600;
+        consensus.nPowTargetSpacing = 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = true;
         consensus.fPoSNoRetargeting = false;
@@ -174,8 +175,8 @@ public:
             0.03358921219453481 // * estimated number of transactions per second after that timestamp
         };
 
-        consensus.nLastPOWBlock = 5000;
-        consensus.nLastBigReward = 5000;
+        consensus.nLastPOWBlock = 2000;
+        consensus.nLastBigReward = 2000;
         consensus.nMPoSRewardRecipients = 10;
         consensus.nFirstMPoSBlock = consensus.nLastPOWBlock +
                                     consensus.nMPoSRewardRecipients +
@@ -187,6 +188,8 @@ public:
         consensus.nEnableHeaderSignatureHeight = 399100;
         consensus.nCheckpointSpan = COINBASE_MATURITY;
         consensus.delegationsAddress = uint160(ParseHex("0000000000000000000000000000000000000086")); // Delegations contract for offline staking
+        consensus.foundationAddress = "SeSu9BgGgd8cEfmfS2kmYbwMBTpH8f18bK";
+        consensus.careAddress = "SRBQgPoipSEVADYSyt3r7Lgk1BxwJy3hKj";
     }
 };
 
@@ -298,6 +301,8 @@ public:
         consensus.nEnableHeaderSignatureHeight = 391993;
         consensus.nCheckpointSpan = COINBASE_MATURITY;
         consensus.delegationsAddress = uint160(ParseHex("0000000000000000000000000000000000000086")); // Delegations contract for offline staking
+        consensus.foundationAddress = "SeSu9BgGgd8cEfmfS2kmYbwMBTpH8f18bK";
+        consensus.careAddress = "SRBQgPoipSEVADYSyt3r7Lgk1BxwJy3hKj";
     }
 };
 
@@ -388,6 +393,8 @@ public:
         consensus.nEnableHeaderSignatureHeight = 0;
         consensus.nCheckpointSpan = COINBASE_MATURITY;
         consensus.delegationsAddress = uint160(ParseHex("0000000000000000000000000000000000000086")); // Delegations contract for offline staking
+        consensus.foundationAddress = "SeSu9BgGgd8cEfmfS2kmYbwMBTpH8f18bK";
+        consensus.careAddress = "SRBQgPoipSEVADYSyt3r7Lgk1BxwJy3hKj";
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,60);     // Starts with uppercase (R)
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,110);    // Starts with lowercase (m)
@@ -557,14 +564,14 @@ void UpdateConstantinopleBlockHeight(int nHeight)
 
 void CChainParams::UpdateDifficultyChangeBlockHeight(int nHeight)
 {
-    consensus.nSubsidyHalvingInterval = 985500; // sicash halving every 4 years
+    consensus.nSubsidyHalvingInterval = 2628000; // sicash halving every 5 years
     consensus.posLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
     consensus.QIP9PosLimit = uint256S("0000000000001fffffffffffffffffffffffffffffffffffffffffffffffffff");
     consensus.QIP9Height = nHeight;
     consensus.fPowAllowMinDifficultyBlocks = false;
     consensus.fPowNoRetargeting = true;
     consensus.fPoSNoRetargeting = false;
-    consensus.nLastPOWBlock = 5000;
+    consensus.nLastPOWBlock = 2000;
     consensus.nMPoSRewardRecipients = 10;
     consensus.nFirstMPoSBlock = consensus.nLastPOWBlock +
                                 consensus.nMPoSRewardRecipients +

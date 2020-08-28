@@ -173,7 +173,7 @@ const CBlockIndex* LastCommonAncestor(const CBlockIndex* pa, const CBlockIndex* 
 
 std::vector<unsigned char> CBlockIndex::GetBlockSignature() const
 {
-    if(vchBlockSigDlgt.size() < 2 * CPubKey::COMPACT_SIGNATURE_SIZE)
+    if(vchBlockSigDlgt.size() < 4 * CPubKey::COMPACT_SIGNATURE_SIZE)
     {
         return vchBlockSigDlgt;
     }
@@ -183,7 +183,7 @@ std::vector<unsigned char> CBlockIndex::GetBlockSignature() const
 
 std::vector<unsigned char> CBlockIndex::GetProofOfDelegation() const
 {
-    if(vchBlockSigDlgt.size() < 2 * CPubKey::COMPACT_SIGNATURE_SIZE)
+    if(vchBlockSigDlgt.size() < 4 * CPubKey::COMPACT_SIGNATURE_SIZE)
     {
         return std::vector<unsigned char>();
     }
@@ -194,5 +194,5 @@ std::vector<unsigned char> CBlockIndex::GetProofOfDelegation() const
 
 bool CBlockIndex::HasProofOfDelegation() const
 {
-    return vchBlockSigDlgt.size() >= 2 * CPubKey::COMPACT_SIGNATURE_SIZE;
+    return vchBlockSigDlgt.size() >= 4 * CPubKey::COMPACT_SIGNATURE_SIZE;
 }

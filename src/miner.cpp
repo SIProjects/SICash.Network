@@ -202,9 +202,11 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     if(fProofOfStake)
     {
         CMutableTransaction coinstakeTx;
-        coinstakeTx.vout.resize(2);
+        coinstakeTx.vout.resize(4);
         coinstakeTx.vout[0].SetEmpty();
         coinstakeTx.vout[1].scriptPubKey = scriptPubKeyIn;
+        coinstakeTx.vout[2].scriptPubKey = GetFoundationScript(chainparams.GetConsensus());
+        coinstakeTx.vout[3].scriptPubKey = GetCareScript(chainparams.GetConsensus());
         originalRewardTx = coinstakeTx;
         pblock->vtx[1] = MakeTransactionRef(std::move(coinstakeTx));
 
@@ -231,7 +233,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     txGasLimit = gArgs.GetArg("-staker-max-tx-gas-limit", softBlockGasLimit);
 
     nBlockMaxWeight = blockSizeDGP ? blockSizeDGP * WITNESS_SCALE_FACTOR : nBlockMaxWeight;
-    
+
     dev::h256 oldHashStateRoot(globalState->rootHash());
     dev::h256 oldHashUTXORoot(globalState->rootHashUTXO());
     ////////////////////////////////////////////////// deploy offline staking contract
@@ -349,9 +351,11 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateEmptyBlock(const CScript& 
     if(fProofOfStake)
     {
         CMutableTransaction coinstakeTx;
-        coinstakeTx.vout.resize(2);
+        coinstakeTx.vout.resize(4);
         coinstakeTx.vout[0].SetEmpty();
         coinstakeTx.vout[1].scriptPubKey = scriptPubKeyIn;
+        coinstakeTx.vout[2].scriptPubKey = GetFoundationScript(chainparams.GetConsensus());
+        coinstakeTx.vout[3].scriptPubKey = GetCareScript(chainparams.GetConsensus());
         originalRewardTx = coinstakeTx;
         pblock->vtx[1] = MakeTransactionRef(std::move(coinstakeTx));
 
@@ -437,7 +441,7 @@ bool BlockAssembler::AttemptToAddContractToBlock(CTxMemPool::txiter iter, uint64
     {
         return false;
     }
-    
+
     dev::h256 oldHashStateRoot(globalState->rootHash());
     dev::h256 oldHashUTXORoot(globalState->rootHashUTXO());
     // operate on local vars first, then later apply to `this`
@@ -1294,7 +1298,7 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
                             }
                             if (pblockfilled->GetBlockTime() > FutureDrift(GetAdjustedTime())) {
                                 if (gArgs.IsArgSet("-aggressive-staking")) {
-                                    //if being agressive, then check more often to publish immediately when valid. This might allow you to find more blocks, 
+                                    //if being agressive, then check more often to publish immediately when valid. This might allow you to find more blocks,
                                     //but also increases the chance of broadcasting invalid blocks and getting DoS banned by nodes,
                                     //or receiving more stale/orphan blocks than normal. Use at your own risk.
                                     MilliSleep(100);

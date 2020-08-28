@@ -110,6 +110,8 @@ struct Params {
     uint160 delegationsAddress;
     int nLastMPoSBlock;
     int nLastBigReward;
+    std::string careAddress;
+    std::string foundationAddress;
 };
 } // namespace Consensus
 
