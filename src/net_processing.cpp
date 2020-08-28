@@ -1212,6 +1212,8 @@ static bool MaybePunishNode(NodeId nodeid, const CValidationState& state, bool v
     case ValidationInvalidReason::BLOCK_HEADER_REJECT:
     case ValidationInvalidReason::TX_NOT_STANDARD:
     case ValidationInvalidReason::TX_MISSING_INPUTS:
+    case ValidationInvalidReason::TX_MISSING_FOUNDATION:
+    case ValidationInvalidReason::TX_MISSING_CARE:
     case ValidationInvalidReason::TX_PREMATURE_SPEND:
     case ValidationInvalidReason::TX_WITNESS_MUTATED:
     case ValidationInvalidReason::TX_CONFLICT:
@@ -4390,7 +4392,7 @@ bool ProcessNetBlock(const CChainParams& chainparams, const std::shared_ptr<cons
         }
 
         // Check for the signiture encoding
-        if (!CheckCanonicalBlockSignature(pblock.get())) 
+        if (!CheckCanonicalBlockSignature(pblock.get()))
         {
             if (pfrom)
                 Misbehaving(pfrom->GetId(), 100);

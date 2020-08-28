@@ -53,6 +53,8 @@ enum class ValidationInvalidReason {
     // Only loose txn:
     TX_NOT_STANDARD,          //!< didn't meet our local policy rules
     TX_MISSING_INPUTS,        //!< a transaction was missing some of its inputs
+    TX_MISSING_FOUNDATION,
+    TX_MISSING_CARE,
     TX_PREMATURE_SPEND,       //!< transaction spends a coinbase too early, or violates locktime/sequence locks
     /**
      * Transaction might be missing a witness, have a witness prior to SegWit

@@ -18,6 +18,7 @@
 #include <cuckoocache.h>
 #include <flatfile.h>
 #include <hash.h>
+#include <key_io.h>
 #include <index/txindex.h>
 #include <policy/fees.h>
 #include <policy/policy.h>
@@ -1449,17 +1450,27 @@ bool ReadRawBlockFromDisk(std::vector<uint8_t>& block, const CBlockIndex* pindex
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
     if(nHeight <= consensusParams.nLastBigReward)
-        return 20000 * COIN;
+        return 108150000 / consensusParams.nLastBigReward * COIN;
 
     int halvings = (nHeight - consensusParams.nLastBigReward - 1) / consensusParams.nSubsidyHalvingInterval;
     // Force block reward to zero when right shift is undefined.
-    if (halvings >= 7)
+    if (halvings >= 64)
         return 0;
 
-    CAmount nSubsidy = 4 * COIN;
-    // Subsidy is cut in half every 985500 blocks which will occur approximately every 4 years.
+    CAmount nSubsidy = 8250 * COIN;
+    // Subsidy is cut in half every 2628000 blocks which will occur approximately every 4 years.
     nSubsidy >>= halvings;
     return nSubsidy;
+}
+
+CScript GetFoundationScript(const Consensus::Params &consensusParams)
+{
+    return GetScriptForDestination(DecodeDestination(consensusParams.foundationAddress));
+}
+
+CScript GetCareScript(const Consensus::Params &consensusParams)
+{
+    return GetScriptForDestination(DecodeDestination(consensusParams.careAddress));
 }
 
 CoinsViews::CoinsViews(
@@ -2404,7 +2415,7 @@ std::vector<ResultExecute> CallContract(const dev::Address& addrContract, std::v
     dev::Address senderAddress = sender == dev::Address() ? dev::Address("ffffffffffffffffffffffffffffffffffffffff") : sender;
     tx.vout.push_back(CTxOut(0, CScript() << OP_DUP << OP_HASH160 << senderAddress.asBytes() << OP_EQUALVERIFY << OP_CHECKSIG));
     block.vtx.push_back(MakeTransactionRef(CTransaction(tx)));
- 
+
     SICashTransaction callTransaction;
     if(addrContract == dev::Address())
     {
@@ -2417,7 +2428,7 @@ std::vector<ResultExecute> CallContract(const dev::Address& addrContract, std::v
     callTransaction.forceSender(senderAddress);
     callTransaction.setVersion(VersionVM::GetEVMDefault());
 
-    
+
     ByteCodeExec exec(block, std::vector<SICashTransaction>(1, callTransaction), blockGasLimit, pblockindex);
     exec.performByteCode(dev::eth::Permanence::Reverted);
     return exec.getResult();
@@ -2462,6 +2473,32 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
             return state.Invalid(ValidationInvalidReason::CONSENSUS, error("CheckReward(): coinstake pays too much (actual=%d vs limit=%d)",
                                    nActualStakeReward, blockReward), REJECT_INVALID, "bad-cs-amount");
 
+        CAmount subsidy = GetBlockSubsidy(nHeight, consensusParams);
+
+        // Check the Staker reward
+        CAmount nValueStaker = block.vtx[offset]->vout[1].nValue;
+        CAmount expectedStaker = subsidy * 0.97 + nFees;
+        if (expectedStaker > nValueStaker) {
+            return state.Invalid(ValidationInvalidReason::CONSENSUS, error("CheckReward(): staker reward pays too much (actual=%d vs limit=%d)",
+                                   nValueStaker, expectedStaker ), REJECT_INVALID, "bad-cs-amount");
+        }
+
+        // Check the Foundation reward
+        CAmount nValueFoundation = block.vtx[offset]->vout[2].nValue;
+        CAmount expectedFoundation = subsidy * 0.015;
+        if (expectedFoundation != nValueFoundation) {
+            return state.Invalid(ValidationInvalidReason::CONSENSUS, error("CheckReward(): foundation reward not correct (actual=%d vs expected=%d)",
+                                   nValueFoundation, expectedFoundation ), REJECT_INVALID, "bad-cs-amount");
+        }
+
+        // Check the Foundation reward
+        CAmount nValueCare = block.vtx[offset]->vout[3].nValue;
+        CAmount expectedCare = subsidy * 0.015;
+        if (expectedCare != nValueCare) {
+            return state.Invalid(ValidationInvalidReason::CONSENSUS, error("CheckReward(): staker reward not correct (actual=%d vs expected=%d)",
+                                   nValueCare, expectedCare ), REJECT_INVALID, "bad-cs-amount");
+        }
+
         // The first proof-of-stake blocks get full reward, the rest of them are split between recipients
         int rewardRecipients = 1;
         int nPrevHeight = nHeight -1;
@@ -2479,14 +2516,17 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
 
         CAmount splitReward = (blockReward - gasRefunds) / rewardRecipients;
 
-        // Check that the reward is in the second output for the staker and the third output for the delegate
+        // Check that the reward is in the second output for the staker and the fifth output for the delegate
+        // Check that the third and fourth outputs are to the foundation and care addresses
         // Delegation contract data like the fee is checked in CheckProofOfStake
         if(block.HasProofOfDelegation())
         {
             CAmount nReward = blockReward - gasRefunds - splitReward * (rewardRecipients -1);
             CAmount nValueStaker = block.vtx[offset]->vout[1].nValue;
-            CAmount nValueDelegate = delegateOutputExist ? block.vtx[offset]->vout[2].nValue : 0;
-            CAmount nMinedReward = nValueStaker + nValueDelegate - nValueCoinPrev;
+            CAmount nValueFoundation = block.vtx[offset]->vout[2].nValue;
+            CAmount nValueCare = block.vtx[offset]->vout[3].nValue;
+            CAmount nValueDelegate = delegateOutputExist ? block.vtx[offset]->vout[4].nValue : 0;
+            CAmount nMinedReward = nValueStaker + nValueFoundation + nValueCare + nValueDelegate - nValueCoinPrev;
             if(nReward != nMinedReward)
                 return state.Invalid(ValidationInvalidReason::CONSENSUS, error("CheckReward(): The block reward is not split correctly between the staker and the delegate"), REJECT_INVALID, "bad-cs-delegate-reward");
         }
@@ -2500,7 +2540,7 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
         std::vector<CTxOut> mposOutputList;
         if(!GetMPoSOutputs(mposOutputList, splitReward, nPrevHeight, consensusParams))
             return error("CheckReward(): cannot create the list of MPoS outputs");
-      
+
         for(size_t i = 0; i < mposOutputList.size(); i++){
             it=std::find(vTempVouts.begin(), vTempVouts.end(), mposOutputList[i]);
             if(it==vTempVouts.end()){
@@ -2617,7 +2657,7 @@ void writeVMlog(const std::vector<ResultExecute>& res, const CTransaction& tx, c
             ss << "]}";
         }
     }
-    
+
     std::ofstream file(sicashDir.string(), std::ios::in | std::ios::out);
     file.seekp(-2, std::ios::end);
     file << ss.str();
@@ -3245,7 +3285,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
         {
             if (tx.IsCoinStake())
                 nActualStakeReward = tx.GetValueOut()-view.GetValueIn(tx);
-                    
+
             std::vector<CScriptCheck> vChecks;
             bool fCacheResults = fJustCheck; /* Don't cache results if we're actually connecting blocks (still consult the cache, though) */
             //note that coinbase and coinstake can not contain any contract opcodes, this is checked in CheckBlock
@@ -5248,7 +5288,7 @@ bool CChainState::UpdateHashProof(const CBlock& block, CValidationState& state, 
     //reject proof of work at height consensusParams.nLastPOWBlock
     if (block.IsProofOfWork() && nHeight > consensusParams.nLastPOWBlock)
         return state.Invalid(ValidationInvalidReason::BLOCK_INVALID_HEADER, error("UpdateHashProof() : reject proof-of-work at height %d", nHeight), REJECT_INVALID, "reject-pow");
-    
+
     // Check coinstake timestamp
     if (block.IsProofOfStake() && !CheckCoinStakeTimestamp(block.GetBlockTime()))
         return state.Invalid(ValidationInvalidReason::BLOCK_INVALID_HEADER, error("UpdateHashProof() : coinstake timestamp violation nTimeBlock=%d", block.GetBlockTime()), REJECT_INVALID, "timestamp-invalid");
@@ -5267,13 +5307,13 @@ bool CChainState::UpdateHashProof(const CBlock& block, CValidationState& state, 
             return error("UpdateHashProof() : check proof-of-stake failed for block %s", hash.ToString());
         }
     }
-    
+
     // PoW is checked in CheckBlock()
     if (block.IsProofOfWork())
     {
         hashProof = block.GetHash();
     }
-    
+
     // Record proof hash value
     pindex->hashProof = hashProof;
     return true;
@@ -5716,9 +5756,9 @@ bool TestBlockValidity(CValidationState& state, const CChainParams& chainparams,
 
     dev::h256 oldHashStateRoot(globalState->rootHash()); // sicash
     dev::h256 oldHashUTXORoot(globalState->rootHashUTXO()); // sicash
-    
+
     if (!::ChainstateActive().ConnectBlock(block, state, &indexDummy, viewNew, chainparams, true)){
-        
+
         globalState->setRoot(oldHashStateRoot); // sicash
         globalState->setRootUTXO(oldHashUTXORoot); // sicash
         pstorageresult->clearCacheResult();
