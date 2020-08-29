@@ -3854,9 +3854,14 @@ bool CWallet::CreateCoinStakeFromMine(interfaces::Chain::Lock& locked_chain, con
 
     const Consensus::Params& consensusParams = Params().GetConsensus();
     int64_t nRewardPiece = 0;
+    int64_t nCareReward = 0;
+    int64_t nFoundationReward = 0;
     // Calculate reward
     {
-        int64_t nReward = nTotalFees + GetBlockSubsidy(pindexPrev->nHeight + 1, consensusParams);
+        int64_t nSubsidy = GetBlockSubsidy(pindexPrev->nHeight + 1, consensusParams);
+        nCareReward = nSubsidy * 0.015;
+        nFoundationReward = nSubsidy * 0.015;
+        int64_t nReward = nTotalFees + nSubsidy * 0.97;
         if (nReward < 0)
             return false;
 
@@ -3889,6 +3894,9 @@ bool CWallet::CreateCoinStakeFromMine(interfaces::Chain::Lock& locked_chain, con
     }
     else
         txNew.vout[1].nValue = nCredit;
+
+    txNew.vout.push_back(CTxOut(nCareReward, GetCareScript(consensusParams)));
+    txNew.vout.push_back(CTxOut(nFoundationReward, GetCareScript(consensusParams)));
 
     if(pindexPrev->nHeight >= consensusParams.nFirstMPoSBlock && pindexPrev->nHeight < consensusParams.nLastMPoSBlock)
     {
@@ -4084,7 +4092,7 @@ bool CWallet::CreateCoinStakeFromDelegate(interfaces::Chain::Lock& locked_chain,
     txNew.vout[1].nValue = nCredit;
     if(delegateOutputExist)
     {
-        txNew.vout[2].nValue = nRewardOffline;
+        txNew.vout[4].nValue = nRewardOffline;
     }
 
     if(pindexPrev->nHeight >= consensusParams.nFirstMPoSBlock && pindexPrev->nHeight < consensusParams.nLastMPoSBlock)
@@ -6086,7 +6094,7 @@ bool CWallet::IsTokenTxMine(const CTokenTx &wtx) const
         CTokenInfo info = it->second;
         if(wtx.strContractAddress == info.strContractAddress)
         {
-            if(wtx.strSenderAddress == info.strSenderAddress || 
+            if(wtx.strSenderAddress == info.strSenderAddress ||
                 wtx.strReceiverAddress == info.strSenderAddress)
             {
                 ret = true;

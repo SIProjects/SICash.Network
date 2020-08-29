@@ -2475,26 +2475,29 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
 
         CAmount subsidy = GetBlockSubsidy(nHeight, consensusParams);
 
-        // Check the Staker reward
-        CAmount nValueStaker = block.vtx[offset]->vout[1].nValue;
-        CAmount expectedStaker = subsidy * 0.97 + nFees;
-        if (expectedStaker > nValueStaker) {
-            return state.Invalid(ValidationInvalidReason::CONSENSUS, error("CheckReward(): staker reward pays too much (actual=%d vs limit=%d)",
-                                   nValueStaker, expectedStaker ), REJECT_INVALID, "bad-cs-amount");
-        }
-
-        // Check the Foundation reward
-        CAmount nValueFoundation = block.vtx[offset]->vout[2].nValue;
+        // Check the Foundation + Care reward
+        CAmount expectedCare = subsidy * 0.015;
         CAmount expectedFoundation = subsidy * 0.015;
-        if (expectedFoundation != nValueFoundation) {
+        CAmount nValueFoundation = 0;
+        CAmount nValueCare = 0;
+        for (auto &out : block.vtx[offset]->vout) {
+            if (out.scriptPubKey == GetFoundationScript(consensusParams)) {
+                nValueFoundation += out.nValue;
+            }
+
+            if (out.scriptPubKey == GetCareScript(consensusParams)) {
+                nValueCare += out.nValue;
+            }
+        }
+        //
+        // Check the Foundation reward
+        if (expectedFoundation < nValueFoundation) {
             return state.Invalid(ValidationInvalidReason::CONSENSUS, error("CheckReward(): foundation reward not correct (actual=%d vs expected=%d)",
                                    nValueFoundation, expectedFoundation ), REJECT_INVALID, "bad-cs-amount");
         }
 
-        // Check the Foundation reward
-        CAmount nValueCare = block.vtx[offset]->vout[3].nValue;
-        CAmount expectedCare = subsidy * 0.015;
-        if (expectedCare != nValueCare) {
+        // Check the Care reward
+        if (expectedCare < nValueCare) {
             return state.Invalid(ValidationInvalidReason::CONSENSUS, error("CheckReward(): staker reward not correct (actual=%d vs expected=%d)",
                                    nValueCare, expectedCare ), REJECT_INVALID, "bad-cs-amount");
         }
