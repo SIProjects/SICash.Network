@@ -34,7 +34,7 @@ Basic usage resources:
 Development resources:
 
 * [SICash Book - A Developer's Guide To SICASH](http://book.sicash.site/en/)
-* [SICash contract usage](https://docs.sicash.site/en/QRC20-Token-Introduce.html)
+* [SICash contract usage](https://docs.sicash.site/en/SRC20-Token-Introduce.html)
 * [Deploying a custom token to SICash](https://blog.sicash.org/sicash-custom-token-walkthrough-467d725fa27d)
 * [SICashJS document](https://sicashproject.github.io/sicashjs-doc/)
 * [Smart contract ICO example](http://book.sicash.site/en/part3/ico.htm)
@@ -72,7 +72,7 @@ SICash Core is our primary mainnet wallet. It implements a full node and is capa
 SICash Core currently implements the following:
 
 * Sending/Receiving SICASH coins
-* Sending/Receiving QRC20 tokens on the SICash network
+* Sending/Receiving SRC20 tokens on the SICash network
 * Staking and creating blocks for the SICash network
 * Creating and interacting with smart contracts
 * Running a full node for distributing the blockchain to other users
