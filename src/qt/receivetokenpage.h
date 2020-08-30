@@ -26,7 +26,7 @@ private:
     Ui::ReceiveTokenPage *ui;
     QString m_address;
 
-    void createSRCode();
+    void createQRCode();
 
     const PlatformStyle *platformStyle;
 };
