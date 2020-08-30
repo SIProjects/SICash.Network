@@ -25,7 +25,7 @@ ReceiveTokenPage::~ReceiveTokenPage()
 void ReceiveTokenPage::setAddress(QString address)
 {
     m_address = address;
-    createSRCode();
+    createQRCode();
 }
 
 void ReceiveTokenPage::setSymbol(QString symbol)
@@ -41,17 +41,17 @@ void ReceiveTokenPage::on_copyAddressClicked()
         GUIUtil::setClipboard(m_address);
 }
 
-void ReceiveTokenPage::createSRCode()
+void ReceiveTokenPage::createQRCode()
 {
     SendCoinsRecipient info;
     if(!m_address.isEmpty())
     {
         info.address = m_address;
         QString uri = GUIUtil::formatBitcoinURI(info);
-        if(ui->lblSRCode->setQR(uri))
+        if(ui->lblQRCode->setQR(uri))
         {
             ui->widgetQRMargin->setVisible(true);
-            ui->lblSRCode->setScaledContents(true);
+            ui->lblQRCode->setScaledContents(true);
         }
         else
         {
@@ -62,7 +62,7 @@ void ReceiveTokenPage::createSRCode()
     }
     else
     {
-        ui->lblSRCode->clear();
+        ui->lblQRCode->clear();
         ui->labelTokenAddress->setText("");
         ui->labelTokenAddressText->setText("");
         ui->copyAddressButton->setVisible(false);
