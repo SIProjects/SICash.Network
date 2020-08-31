@@ -337,7 +337,7 @@ void BitcoinGUI::createActions()
     delegationAction = new QAction(tr("Delegations"), this);
     superStakerAction = new QAction(tr("Super Staking"), this);
 
-    SRCTokenAction = new QAction(platformStyle->MultiStatesIcon(":/icons/qrctoken"), tr("&SRC Tokens"), this);
+    SRCTokenAction = new QAction(platformStyle->MultiStatesIcon(":/icons/srctoken"), tr("&SRC Tokens"), this);
     SRCTokenAction->setStatusTip(tr("SRC Tokens (send, receive or add Tokens in list)"));
     SRCTokenAction->setToolTip(SRCTokenAction->statusTip());
     SRCTokenAction->setCheckable(true);

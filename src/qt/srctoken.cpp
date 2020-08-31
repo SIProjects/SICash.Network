@@ -1,5 +1,5 @@
-#include <qt/qrctoken.h>
-#include <qt/forms/ui_qrctoken.h>
+#include <qt/srctoken.h>
+#include <qt/forms/ui_srctoken.h>
 #include <qt/tokenitemmodel.h>
 #include <qt/walletmodel.h>
 #include <qt/tokentransactionview.h>
