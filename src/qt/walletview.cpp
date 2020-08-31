@@ -23,7 +23,7 @@
 #include <qt/createcontract.h>
 #include <qt/sendtocontract.h>
 #include <qt/callcontract.h>
-#include <qt/qrctoken.h>
+#include <qt/srctoken.h>
 #include <qt/restoredialog.h>
 #include <qt/stakepage.h>
 #include <qt/delegationpage.h>
