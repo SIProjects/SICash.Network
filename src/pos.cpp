@@ -240,12 +240,25 @@ bool CheckProofOfStake(CBlockIndex* pindexPrev, CValidationState& state, const C
         }
     }
 
+
+    bool hasFoundation = false;
+    bool hasCare = false;
+    for (auto &it : tx.vout) {
+        if (it.scriptPubKey == GetFoundationScript(Params().GetConsensus())) {
+            hasFoundation = true;
+        }
+
+        if (it.scriptPubKey == GetCareScript(Params().GetConsensus())) {
+            hasCare = true;
+        }
+    }
+
     // Check Foundation
-    if (tx.vout[2].scriptPubKey != GetFoundationScript(Params().GetConsensus())) {
+    if (!hasFoundation) {
         return state.Invalid(ValidationInvalidReason::TX_MISSING_FOUNDATION, false, REJECT_INVALID, "stake-tx-missing-foundation", strprintf("CheckProofOfStake() : Stake is missing the foundation output"));
     }
 
-    if (tx.vout[3].scriptPubKey != GetCareScript(Params().GetConsensus())) {
+    if (!hasCare) {
         return state.Invalid(ValidationInvalidReason::TX_MISSING_CARE, false, REJECT_INVALID, "stake-tx-missing-care", strprintf("CheckProofOfStake() : Stake prevout is missing the care output"));
     }
 
