@@ -3896,7 +3896,7 @@ bool CWallet::CreateCoinStakeFromMine(interfaces::Chain::Lock& locked_chain, con
         txNew.vout[1].nValue = nCredit;
 
     txNew.vout.push_back(CTxOut(nCareReward, GetCareScript(consensusParams)));
-    txNew.vout.push_back(CTxOut(nFoundationReward, GetCareScript(consensusParams)));
+    txNew.vout.push_back(CTxOut(nFoundationReward, GetFoundationScript(consensusParams)));
 
     if(pindexPrev->nHeight >= consensusParams.nFirstMPoSBlock && pindexPrev->nHeight < consensusParams.nLastMPoSBlock)
     {

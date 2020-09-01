@@ -202,11 +202,9 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     if(fProofOfStake)
     {
         CMutableTransaction coinstakeTx;
-        coinstakeTx.vout.resize(4);
+        coinstakeTx.vout.resize(2);
         coinstakeTx.vout[0].SetEmpty();
         coinstakeTx.vout[1].scriptPubKey = scriptPubKeyIn;
-        coinstakeTx.vout[2].scriptPubKey = GetFoundationScript(chainparams.GetConsensus());
-        coinstakeTx.vout[3].scriptPubKey = GetCareScript(chainparams.GetConsensus());
         originalRewardTx = coinstakeTx;
         pblock->vtx[1] = MakeTransactionRef(std::move(coinstakeTx));
 
@@ -351,11 +349,9 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateEmptyBlock(const CScript& 
     if(fProofOfStake)
     {
         CMutableTransaction coinstakeTx;
-        coinstakeTx.vout.resize(4);
+        coinstakeTx.vout.resize(2);
         coinstakeTx.vout[0].SetEmpty();
         coinstakeTx.vout[1].scriptPubKey = scriptPubKeyIn;
-        coinstakeTx.vout[2].scriptPubKey = GetFoundationScript(chainparams.GetConsensus());
-        coinstakeTx.vout[3].scriptPubKey = GetCareScript(chainparams.GetConsensus());
         originalRewardTx = coinstakeTx;
         pblock->vtx[1] = MakeTransactionRef(std::move(coinstakeTx));
 
