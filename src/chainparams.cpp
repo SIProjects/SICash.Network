@@ -134,10 +134,7 @@ public:
         // This is fine at runtime as we'll fall back to using them as a oneshot if they don't support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
-        vSeeds.emplace_back("sicash3.dynu.net"); // SICash mainnet
-        vSeeds.emplace_back("sicash5.dynu.net"); // SICash mainnet
-        vSeeds.emplace_back("sicash6.dynu.net"); // SICash mainnet
-        vSeeds.emplace_back("sicash7.dynu.net"); // SICash mainnet
+        vSeeds.emplace_back("mainnet.sicash.network"); // SICash mainnet
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,63);    // Starts with uppercase (S)
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,125);   // Starts with lowercase (s)
@@ -145,7 +142,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x03, 0x68, 0xB3, 0x2E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x81, 0xAD, 0xE5};
 
-        bech32_hrp = "qc";
+        bech32_hrp = "sc";
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -168,8 +165,8 @@ public:
             0 // * estimated number of transactions per second after that timestamp
         };
 
-        consensus.nLastPOWBlock = 2000;
-        consensus.nLastBigReward = 2000;
+        consensus.nLastPOWBlock = 5000;
+        consensus.nLastBigReward = 5000;
         consensus.nMPoSRewardRecipients = 10;
         consensus.nFirstMPoSBlock = consensus.nLastPOWBlock +
                                     consensus.nMPoSRewardRecipients +
@@ -202,17 +199,17 @@ public:
         consensus.CSVHeight = 6048; // 00000000025e930139bac5c6c31a403776da130831ab85be56578f3fa75369bb
         consensus.SegwitHeight = 6048; // 00000000002b980fcd729daaa248fd9316a5200e9b367f4ff2c42453e84201ca
         consensus.MinBIP9WarningHeight = 8064; // segwit activation height + miner confirmation window
-        consensus.QIP5Height = 446320;
-        consensus.QIP6Height = 446320;
-        consensus.QIP7Height = 446320;
-        consensus.QIP9Height = 446320;
+        consensus.QIP5Height = 0;
+        consensus.QIP6Height = 0;
+        consensus.QIP7Height = 0;
+        consensus.QIP9Height = 0;
         consensus.nOfflineStakeHeight = 625000;
         consensus.powLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.QIP9PosLimit = uint256S("0000000000001fffffffffffffffffffffffffffffffffffffffffffffffffff"); // The new POS-limit activated after QIP9
-        consensus.nPowTargetTimespan = 16 * 60; // 16 minutes
-        consensus.nPowTargetTimespanV2 = 4000;
-        consensus.nPowTargetSpacing = 2 * 64;
+        consensus.nPowTargetTimespan = 3600; // 16 minutes
+        consensus.nPowTargetTimespanV2 = 3600;
+        consensus.nPowTargetSpacing = 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = true;
         consensus.fPoSNoRetargeting = false;
@@ -246,7 +243,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("sicash4.dynu.net"); // SICash testnet
+        vSeeds.emplace_back("testnet.sicash.network"); // SICash mainnet
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,65);     // Starts with uppercase (T)
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,127);    //Starts with lowercase (t)
@@ -289,8 +286,8 @@ public:
         consensus.nEnableHeaderSignatureHeight = 391993;
         consensus.nCheckpointSpan = COINBASE_MATURITY;
         consensus.delegationsAddress = uint160(ParseHex("0000000000000000000000000000000000000086")); // Delegations contract for offline staking
-        consensus.foundationAddress = "SeSu9BgGgd8cEfmfS2kmYbwMBTpH8f18bK";
-        consensus.careAddress = "SRBQgPoipSEVADYSyt3r7Lgk1BxwJy3hKj";
+        consensus.foundationAddress = "TEGv8HnihSEMcMXguqzhkPBiZA7ygZs6rY";
+        consensus.careAddress = "TKnE1Rswn1DNzYbxz3H3mnRPDPwCoCxqDv";
     }
 };
 
@@ -391,7 +388,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0xA4, 0x34, 0x27, 0xBF};
         base58Prefixes[EXT_SECRET_KEY] = {0x02, 0x15, 0x81, 0x96};
 
-        bech32_hrp = "qcrt";
+        bech32_hrp = "scrt";
     }
 
     /**
