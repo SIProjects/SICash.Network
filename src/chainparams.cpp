@@ -243,8 +243,6 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("testnet.sicash.network"); // SICash testnet
-        vSeeds.emplace_back("testnet.sicash.seeds.vidaru.org"); // Vidaru
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,65);     // Starts with uppercase (T)
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,127);    //Starts with lowercase (t)
