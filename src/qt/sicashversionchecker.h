@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#define SICASH_RELEASES "https://github.com/sicashproject/sicash/releases"
+#define SICASH_RELEASES "https://github.com/SIProjects/sicash/releases"
 
 class Version {
 

@@ -595,7 +595,7 @@ void SetupServerArgs()
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/sicashproject/sicash>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/SIProjects/sicash>";
     const std::string URL_WEBSITE = "<https://sicash.org>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i").translated, COPYRIGHT_YEAR) + " ") + "\n" +

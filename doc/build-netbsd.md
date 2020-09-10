@@ -23,7 +23,7 @@ pkg-config
 python37
 gmp
 
-git clone https://github.com/sicashproject/sicash --recursive
+git clone https://github.com/SIProjects/sicash --recursive
 ```
 
 See [dependencies.md](dependencies.md) for a complete overview.

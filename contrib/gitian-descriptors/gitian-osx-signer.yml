@@ -8,7 +8,7 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/sicashproject/sicash-detached-sigs.git"
+- "url": "https://github.com/SIProjects/sicash-detached-sigs.git"
   "dir": "signature"
 files:
 - "sicash-osx-unsigned.tar.gz"

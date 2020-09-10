@@ -24,9 +24,9 @@ packages:
 - "python3"
 - "rename"
 remotes:
-- "url": "https://github.com/sicashproject/sicash.git"
+- "url": "https://github.com/SIProjects/sicash.git"
   "dir": "sicash"
-- "url": "https://github.com/sicashproject/cpp-eth-sicash.git"
+- "url": "https://github.com/SIProjects/cpp-eth-sicash.git"
   "dir": "cpp-eth-sicash"
 files: []
 script: |
