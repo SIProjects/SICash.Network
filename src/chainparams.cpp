@@ -234,10 +234,10 @@ public:
         m_assumed_blockchain_size = 2;
         m_assumed_chain_state_size = 1;
 
-        genesis = CreateGenesisBlock(1599841850, 1456, 0x1f00ffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1600000000, 54522, 0x1f00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
-        assert(consensus.hashGenesisBlock == uint256S("0x0000dad6dfdfcd1332104741b3f39d6c814c5dea588b8a7c785c1cfce3a44c2c"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0000f7dd53ae055ec5bbcae666198dbe9aa61dd55632a8592e3c16248415292b"));
         assert(genesis.hashMerkleRoot == uint256S("0x98d558298d3446ee0c70424ac156a13e65817a637ecbec4694a9d16855b4dac8"));
 
         vFixedSeeds.clear();
@@ -263,7 +263,7 @@ public:
 
         checkpointData = {
             {
-                {0, uint256S("0000dad6dfdfcd1332104741b3f39d6c814c5dea588b8a7c785c1cfce3a44c2c")},
+                {0, uint256S("0000f7dd53ae055ec5bbcae666198dbe9aa61dd55632a8592e3c16248415292b")},
             }
         };
 
