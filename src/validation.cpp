@@ -2483,23 +2483,21 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
         for (auto &out : block.vtx[offset]->vout) {
             if (out.scriptPubKey == GetFoundationScript(consensusParams)) {
                 nValueFoundation += out.nValue;
-            }
-
-            if (out.scriptPubKey == GetCareScript(consensusParams)) {
+            } else if (out.scriptPubKey == GetCareScript(consensusParams)) {
                 nValueCare += out.nValue;
             }
         }
         //
         // Check the Foundation reward
-        if (expectedFoundation < nValueFoundation) {
-            return state.Invalid(ValidationInvalidReason::CONSENSUS, error("CheckReward(): foundation reward not correct (actual=%d vs expected=%d)",
-                                   nValueFoundation, expectedFoundation ), REJECT_INVALID, "bad-cs-amount");
+        if (nValueFoundation < expectedFoundation) {
+            return state.Invalid(ValidationInvalidReason::CONSENSUS, error("CheckReward(): foundation reward not correct (actual=%d vs expected=%d) (subsidy=%d)",
+                                   nValueFoundation, expectedFoundation, subsidy), REJECT_INVALID, "bad-cs-amount");
         }
 
         // Check the Care reward
-        if (expectedCare < nValueCare) {
-            return state.Invalid(ValidationInvalidReason::CONSENSUS, error("CheckReward(): staker reward not correct (actual=%d vs expected=%d)",
-                                   nValueCare, expectedCare ), REJECT_INVALID, "bad-cs-amount");
+        if (nValueCare < expectedCare) {
+            return state.Invalid(ValidationInvalidReason::CONSENSUS, error("CheckReward(): care reward not correct (actual=%d vs expected=%d) (sudsidy=%d)",
+                                   nValueCare, expectedCare, subsidy), REJECT_INVALID, "bad-cs-amount");
         }
 
         // The first proof-of-stake blocks get full reward, the rest of them are split between recipients

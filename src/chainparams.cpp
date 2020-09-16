@@ -168,10 +168,8 @@ public:
         consensus.nLastPOWBlock = 5000;
         consensus.nLastBigReward = 5000;
         consensus.nMPoSRewardRecipients = 10;
-        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock +
-                                    consensus.nMPoSRewardRecipients +
-                                    COINBASE_MATURITY;
-        consensus.nLastMPoSBlock = 679999;
+        consensus.nFirstMPoSBlock = 0;
+        consensus.nLastMPoSBlock = 0;
 
 
         consensus.nFixUTXOCacheHFHeight = 100000;
@@ -191,6 +189,7 @@ public:
     CTestNetParams() {
         strNetworkID = "test";
         consensus.nSubsidyHalvingInterval = 985500; // sicash halving every 4 years
+        consensus.nSubsidyHalvingInterval = 2628000; // sicash halving every 5 years
         consensus.BIP16Exception = uint256S("0x0000e803ee215c0684ca0d2f9220594d3f828617972aad66feb2ba51f5e14222");
         consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256S("0x0000e803ee215c0684ca0d2f9220594d3f828617972aad66feb2ba51f5e14222");
@@ -277,10 +276,8 @@ public:
         consensus.nLastPOWBlock = 5000;
         consensus.nLastBigReward = 5000;
         consensus.nMPoSRewardRecipients = 10;
-        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock +
-                                    consensus.nMPoSRewardRecipients +
-                                    COINBASE_MATURITY;
-        consensus.nLastMPoSBlock = 624999;
+        consensus.nFirstMPoSBlock = 0;
+        consensus.nLastMPoSBlock = 0;
 
         consensus.nFixUTXOCacheHFHeight = 84500;
         consensus.nEnableHeaderSignatureHeight = 391993;

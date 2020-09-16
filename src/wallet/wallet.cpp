@@ -3861,7 +3861,7 @@ bool CWallet::CreateCoinStakeFromMine(interfaces::Chain::Lock& locked_chain, con
         int64_t nSubsidy = GetBlockSubsidy(pindexPrev->nHeight + 1, consensusParams);
         nCareReward = nSubsidy * 0.015;
         nFoundationReward = nSubsidy * 0.015;
-        int64_t nReward = nTotalFees + nSubsidy * 0.97;
+        int64_t nReward = nTotalFees + nSubsidy - (nCareReward + nFoundationReward) ;
         if (nReward < 0)
             return false;
 
@@ -3892,8 +3892,9 @@ bool CWallet::CreateCoinStakeFromMine(interfaces::Chain::Lock& locked_chain, con
             txNew.vout[i].nValue = nValue;
         txNew.vout[GetStakeSplitOutputs()].nValue = nCredit - nValue * (GetStakeSplitOutputs() - 1);
     }
-    else
+    else {
         txNew.vout[1].nValue = nCredit;
+    }
 
     txNew.vout.push_back(CTxOut(nCareReward, GetCareScript(consensusParams)));
     txNew.vout.push_back(CTxOut(nFoundationReward, GetFoundationScript(consensusParams)));
