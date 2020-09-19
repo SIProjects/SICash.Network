@@ -59,20 +59,20 @@ def build():
 
     if args.linux:
         print('\nCompiling ' + args.version + ' Linux')
-        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'sicash='+args.commit+',cpp-eth-sicash=f06a11e56', '--url', 'sicash='+args.url, '../SICash.Network/contrib/gitian-descriptors/gitian-linux.yml'])
+        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'SICash.Network='+args.commit+',cpp-eth-sicash=f06a11e56', '--url', 'SICash.Network='+args.url, '../SICash.Network/contrib/gitian-descriptors/gitian-linux.yml'])
         subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-linux', '--destination', '../gitian.sigs/', '../SICash.Network/contrib/gitian-descriptors/gitian-linux.yml'])
         subprocess.check_call('mv build/out/sicash-*.tar.gz build/out/src/sicash-*.tar.gz ../sicash-binaries/'+args.version, shell=True)
  
     if args.windows:
         print('\nCompiling ' + args.version + ' Windows')
-        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'sicash='+args.commit+',cpp-eth-sicash=f06a11e56', '--url', 'sicash='+args.url, '../SICash.Network/contrib/gitian-descriptors/gitian-win.yml'])
+        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'SICash.Network='+args.commit+',cpp-eth-sicash=f06a11e56', '--url', 'SICash.Network='+args.url, '../SICash.Network/contrib/gitian-descriptors/gitian-win.yml'])
         subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-win-unsigned', '--destination', '../gitian.sigs/', '../SICash.Network/contrib/gitian-descriptors/gitian-win.yml'])
         subprocess.check_call('mv build/out/sicash-*-win-unsigned.tar.gz inputs/', shell=True)
         subprocess.check_call('mv build/out/sicash-*.zip build/out/sicash-*.exe build/out/src/sicash-*.tar.gz ../sicash-binaries/'+args.version, shell=True)
 
     if args.macos:
         print('\nCompiling ' + args.version + ' MacOS')
-        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'sicash='+args.commit+',cpp-eth-sicash=f06a11e56', '--url', 'sicash='+args.url, '../SICash.Network/contrib/gitian-descriptors/gitian-osx.yml'])
+        subprocess.check_call(['bin/gbuild', '-j', args.jobs, '-m', args.memory, '--commit', 'SICash.Network='+args.commit+',cpp-eth-sicash=f06a11e56', '--url', 'SICash.Network='+args.url, '../SICash.Network/contrib/gitian-descriptors/gitian-osx.yml'])
         subprocess.check_call(['bin/gsign', '-p', args.sign_prog, '--signer', args.signer, '--release', args.version+'-osx-unsigned', '--destination', '../gitian.sigs/', '../SICash.Network/contrib/gitian-descriptors/gitian-osx.yml'])
         subprocess.check_call('mv build/out/sicash-*-osx-unsigned.tar.gz inputs/', shell=True)
         subprocess.check_call('mv build/out/sicash-*.tar.gz build/out/sicash-*.dmg build/out/src/sicash-*.tar.gz ../sicash-binaries/'+args.version, shell=True)
@@ -232,7 +232,7 @@ def main():
     os.chdir('SICash.Network')
     if args.pull:
         subprocess.check_call(['git', 'fetch', args.url, 'refs/pull/'+args.version+'/merge'])
-        os.chdir('../gitian-builder/inputs/sicash')
+        os.chdir('../gitian-builder/inputs/SICash.Network')
         subprocess.check_call(['git', 'fetch', args.url, 'refs/pull/'+args.version+'/merge'])
         args.commit = subprocess.check_output(['git', 'show', '-s', '--format=%H', 'FETCH_HEAD'], universal_newlines=True, encoding='utf8').strip()
         args.version = 'pull-' + args.version
