@@ -106,9 +106,9 @@ script: |
   cd SICash.Network
   BASEPREFIX="${PWD}/depends"
   # Build dependencies for each host
-  for i in $HOSTS; do
-    make ${MAKEOPTS} -C ${BASEPREFIX} HOST="${i}"
-  done
+  #for i in $HOSTS; do
+  #  make ${MAKEOPTS} -C ${BASEPREFIX} HOST="${i}"
+  #done
 
   # Faketime for binaries
   export PATH=${PATH_orig}
