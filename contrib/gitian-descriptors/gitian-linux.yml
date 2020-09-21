@@ -98,6 +98,11 @@ script: |
   create_per-host_faketime_wrappers "2000-01-01 12:00:00"
   export PATH=${WRAP_DIR}:${PATH}
 
+  #this is a hack since gitian has no natural support for submodules
+  #make sure this file exists... 
+  cp -r cpp-eth-sicash/* SICash.Network/src/cpp-ethereum
+  cat SICash.Network/src/cpp-ethereum/utils/libscrypt/b64.c 
+
   cd SICash.Network
   BASEPREFIX="${PWD}/depends"
   # Build dependencies for each host
@@ -144,8 +149,6 @@ script: |
     #make sure this file exists... 
     ls ./src/
     ls ./src/cpp-ethereum/
-    cp -r ../cpp-eth-sicash/* ./src/cpp-ethereum
-    ls ./src/cpp-ethereum/utils/libscrypt 
 
     CONFIG_SITE=${BASEPREFIX}/${i}/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking ${CONFIGFLAGS} CFLAGS="${HOST_CFLAGS}" CXXFLAGS="${HOST_CXXFLAGS}" LDFLAGS="${HOST_LDFLAGS}"
     make V=1 ${MAKEOPTS}
