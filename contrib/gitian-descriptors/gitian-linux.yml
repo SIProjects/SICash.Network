@@ -147,6 +147,8 @@ script: |
     ./autogen.sh
     #this is a hack since gitian has no natural support for submodules
     #make sure this file exists... 
+    ls $PWD
+    ls ../
     ls ./src/
     ls ./src/cpp-ethereum/
 
