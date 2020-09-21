@@ -106,9 +106,9 @@ script: |
   cd SICash.Network
   BASEPREFIX="${PWD}/depends"
   # Build dependencies for each host
-  #for i in $HOSTS; do
-  #  make ${MAKEOPTS} -C ${BASEPREFIX} HOST="${i}"
-  #done
+  for i in $HOSTS; do
+    make ${MAKEOPTS} -C ${BASEPREFIX} HOST="${i}"
+  done
 
   # Faketime for binaries
   export PATH=${PATH_orig}
@@ -147,9 +147,8 @@ script: |
     ./autogen.sh
     #this is a hack since gitian has no natural support for submodules
     #make sure this file exists... 
-    ls ../../
     cp -r ../../cpp-eth-sicash/* ./src/cpp-ethereum
-    ls ./src/cpp-ethereum/
+    cat ./src/cpp-ethereum/utils/libscrypt/b64.c 
 
     CONFIG_SITE=${BASEPREFIX}/${i}/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking ${CONFIGFLAGS} CFLAGS="${HOST_CFLAGS}" CXXFLAGS="${HOST_CXXFLAGS}" LDFLAGS="${HOST_LDFLAGS}"
     make V=1 ${MAKEOPTS}
