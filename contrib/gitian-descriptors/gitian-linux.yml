@@ -142,7 +142,8 @@ script: |
     ./autogen.sh
     #this is a hack since gitian has no natural support for submodules
     #make sure this file exists... 
-    ls ./src/cpp-ethereum/utils/libscrypt 
+    ls ./src/
+    ls ./src/cpp-ethereum/
     cp -r ../cpp-eth-sicash/* ./src/cpp-ethereum
     ls ./src/cpp-ethereum/utils/libscrypt 
 
