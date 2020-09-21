@@ -147,9 +147,8 @@ script: |
     ./autogen.sh
     #this is a hack since gitian has no natural support for submodules
     #make sure this file exists... 
-    ls $PWD
-    ls ../
-    ls ./src/
+    ls ../../
+    cp -r ../../cpp-eth-sicash/* ./src/cpp-ethereum
     ls ./src/cpp-ethereum/
 
     CONFIG_SITE=${BASEPREFIX}/${i}/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking ${CONFIGFLAGS} CFLAGS="${HOST_CFLAGS}" CXXFLAGS="${HOST_CXXFLAGS}" LDFLAGS="${HOST_LDFLAGS}"
