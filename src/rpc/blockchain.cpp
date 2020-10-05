@@ -148,7 +148,7 @@ double GetPoSKernelPS()
 
     if (nStakesTime)
         result = dStakeKernelsTriedAvg / nStakesTime;
-    
+
     result *= STAKE_TIMESTAMP_MASK + 1;
 
     return result;
@@ -214,7 +214,7 @@ UniValue blockheaderToJSON(const CBlockIndex* tip, const CBlockIndex* blockindex
         result.pushKV("previousblockhash", blockindex->pprev->GetBlockHash().GetHex());
     if (pnext)
         result.pushKV("nextblockhash", pnext->GetBlockHash().GetHex());
-	
+
     result.pushKV("flags", strprintf("%s", blockindex->IsProofOfStake()? "proof-of-stake" : "proof-of-work"));
     result.pushKV("proofhash", blockindex->hashProof.GetHex());
     result.pushKV("modifier", blockindex->nStakeModifier.GetHex());
@@ -941,7 +941,7 @@ static UniValue getaccountinfo(const JSONRPCRequest& request)
     dev::Address addrAccount(strAddr);
     if(!globalState->addressInUse(addrAccount))
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Address does not exist");
-    
+
     UniValue result(UniValue::VOBJ);
 
     result.pushKV("address", strAddr);
@@ -956,7 +956,7 @@ static UniValue getaccountinfo(const JSONRPCRequest& request)
         e.pushKV(dev::toHex(dev::h256(j.second.first)), dev::toHex(dev::h256(j.second.second)));
         storageUV.pushKV(j.first.hex(), e);
     }
-        
+
     result.pushKV("storage", storageUV);
 
     result.pushKV("code", HexStr(code.begin(), code.end()));
@@ -971,6 +971,49 @@ static UniValue getaccountinfo(const JSONRPCRequest& request)
         result.pushKV("vin", vin);
     }
     return result;
+}
+
+static UniValue getcontractcode(const JSONRPCRequest& request)
+{
+    RPCHelpMan{
+        "getcontractcode",
+        "\nGet contract code.\n",
+        {
+            {"address", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The contract address"},
+            {"blockNum", RPCArg::Type::NUM, /* default */ "latest", "Number of block to get state from."},
+        },
+        RPCResult{
+            "(string)  code of the contract\n"},
+        RPCExamples{
+            HelpExampleCli("getcontractcode", "eb23c0b3e6042821da281a2e2364feb22dd543e3") + HelpExampleRpc("getcontractcode", "eb23c0b3e6042821da281a2e2364feb22dd543e3")},
+    }
+        .Check(request);
+
+    LOCK(cs_main);
+
+    std::string strAddr = request.params[0].get_str();
+    if(strAddr.size() != 40 || !CheckHex(strAddr))
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Incorrect address");
+
+    TemporaryState ts(globalState);
+    if (request.params.size() > 1) {
+        if (request.params[1].isNum()) {
+            auto blockNum = request.params[1].get_int();
+            if (blockNum < 0 || blockNum > ::ChainActive().Height())
+                throw JSONRPCError(RPC_INVALID_PARAMS, "Incorrect block number");
+            ts.SetRoot(uintToh256(::ChainActive()[blockNum]->hashStateRoot), uintToh256(::ChainActive()[blockNum]->hashUTXORoot));
+        } else {
+            throw JSONRPCError(RPC_INVALID_PARAMS, "Incorrect block number");
+        }
+    }
+
+    dev::Address addrAccount(strAddr);
+    if (!globalState->addressInUse(addrAccount))
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Address does not exist");
+
+    std::vector<uint8_t> code(globalState->code(addrAccount));
+
+    return HexStr(code.begin(), code.end());
 }
 
 static UniValue getstorage(const JSONRPCRequest& request)
@@ -995,7 +1038,7 @@ static UniValue getstorage(const JSONRPCRequest& request)
 
     std::string strAddr = request.params[0].get_str();
     if(strAddr.size() != 40 || !CheckHex(strAddr))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Incorrect address"); 
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Incorrect address");
 
     TemporaryState ts(globalState);
     if (request.params.size() > 1)
@@ -1008,7 +1051,7 @@ static UniValue getstorage(const JSONRPCRequest& request)
 
             if(blockNum != -1)
                 ts.SetRoot(uintToh256(::ChainActive()[blockNum]->hashStateRoot), uintToh256(::ChainActive()[blockNum]->hashUTXORoot));
-                
+
         } else {
             throw JSONRPCError(RPC_INVALID_PARAMS, "Incorrect block number");
         }
@@ -1017,7 +1060,7 @@ static UniValue getstorage(const JSONRPCRequest& request)
     dev::Address addrAccount(strAddr);
     if(!globalState->addressInUse(addrAccount))
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Address does not exist");
-    
+
     UniValue result(UniValue::VOBJ);
 
     bool onlyIndex = request.params.size() > 2;
@@ -1039,7 +1082,7 @@ static UniValue getstorage(const JSONRPCRequest& request)
         UniValue e(UniValue::VOBJ);
 
         storage = {{elem->first, {elem->second.first, elem->second.second}}};
-    } 
+    }
     for (const auto& j: storage)
     {
         UniValue e(UniValue::VOBJ);
@@ -1290,9 +1333,9 @@ UniValue callcontract(const JSONRPCRequest& request)
             + HelpExampleRpc("callcontract", "\"\" 60606040525b33600060006101000a81548173ffffffffffffffffffffffffffffffffffffffff02191690836c010000000000000000000000009081020402179055506103786001600050819055505b600c80605b6000396000f360606040526008565b600256")
                 },
             }.Check(request);
- 
+
     LOCK(cs_main);
-    
+
     std::string strAddr = request.params[0].get_str();
     std::string data = request.params[1].get_str();
 
@@ -1309,7 +1352,7 @@ UniValue callcontract(const JSONRPCRequest& request)
         if(!globalState->addressInUse(addrAccount))
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Address does not exist");
     }
-    
+
     dev::Address senderAddress;
     if(request.params.size() >= 3){
         CTxDestination sicashSenderAddress = DecodeDestination(request.params[2].get_str());
@@ -1337,7 +1380,7 @@ UniValue callcontract(const JSONRPCRequest& request)
     result.pushKV("address", strAddr);
     result.pushKV("executionResult", executionResultToJSON(execResults[0].execRes));
     result.pushKV("transactionReceipt", transactionReceiptToJSON(execResults[0].txRec));
- 
+
     return result;
 }
 
@@ -1787,11 +1830,11 @@ UniValue searchlogs(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_INTERNAL_ERROR, "Events indexing disabled");
 
     int curheight = 0;
-    
+
     LOCK(cs_main);
 
     SearchLogsParams params(request.params);
-    
+
     std::vector<std::vector<uint256>> hashesToBlock;
 
     curheight = pblocktree->ReadHeightIndex(params.fromBlock, params.toBlock, params.minconf, hashesToBlock, params.addresses);
@@ -1898,7 +1941,7 @@ UniValue gettransactionreceipt(const JSONRPCRequest& request)
             + HelpExampleRpc("gettransactionreceipt", "3b04bc73afbbcf02cfef2ca1127b60fb0baf5f8946a42df67f1659671a2ec53c")
                 },
             }.Check(request);
- 
+
     if(!fLogEvents)
         throw JSONRPCError(RPC_INTERNAL_ERROR, "Events indexing disabled");
 
@@ -1908,7 +1951,7 @@ UniValue gettransactionreceipt(const JSONRPCRequest& request)
     if(hashTemp.size() != 64){
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Incorrect hash");
     }
-    
+
     uint256 hash(uint256S(hashTemp));
 
     std::vector<TransactionReceiptInfo> transactionReceiptInfo = pstorageresult->getResult(uintToh256(hash));
@@ -2117,6 +2160,39 @@ UniValue listcontracts(const JSONRPCRequest& request)
 	}
 
 	return result;
+}
+
+UniValue listallcontracts(const JSONRPCRequest& request)
+{
+    RPCHelpMan{
+        "listallcontracts",
+        "\nGet the contracts list.\n",
+        {{"blockNum", RPCArg::Type::NUM, /* default */ "latest", "Number of block to get contracts from."}},
+        RPCResult{
+            "{\n"
+            "  \"account\": n,                            (numeric) balance for the account\n"
+            "  ...\n"
+            "}\n"},
+        RPCExamples{HelpExampleCli("listallcontracts", "") + HelpExampleRpc("listallcontracts", "")},
+    }
+        .Check(request);
+
+    LOCK(cs_main);
+
+    TemporaryState ts(globalState);
+    if (request.params.size() > 0) {
+        int blockNum = request.params[0].get_int();
+        if (blockNum < 0 || blockNum > ::ChainActive().Height())
+            throw JSONRPCError(RPC_INVALID_PARAMS, "Incorrect block number");
+        ts.SetRoot(uintToh256(::ChainActive()[blockNum]->hashStateRoot), uintToh256(::ChainActive()[blockNum]->hashUTXORoot));
+    }
+
+    UniValue result(UniValue::VARR);
+    auto map = globalState->addresses();
+    for (const auto& item: map) {
+        result.push_back(item.first.hex());
+    }
+    return result;
 }
 
 static UniValue pruneblockchain(const JSONRPCRequest& request)
@@ -3488,6 +3564,7 @@ static const CRPCCommand commands[] =
     { "blockchain",         "savemempool",            &savemempool,            {} },
     { "blockchain",         "verifychain",            &verifychain,            {"checklevel","nblocks"} },
     { "blockchain",         "getaccountinfo",         &getaccountinfo,         {"contract_address"} },
+    { "blockchain",         "getcontractcode",        &getcontractcode,        {"address", "blockNum"} },
     { "blockchain",         "getstorage",             &getstorage,             {"address, index, blockNum"} },
 
     { "blockchain",         "preciousblock",          &preciousblock,          {"blockhash"} },
@@ -3503,6 +3580,7 @@ static const CRPCCommand commands[] =
     { "hidden",             "waitforblockheight",     &waitforblockheight,     {"height","timeout"} },
     { "hidden",             "syncwithvalidationinterfacequeue", &syncwithvalidationinterfacequeue, {} },
     { "blockchain",         "listcontracts",          &listcontracts,          {"start", "maxDisplay"} },
+    { "blockchain",         "listallcontracts",       &listallcontracts,       {"height"} },
     { "blockchain",         "gettransactionreceipt",  &gettransactionreceipt,  {"hash"} },
     { "blockchain",         "searchlogs",             &searchlogs,             {"fromBlock", "toBlock", "address", "topics"} },
 
