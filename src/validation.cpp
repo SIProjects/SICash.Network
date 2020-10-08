@@ -765,7 +765,7 @@ bool MemPoolAccept::PreChecks(ATMPArgs& args, Workspace& ws)
 
         dev::u256 sumGas = dev::u256(0);
         dev::u256 gasAllTxs = dev::u256(0);
-        for(SICashTransaction sicashTransaction : sicashTransactions){
+        for(const SICashTransaction &sicashTransaction : sicashTransactions){
             sumGas += sicashTransaction.gas() * sicashTransaction.gasPrice();
 
             if(sumGas > dev::u256(INT64_MAX)) {
@@ -2394,10 +2394,19 @@ bool CheckSenderScript(const CCoinsViewCache& view, const CTransaction& tx){
 }
 
 std::vector<ResultExecute> CallContract(const dev::Address& addrContract, std::vector<unsigned char> opcode, const dev::Address& sender, uint64_t gasLimit){
+    CBlockIndex* pblockindex = ::BlockIndex()[::ChainActive().Tip()->GetBlockHash()];
+    return CallContract(addrContract, opcode, pblockindex, sender, gasLimit);
+}
+
+std::vector<ResultExecute> CallContract(const dev::Address& addrContract, std::vector<unsigned char> opcode, int blockHeight, const dev::Address& sender, uint64_t gasLimit){
+    CBlockIndex* pblockindex = ::BlockIndex()[::ChainActive()[blockHeight]->GetBlockHash()];
+    return CallContract(addrContract, opcode, pblockindex, sender, gasLimit);
+}
+
+std::vector<ResultExecute> CallContract(const dev::Address& addrContract, std::vector<unsigned char> opcode, CBlockIndex* pblockindex, const dev::Address& sender, uint64_t gasLimit) {
     CBlock block;
     CMutableTransaction tx;
 
-    CBlockIndex* pblockindex = ::BlockIndex()[::ChainActive().Tip()->GetBlockHash()];
     ReadBlockFromDisk(block, pblockindex, Params().GetConsensus());
     block.nTime = GetAdjustedTime();
 
@@ -2407,7 +2416,7 @@ std::vector<ResultExecute> CallContract(const dev::Address& addrContract, std::v
     	block.vtx.erase(block.vtx.begin()+1,block.vtx.end());
 
     SICashDGP sicashDGP(globalState.get(), fGettingValuesDGP);
-    uint64_t blockGasLimit = sicashDGP.getBlockGasLimit(::ChainActive().Tip()->nHeight + 1);
+    uint64_t blockGasLimit = sicashDGP.getBlockGasLimit(pblockindex->nHeight + 1);
 
     if(gasLimit == 0){
         gasLimit = blockGasLimit - 1;
@@ -2619,7 +2628,7 @@ UniValue vmLogToJSON(const ResultExecute& execRes, const CTransaction& tx, const
     }
     UniValue logEntries(UniValue::VARR);
     dev::eth::LogEntries logs = execRes.txRec.log();
-    for(dev::eth::LogEntry log : logs){
+    for(const dev::eth::LogEntry& log : logs){
         UniValue logEntrie(UniValue::VOBJ);
         logEntrie.pushKV("address", log.address.hex());
         UniValue topics(UniValue::VARR);
@@ -2702,7 +2711,7 @@ bool ByteCodeExec::performByteCode(dev::eth::Permanence type){
         if(!tx.isCreation() && !globalState->addressInUse(tx.receiveAddress())){
             dev::eth::ExecutionResult execRes;
             execRes.excepted = dev::eth::TransactionException::Unknown;
-            result.push_back(ResultExecute{execRes, SICashTransactionReceipt(dev::h256(), dev::h256(), dev::u256(), dev::eth::LogEntries()), CTransaction()});
+            result.push_back(ResultExecute{execRes, SICashTransactionReceipt(dev::h256(), dev::h256(), dev::u256(), dev::eth::LogEntries(), {}, {}), CTransaction()});
             continue;
         }
         result.push_back(globalState->execute(envInfo, *globalSealEngine.get(), tx, type, OnOpFunc()));
@@ -3437,6 +3446,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                         uint32_t(pindex->nHeight),
                         tx.GetHash(),
                         uint32_t(i),
+                        resultConvertSICashTX.first[k].getNVout(),
                         resultConvertSICashTX.first[k].from(),
                         resultConvertSICashTX.first[k].to(),
                         countCumulativeGasUsed,
@@ -3445,7 +3455,10 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                         resultExec[k].txRec.log(),
                         resultExec[k].execRes.excepted,
                         exceptedMessage(resultExec[k].execRes.excepted, resultExec[k].execRes.output),
-                        resultConvertSICashTX.first[k].getNVout()
+                        resultExec[k].txRec.stateRoot(),
+                        resultExec[k].txRec.utxoRoot(),
+                        resultExec[k].txRec.createdContracts(),
+                        resultExec[k].txRec.destructedContracts()
                     });
                 }
 
@@ -3456,7 +3469,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
             if(blockGasUsed > blockGasLimit){
                 return state.Invalid(ValidationInvalidReason::CONSENSUS, error("ConnectBlock(): Block exceeds gas limit"), REJECT_INVALID, "bad-blk-gaslimit");
             }
-            for(CTxOut refundVout : bcer.refundOutputs){
+            for(const CTxOut &refundVout : bcer.refundOutputs){
                 gasRefunds += refundVout.nValue;
             }
             checkVouts.insert(checkVouts.end(), bcer.refundOutputs.begin(), bcer.refundOutputs.end());

@@ -12,7 +12,7 @@
 #include <libethereum/Executive.h>
 #include <libethcore/SealEngine.h>
 
-using OnOpFunc = std::function<void(uint64_t, uint64_t, dev::eth::Instruction, dev::bigint, dev::bigint, 
+using OnOpFunc = std::function<void(uint64_t, uint64_t, dev::eth::Instruction, dev::bigint, dev::bigint,
     dev::bigint, dev::eth::VMFace const*, dev::eth::ExtVMFace const*)>;
 using plusAndMinus = std::pair<dev::u256, dev::u256>;
 using valtype = std::vector<unsigned char>;
@@ -32,13 +32,31 @@ struct Vin{
 
 class SICashTransactionReceipt: public dev::eth::TransactionReceipt {
 public:
-    SICashTransactionReceipt(dev::h256 const& state_root, dev::h256 const& utxo_root, dev::u256 const& gas_used, dev::eth::LogEntries const& log) : dev::eth::TransactionReceipt(state_root, gas_used, log), m_utxoRoot(utxo_root) {}
+    SICashTransactionReceipt(
+        dev::h256 const& state_root,
+        dev::h256 const& utxo_root,
+        dev::u256 const& gas_used,
+        dev::eth::LogEntries const& log,
+        std::vector<std::pair<dev::Address, dev::bytes>>&& createdContracts,
+        std::vector<dev::Address>&& destructedContracts
+    ) : dev::eth::TransactionReceipt(state_root, gas_used, log),
+        m_utxoRoot(utxo_root),
+        m_createdContracts(std::move(createdContracts)),
+        m_destructedContracts(std::move(destructedContracts)) {}
 
     dev::h256 const& utxoRoot() const {
         return m_utxoRoot;
     }
+    std::vector<std::pair<dev::Address, dev::bytes>> const& createdContracts() const {
+        return m_createdContracts;
+    }
+    std::vector<dev::Address> const& destructedContracts() const {
+        return m_destructedContracts;
+    }
 private:
     dev::h256 m_utxoRoot;
+    std::vector<std::pair<dev::Address, dev::bytes>> m_createdContracts;
+    std::vector<dev::Address> m_destructedContracts;
 };
 
 struct ResultExecute{
@@ -69,7 +87,7 @@ namespace sicash{
 class CondensingTX;
 
 class SICashState : public dev::eth::State {
-    
+
 public:
 
     SICashState();
@@ -152,11 +170,11 @@ struct TemporaryState{
     dev::h256 oldHashStateRoot;
     dev::h256 oldHashUTXORoot;
 
-    TemporaryState(std::unique_ptr<SICashState>& _globalStateRef) : 
+    TemporaryState(std::unique_ptr<SICashState>& _globalStateRef) :
         globalStateRef(_globalStateRef),
-        oldHashStateRoot(globalStateRef->rootHash()), 
+        oldHashStateRoot(globalStateRef->rootHash()),
         oldHashUTXORoot(globalStateRef->rootHashUTXO()) {}
-                
+
     void SetRoot(dev::h256 newHashStateRoot, dev::h256 newHashUTXORoot)
     {
         globalStateRef->setRoot(newHashStateRoot);
