@@ -31,6 +31,8 @@ ResultExecute SICashState::execute(EnvInfo const& _envInfo, SealEngineFace const
     h256 oldStateRoot = rootHash();
     h256 oldUTXORoot = rootHashUTXO();
     bool voutLimit = false;
+    m_createdContracts.clear();
+    m_destructedContracts.clear();
 
 	auto onOp = _onOp;
 #if ETH_VMTRACE
@@ -122,9 +124,32 @@ ResultExecute SICashState::execute(EnvInfo const& _envInfo, SealEngineFace const
             refund.vout.push_back(CTxOut(CAmount(_t.value().convert_to<uint64_t>()), script));
         }
         //make sure to use empty transaction if no vouts made
-        return ResultExecute{ex, SICashTransactionReceipt(oldStateRoot, oldUTXORoot, gas, e.logs()), refund.vout.empty() ? CTransaction() : CTransaction(refund)};
+        return ResultExecute{
+            ex,
+            SICashTransactionReceipt(
+                oldStateRoot, oldUTXORoot, gas, e.logs(), {}, {}
+            ),
+            refund.vout.empty() ? CTransaction() : CTransaction(refund)};
     }else{
-        return ResultExecute{res, SICashTransactionReceipt(rootHash(), rootHashUTXO(), startGasUsed + e.gasUsed(), e.logs()), tx ? *tx : CTransaction()};
+        if (res.excepted == dev::eth::TransactionException::None) {
+            return ResultExecute{
+                res,
+                SICashTransactionReceipt(
+                    rootHash(), rootHashUTXO(),
+                    startGasUsed + e.gasUsed(),
+                    e.logs(),
+                    std::move(m_createdContracts),
+                    std::move(m_destructedContracts)
+                ),
+                tx ? *tx : CTransaction()
+            };
+        } else {
+            return ResultExecute{
+                res,
+                SICashTransactionReceipt(rootHash(), rootHashUTXO(), startGasUsed + e.gasUsed(), e.logs(), {}, {}),
+                tx ? *tx : CTransaction()
+            };
+        }
     }
 }
 
@@ -161,7 +186,7 @@ Vin* SICashState::vin(dev::Address const& _addr)
         std::string stateBack = stateUTXO.at(_addr);
         if (stateBack.empty())
             return nullptr;
-            
+
         dev::RLP state(stateBack);
         auto i = cacheUTXO.emplace(
             std::piecewise_construct,
@@ -180,7 +205,7 @@ Vin* SICashState::vin(dev::Address const& _addr)
 
 //     sicash::commit(cacheUTXO, stateUTXO, m_cache);
 //     cacheUTXO.clear();
-        
+
 //     m_touched += dev::eth::commit(m_cache, m_state);
 //     m_changeLog.clear();
 //     m_cache.clear();
