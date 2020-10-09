@@ -3,15 +3,15 @@ What is SICash?
 
 SICash is a decentralized blockchain project built on Bitcoin's UTXO model, with support for Ethereum Virtual Machine based smart contracts, and secured by a proof of stake consensus model. It achieves this through the revolutionary Account Abstraction Layer which allows the EVM to communicate with SICash's Bitcoin-like UTXO blockchain. For more general information about SICash as well as links to join our community, go to https://sicash.network
 
-Welcome to the SICash Ignition Main Network. This is the main network where the tokens hold value and should be guarded very carefully. If you are testing the network, or developing unstable software on SICash, we highly recommend using either testnet or regtest mode. 
+Welcome to the SICash Ignition Main Network. This is the main network where the tokens hold value and should be guarded very carefully. If you are testing the network, or developing unstable software on SICash, we highly recommend using either testnet or regtest mode.
 
 The major features of the SICash network include:
 
-1. Compatibility with the Ethereum Virtual Machine, which allows for compatibility with most existing Solidity based smart contracts. No special solidity compiler is required to deploy your smart contract to SICash. 
+1. Compatibility with the Ethereum Virtual Machine, which allows for compatibility with most existing Solidity based smart contracts. No special solidity compiler is required to deploy your smart contract to SICash.
 
 2. A Proof of Stake consensus system which is optimized for SICash's contract model. Any user can stake and help to secure the network. There is no voting, master nodes, or minimum amount required. There have been transactions as small as 2 SICash that have created blocks in the past. Staking from smart contracts is under development.
 
-3. The Decentralized Governance Protocol is completely implemented and functional, which allows certain network parameters to be modified without a fork or other network disruption. This currently controls parameters like block size, gas prices, etc. 
+3. The Decentralized Governance Protocol is completely implemented and functional, which allows certain network parameters to be modified without a fork or other network disruption. This currently controls parameters like block size, gas prices, etc.
 
 4. Uses the UTXO transaction model and is compatible with Bitcoin, allowing for existing tooling and workflows to be used with SICash. This allows for the infamous SPV protocol to be used which is ideal for light wallets on mobile phones and IoT devices.
 
@@ -31,14 +31,14 @@ Basic usage resources:
 * [Running SICash on Amazon AWS using SICash AMI](https://github.com/SIProjects/documents/tree/master/en/SICash-AWS)
 * [Encrypting and unlocking wallet](https://github.com/SIProjects/documents/tree/master/en/Encrypt-and-Unlock-SICash-Wallet)
 * [Testnet guide](https://github.com/SIProjects/documents/blob/master/en/Testnet-User-Guide.md)
-* [Block explorer](https://sicash.info), [Older explorer](https://explorer.sicash.org)
+* [Block explorer](https://explorer.sicash.network), [Older explorer](https://explorer.sicash.network)
 
 
 Development resources:
 
 * [SICash Book - A Developer's Guide To SICASH](http://book.sicash.site/en/)
 * [SICash contract usage](https://docs.sicash.site/en/SRC20-Token-Introduce.html)
-* [Deploying a custom token to SICash](https://blog.sicash.org/sicash-custom-token-walkthrough-467d725fa27d)
+* [Deploying a custom token to SICash](https://blog.sicash.network/sicash-custom-token-walkthrough-467d725fa27d)
 * [SICashJS document](https://SIProjects.github.io/sicashjs-doc/)
 * [Smart contract ICO example](http://book.sicash.site/en/part3/ico.htm)
 * [Early example faucet contract](http://earlz.net/view/2017/06/30/2144/the-sicash-sparknet-faucet)
@@ -63,14 +63,14 @@ Developer's Tools
   * https://github.com/SIProjects/sicashportal
 * Docker images for running sicash services
   * https://github.com/SIProjects/sicash-docker
-* sicash.info API that powers the block explorer and the SICASH Web wallet
+* explorer.sicash.network API that powers the block explorer and the SICASH Web wallet
   * https://github.com/SIProjects/sicashinfo-api#sicashinfo-api-documentation
 
 
 What is SICash Core?
 ------------------
 
-SICash Core is our primary mainnet wallet. It implements a full node and is capable of storing, validating, and distributing all history of the SICash network. SICash Core is considered the reference implementation for the SICash network. 
+SICash Core is our primary mainnet wallet. It implements a full node and is capable of storing, validating, and distributing all history of the SICash network. SICash Core is considered the reference implementation for the SICash network.
 
 SICash Core currently implements the following:
 
@@ -88,7 +88,7 @@ SICash Core currently implements the following:
 Alternative Wallets
 -------------------
 
-SICash Core uses a full node model, and thus requires downloading the entire blockchain. If you do not need the entire blockchain, and do not intend on developing smart contracts, it may be more ideal to use an alternative wallet such as one of our light wallets that can be synchronized in a matter of seconds. 
+SICash Core uses a full node model, and thus requires downloading the entire blockchain. If you do not need the entire blockchain, and do not intend on developing smart contracts, it may be more ideal to use an alternative wallet such as one of our light wallets that can be synchronized in a matter of seconds.
 
 ### SICash Web Wallet
 
@@ -100,13 +100,13 @@ User documentation https://github.com/SIProjects/documents/tree/master/en/SICASH
 
 ### SICash Electrum
 
-A light wallet that supports the Ledger and Trezor hardware wallets and is based on the well-known Electrum wallet software. 
+A light wallet that supports the Ledger and Trezor hardware wallets and is based on the well-known Electrum wallet software.
 
 Download: https://github.com/SIProjects/sicash-electrum/releases
 
 ### iOS and Android Wallets
 
-These wallets run on mobile devices and synchronize quickly. 
+These wallets run on mobile devices and synchronize quickly.
 
 Android Download: https://play.google.com/store/apps/details?id=org.sicash.newwallet
 
@@ -124,13 +124,13 @@ How to install: https://ledger.zendesk.com/hc/en-us/articles/115003776913-How-to
 Make sure to check out these resources as well for more information and to keep up to date with all the latest news about SICash. At least 1 developer is always around, so if you're developing on SICash and need help, we'd love to welcome you to our community.
 
 *	@SICash on Twitter https://twitter.com/sicash
-* SICash blog https://blog.sicash.org/
+* SICash blog https://blog.sicash.network/
 *	SICash Telegram Group https://t.me/sicashofficial, other languages available
 * SICash Discord https://discordapp.com/invite/wRfmkQ9
 *	/r/SICash on Reddit https://www.reddit.com/r/SICash/
-*	SICash.org https://sicash.org
+*	sicash.network https://sicash.network
 *	SICash on Facebook https://www.facebook.com/SICashOfficial/
-*	SICash Forum https://forum.sicash.org
+*	SICash Forum https://forum.sicash.network
 
 ### SICash Smart Contract Limitations
 
@@ -167,9 +167,9 @@ This is a quick start script for compiling SICash on Ubuntu
 
     # Note autogen will prompt to install some more dependencies if needed
     ./autogen.sh
-    ./configure 
+    ./configure
     make -j2
-    
+
 ### Build on CentOS
 
 Here is a brief description for compiling SICash on CentOS, for more details please refer to [the specific document](https://github.com/SIProjects/sicash/blob/master/doc/build-unix.md)
@@ -183,14 +183,14 @@ Here is a brief description for compiling SICash on CentOS, for more details ple
     ./bootstrap.sh --prefix=/usr --libdir=/usr/lib64
     ./b2 headers
     sudo ./b2 -j4 install
-    
+
     # Installing Dependencies for SICash
     sudo yum install epel-release
     sudo yum install libtool libdb4-cxx-devel openssl-devel libevent-devel gmp-devel
-    
+
     # If you want to build the Qt GUI:
     sudo yum install qt5-qttools-devel protobuf-devel qrencode-devel
-    
+
     # Building SICash
     git clone --recursive https://github.com/SIProjects/sicash.git
     cd sicash
@@ -285,4 +285,3 @@ Changes should be tested by somebody other than the developer who wrote the
 code. This is especially important for large or high-risk changes. It is useful
 to add a test plan to the pull request description if testing the changes is
 not straightforward.
-
