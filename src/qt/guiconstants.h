@@ -43,7 +43,7 @@ static const int TOOLTIP_WRAP_THRESHOLD = 80;
 #define SPINNER_FRAMES 36
 
 #define QAPP_ORG_NAME "SICash"
-#define QAPP_ORG_DOMAIN "sicash.org"
+#define QAPP_ORG_DOMAIN "sicash.network"
 #define QAPP_APP_NAME_DEFAULT "SICash-Qt"
 #define QAPP_APP_NAME_TESTNET "SICash-Qt-testnet"
 #define QAPP_APP_NAME_REGTEST "SICash-Qt-regtest"
@@ -52,7 +52,7 @@ static const int TOOLTIP_WRAP_THRESHOLD = 80;
 static constexpr uint64_t GB_BYTES{1000000000};
 
 /* Mainnet sicash explorer uri */
-static const QString SICASH_INFO_MAINNET = "<a href='https://sicash.info/%1/%2'>%2</a>";
+static const QString SICASH_INFO_MAINNET = "<a href='https://explorer.sicash.network/%1/%2'>%2</a>";
 
 /* Testnet sicash explorer uri */
 static const QString SICASH_INFO_TESTNET = "<a href='https://testnet.sicash.network/%1/%2'>%2</a>";
