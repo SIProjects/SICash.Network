@@ -176,8 +176,8 @@ public:
         consensus.nEnableHeaderSignatureHeight = 399100;
         consensus.nCheckpointSpan = COINBASE_MATURITY;
         consensus.delegationsAddress = uint160(ParseHex("0000000000000000000000000000000000000086")); // Delegations contract for offline staking
-        consensus.foundationAddress = "SeSu9BgGgd8cEfmfS2kmYbwMBTpH8f18bK";
-        consensus.careAddress = "SRBQgPoipSEVADYSyt3r7Lgk1BxwJy3hKj";
+        consensus.foundationAddress = "SVsqzrJkfVF2JLKZvKQwcaxdrqDmcB85rc";
+        consensus.careAddress = "Sa64FEcpLQTQEKtJpUsNoniQzcCLzo6jSX";
     }
 };
 
@@ -376,8 +376,8 @@ public:
         consensus.nEnableHeaderSignatureHeight = 0;
         consensus.nCheckpointSpan = COINBASE_MATURITY;
         consensus.delegationsAddress = uint160(ParseHex("0000000000000000000000000000000000000086")); // Delegations contract for offline staking
-        consensus.foundationAddress = "SeSu9BgGgd8cEfmfS2kmYbwMBTpH8f18bK";
-        consensus.careAddress = "SRBQgPoipSEVADYSyt3r7Lgk1BxwJy3hKj";
+        consensus.foundationAddress = "SVsqzrJkfVF2JLKZvKQwcaxdrqDmcB85rc";
+        consensus.careAddress = "Sa64FEcpLQTQEKtJpUsNoniQzcCLzo6jSX";
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,60);     // Starts with uppercase (R)
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,110);    // Starts with lowercase (m)
