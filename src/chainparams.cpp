@@ -75,9 +75,9 @@ public:
     CMainParams() {
         strNetworkID = "main";
         consensus.nSubsidyHalvingInterval = 2628000; // sicash halving every 5 years
-        consensus.BIP16Exception = uint256S("0x0000e505c152a12783c897a28f373e6a142d9b9ad8118acc209233fddee4f0af");
+        consensus.BIP16Exception = uint256S("0x0000c1f4c54861b1c9f6f60e8bc0d694531fcc4e236cdcffe20196464dff523a");
         consensus.BIP34Height = 0;
-        consensus.BIP34Hash = uint256S("0x0000e505c152a12783c897a28f373e6a142d9b9ad8118acc209233fddee4f0af");
+        consensus.BIP34Hash = uint256S("0x0000c1f4c54861b1c9f6f60e8bc0d694531fcc4e236cdcffe20196464dff523a");
         consensus.BIP65Height = 0; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
         consensus.BIP66Height = 0; // 00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
         consensus.CSVHeight = 6048; // 000000000000000004a1b34462cb8aeebd5799177f7a29cf28f2d1961716b5b5
@@ -123,10 +123,10 @@ public:
         m_assumed_blockchain_size = 8;
         m_assumed_chain_state_size = 1;
 
-        genesis = CreateGenesisBlock(1598837930, 182543, 0x1f00ffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1605217041, 51053, 0x1f00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
-        assert(consensus.hashGenesisBlock == uint256S("0x0000e505c152a12783c897a28f373e6a142d9b9ad8118acc209233fddee4f0af"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0000c1f4c54861b1c9f6f60e8bc0d694531fcc4e236cdcffe20196464dff523a"));
         assert(genesis.hashMerkleRoot == uint256S("0x98d558298d3446ee0c70424ac156a13e65817a637ecbec4694a9d16855b4dac8"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
@@ -153,7 +153,7 @@ public:
 
         checkpointData = {
             {
-                { 0, uint256S("0000e505c152a12783c897a28f373e6a142d9b9ad8118acc209233fddee4f0af")},
+                { 0, uint256S("0000c1f4c54861b1c9f6f60e8bc0d694531fcc4e236cdcffe20196464dff523a")},
             }
         };
 
