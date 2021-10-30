@@ -135,6 +135,7 @@ public:
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
         vSeeds.emplace_back("mainnet.sicash.network"); // SICash mainnet
+        vSeeds.emplace_back("mainnet.sicash.seeds.vidaru.org"); // SICash mainnet
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,63);    // Starts with uppercase (S)
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,125);   // Starts with lowercase (s)
@@ -244,6 +245,7 @@ public:
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
         vSeeds.emplace_back("testnet.sicash.network"); // SICash testnet
+        vSeeds.emplace_back("testnet.sicash.seeds.vidaru.org"); // SICash testnet
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,65);     // Starts with uppercase (T)
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,127);    //Starts with lowercase (t)
