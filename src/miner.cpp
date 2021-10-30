@@ -1184,13 +1184,16 @@ void ThreadStakeMiner(CWallet *pwallet, CConnman* connman)
 
     while (true)
     {
+        std::cout << "Trying to mine" << std::endl;
         while (pwallet->IsLocked() || !pwallet->m_enabled_staking || fReindex || fImporting)
         {
+            std::cout << "Wallet is locked or something" << std::endl;
             pwallet->m_last_coin_stake_search_interval = 0;
             MilliSleep(10000);
         }
         //don't disable PoS mining for no connections if in regtest mode
         if(!regtestMode && !gArgs.GetBoolArg("-emergencystaking", false)) {
+            std::cout << "Not emergencystaking" << std::endl;
             while (connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 || ::ChainstateActive().IsInitialBlockDownload()) {
                 pwallet->m_last_coin_stake_search_interval = 0;
                 fTryToSync = true;
